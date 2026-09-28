@@ -10,7 +10,7 @@ window.CENTRAL_CFG = {
   clientId: 'e7796abd-4812-49eb-adb3-760ff4a72ad8',
 
   /* Endereço do site do SharePoint onde ficam chamados e anexos (sem https://) */
-  site: 'agrologicamerc.sharepoint.com/sites/CentralAtendimento',
+  site: 'agrologicamerc.sharepoint.com/sites/centraldeatendimento',
 
   /* Pasta criada na biblioteca "Documentos" do site (chamados, anexos, dashboards, configuração) */
   pasta: 'Central de Atendimento',
