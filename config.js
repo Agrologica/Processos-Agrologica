@@ -7,7 +7,7 @@ window.CENTRAL_CFG = {
   tenantId: '326da5aa-04f3-4066-9c53-4861ceb95598',
 
   /* ID do aplicativo (cliente) do registro criado no Entra ID para a central */
-  clientId: 'C179e393e-c034-4b89-89c6-a2a7b83476ed',
+  clientId: 'e7796abd-4812-49eb-adb3-760ff4a72ad8',
 
   /* Endereço do site do SharePoint onde ficam chamados e anexos (sem https://) */
   site: 'agrologicamerc.sharepoint.com/sites/CentralAtendimento',
