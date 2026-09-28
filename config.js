@@ -16,5 +16,5 @@ window.CENTRAL_CFG = {
   pasta: 'Central de Atendimento',
 
   /* E-mails dos administradores: instalam a central, configuram áreas e cadastram pessoas */
-  admins: ['renan.pires@agrologica.com.br', 'jack.locatelli@agrologica.com.br']
+  admins: ['jack.locatelli@agrologica.com.br']
 };
