@@ -71,12 +71,12 @@ button,input,select,textarea{font:inherit;color:inherit}
 .usercorner{margin-left:auto;position:relative;padding-bottom:12px}
 .usericon{width:38px;height:38px;border-radius:50%;background:var(--brand,var(--accent));color:#fff;border:2px solid transparent;display:grid;place-items:center;font-weight:700;font-size:14px;cursor:pointer;padding:0}
 .usericon:hover,.usericon[aria-expanded="true"]{border-color:var(--hl,var(--accent))}
-.usermenu{position:absolute;top:calc(100% + 6px);right:0;min-width:240px;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.16);padding:14px;z-index:30}
+.usermenu{position:fixed;min-width:240px;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.2);padding:14px;z-index:9999}
 .usermenu .um-name{font-size:14px;font-weight:700;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .usermenu .um-email{font-size:12.5px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
 .usermenu .um-sair{margin-top:12px;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;padding:9px;border-radius:8px;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);font-weight:600;font-size:13.5px;cursor:pointer}
 .usermenu .um-sair:hover{background:var(--line)}
-@media (max-width:560px){.usermenu{right:-4px;min-width:210px}}
+@media (max-width:560px){.usermenu{min-width:210px}}
 .foot{margin:40px -16px 0;padding-inline:16px;background:var(--brand);color:#fff;position:relative;border-top:4px solid var(--hl);padding-bottom:env(safe-area-inset-bottom,0px)}
 .foot-in{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;padding-block:18px}
 .valor{display:flex;align-items:center;gap:12px;padding:6px 18px;border-left:1px solid rgba(255,255,255,.22)}
@@ -800,21 +800,20 @@ button.bub:hover .bub-c{transform:scale(1.04)}
     </div>
     <div class="usercorner" id="usercorner" hidden>
       <button class="usericon" id="userbtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Conta do usuário"><span id="uc-av" aria-hidden="true"></span></button>
-      <div class="usermenu" id="usermenu" hidden role="menu">
-        <div class="um-name" id="um-name"></div>
-        <div class="um-email" id="um-email"></div>
-        <button class="um-sair" id="um-sair" type="button" role="menuitem">Sair</button>
-      </div>
     </div>
   </div>
 </header>
+<div class="usermenu" id="usermenu" hidden role="menu">
+  <div class="um-name" id="um-name"></div>
+  <div class="um-email" id="um-email"></div>
+  <button class="um-sair" id="um-sair" type="button" role="menuitem">Sair</button>
+</div>
 <nav class="side" id="tabs" aria-label="Menu principal"></nav>
 <div class="wrap">
   <div id="banner"></div>
   <main id="main"></main>
 </div>
 <footer class="foot"><div class="foot-in" id="valores"></div><div class="foot-sub"><span id="foot-empresa"></span><span>Dúvidas sobre um chamado: informe o número dele à equipe responsável.</span></div></footer>
-
 
 <script>
 /* ===================== Modelo inicial (editável na aba Configurar) ===================== */
@@ -1692,9 +1691,18 @@ function montarUserChip(){
   if(!corner.dataset.ligado){
     corner.dataset.ligado='1';
     const btn=$('#userbtn'),menu=$('#usermenu');
-    btn.onclick=e=>{e.stopPropagation();const abrir=menu.hidden;menu.hidden=!abrir;btn.setAttribute('aria-expanded',String(abrir))};
-    document.addEventListener('click',e=>{if(!menu.hidden&&!corner.contains(e.target)){menu.hidden=true;btn.setAttribute('aria-expanded','false')}});
-    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!menu.hidden){menu.hidden=true;btn.setAttribute('aria-expanded','false');btn.focus()}});
+    const posicionar=()=>{
+      const r=btn.getBoundingClientRect();
+      menu.style.top=(r.bottom+6)+'px';
+      menu.style.left=Math.max(8,r.right-menu.offsetWidth)+'px';
+    };
+    const abrirMenu=()=>{menu.hidden=false;posicionar();btn.setAttribute('aria-expanded','true')};
+    const fecharMenu=()=>{menu.hidden=true;btn.setAttribute('aria-expanded','false')};
+    btn.onclick=e=>{e.stopPropagation();menu.hidden?abrirMenu():fecharMenu()};
+    document.addEventListener('click',e=>{if(!menu.hidden&&!menu.contains(e.target)&&e.target!==btn)fecharMenu()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!menu.hidden){fecharMenu();btn.focus()}});
+    window.addEventListener('resize',()=>{if(!menu.hidden)posicionar()});
+    window.addEventListener('scroll',()=>{if(!menu.hidden)posicionar()},true);
     $('#um-sair').onclick=()=>msSair();
   }
 }
