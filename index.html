@@ -2234,7 +2234,7 @@ function renderManuais(){
 
 /* ===================== Abas ===================== */
 function renderTabs(){
-  const nAbertos=tickets.filter(t=>ehEquipe||lc(t.solicitante?.email||t.solicitante?.uid)===meEmail).filter(aberto).length;
+  const nAbertos=tickets.filter(aberto).length;
   const nTrf=trfPend();const tabs=ehEquipe?[['abrir','Início','inicio'],['painel','Painel','painel',nAbertos],['indicadores','Indicadores','indic'],['dash','Dashboards','dash']]:[['abrir','Início','inicio'],['painel','Minhas','painel',nAbertos]];
   tabs.push(['manuais','Manuais','manuais']);if(podeAdmin)tabs.push(['config','Configurar','config']);
   if(MODO_MS&&meEmail)tabs.push(['__sair','Sair','sair']);
@@ -3319,7 +3319,7 @@ function timeCasa(t){return (TIME_ETAPAS[t.areaId]||[]).includes(t.status)}
 function timeLabel(){return Object.entries(TIME_ETAPAS).map(([id,es])=>{const a=(cfg.areas||[]).find(x=>x.id===id);const fl=a?(a.fluxo||[]):[];return (a?a.nome:id)+': '+es.map(e=>(fl.find(x=>x.id===e)||{nome:e}).nome).join(', ')}).join(' | ')}
 function filtrar(){
   const q=filtros.q;
-  if(!ehEquipe)return tickets.filter(t=>lc(t.solicitante?.email||t.solicitante?.uid)===meEmail).filter(t=>statusOk(t,filtros.status)).filter(t=>bateBusca(t,q)).sort((a,b)=>b.criadoEm-a.criadoEm);
+  if(!ehEquipe)return tickets.filter(t=>statusOk(t,filtros.status)).filter(t=>bateBusca(t,q)).sort((a,b)=>b.criadoEm-a.criadoEm);
   return tickets.filter(t=>{
     if(filtros.time&&!timeCasa(t))return false;
     if(filtros.area!=='todas'&&t.areaId!==filtros.area)return false;
@@ -4736,7 +4736,7 @@ function renderTrf(){
     h('div',{class:'trf-add-g'},sel('trf-orig','Filial de origem','origem'),sel('trf-dest','Filial de destino','destino'),
       h('label',{class:'field trf-prod'},h('span',{},'Produto',h('span',{class:'req',text:'*'})),prod),
       h('label',{class:'field'},h('span',{},'Quantidade',h('span',{class:'req',text:'*'})),h('span',{class:'trf-qu'},qtd,un)),
-      h('div',{class:'field'},h('span',{'aria-hidden':'true'},' '),h('button',{type:'button',class:'btn primary',id:'trf-incluir',onclick:trfIncluir},'+ Incluir linha'))),
+      h('div',{class:'field'},h('span',{'aria-hidden':'true'},' '),h('button',{type:'button',class:'btn primary',id:'trf-incluir',onclick:trfIncluir},'+ Incluir linha'))),
     h('datalist',{id:'dl-trf-prod'},prods.map(p=>h('option',{value:p}))));
   $('#main').replaceChildren(
     h('div',{class:'intro'},h('div',{},h('h2',{text:'Transferência entre filiais'}),h('p',{text:'Inclua a transferência, Suprimentos libera na própria linha e a Logística informa a data de carregamento e a de entrega na unidade. Ao finalizar, a linha sai da lista.'}),h('p',{class:'trf-aviso'},h('b',{text:'Prazo D+S: '}),'o que for solicitado nesta semana é movimentado na próxima semana. ',h('b',{text:'Só para transferência com frete contratado pela Logística'}),' — se alguém vai retirar o produto, peça pelo Faturamento (operação Transferência).'))),
