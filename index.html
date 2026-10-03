@@ -265,11 +265,12 @@ input:focus,select:focus,textarea:focus{border-color:var(--accent);outline:none;
 .pfil{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:12px;display:flex;flex-direction:column;gap:10px}
 .pfil-1{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.pfil-1 .search{flex:1 1 260px;max-width:480px}.pfil-1 .nota-f{width:130px}
 .pfil-st{align-items:center}.pfil-st .count.crit{background:var(--crit);color:#fff}.pfil-st .chip[aria-pressed="true"] .count{background:rgba(255,255,255,.25);color:inherit}.pf-etapa{width:auto;min-width:200px;margin-left:4px}
-.pfil-2{display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) auto;gap:10px;align-items:end;border-top:1px solid var(--line);padding-top:10px}
+.pfil-2{display:grid;grid-template-columns:repeat(5,minmax(0,1fr)) auto;gap:10px;align-items:end;border-top:1px solid var(--line);padding-top:10px}
 .pf{display:flex;flex-direction:column;gap:3px;min-width:0}.pf-l{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3)}.pf select{width:100%}
 .pf.on select{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset;font-weight:600}.pf.on .pf-l{color:var(--accent)}
 .pf-minhas{align-self:end;min-height:40px}.pf-mais{display:none}
 @media (max-width:720px){.pf-mais{display:inline-flex}.pfil:not(.aberto) .pfil-2,.pfil:not(.aberto) .pfil-st{display:none}.pfil-1 .search{flex-basis:100%}}
+@media (max-width:1100px){.pfil-2{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:900px){.pfil-2{grid-template-columns:repeat(2,minmax(0,1fr))}.pfil-1 .search{max-width:none}}
 @media (max-width:520px){.pfil-2{grid-template-columns:minmax(0,1fr)}.pfil-1 .nota-f{flex:1}}
 .filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
@@ -298,6 +299,10 @@ input:focus,select:focus,textarea:focus{border-color:var(--accent);outline:none;
 .c-etapa{grid-area:e;display:flex;flex-direction:column;gap:4px;min-width:0}
 .c-etapa .stc{align-items:center;gap:4px}
 .desv{font-weight:700;color:var(--ink-3)}
+.acom{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--ink-2)}
+.acom b{font-weight:700;color:var(--ink)}
+.acom.desv{border:1px solid var(--c);color:var(--c);border-radius:999px;padding:0 8px;font-weight:600}
+.acom.desv b{color:inherit}
 .prog{display:flex;align-items:center;gap:8px}
 .psegs{display:flex;gap:3px;flex:1;max-width:160px}
 .pseg{height:6px;flex:1;border-radius:3px;background:var(--surface-2)}
@@ -1248,6 +1253,33 @@ function incluirLiquidados(c){const a=(c.areas||[]).find(x=>x.id==='customer');i
   const cp=(a.campos||[]).find(x=>x.tipo==='pedidos');if(cp){cp.operacoes=cp.operacoes||[];if(!cp.operacoes.some(o=>o.nome===LIQ.tipo))cp.operacoes.push(clone(LIQ.op));cp.maxClientes=Math.max(10,+cp.maxClientes||0)}
   if(a.descricao&&!/liquidad/i.test(a.descricao))a.descricao=a.descricao.replace(/ e Registro de Ocorrência \(RO\)\./,', Registro de Ocorrência (RO) e pedidos liquidados para aprovar a margem.');
   if(a.instrucoes&&!/liquidad/i.test(a.instrucoes))a.instrucoes+=' Em Pedidos liquidados, o financeiro informa o cliente e o nº de cada pedido liquidado (até 10 por solicitação) para aprovarmos a margem de novo.'}
+/* Customer Service: Solicitado → Em andamento → Finalizado; ao direcionar, o status vira Em andamento e a área responsável aparece ao lado */
+function fluxoCS(c){const a=(c.areas||[]).find(x=>x.id==='customer');if(!a||!a.fluxo)return;
+  const f1=a.fluxo.find(x=>x.id==='analise');if(f1&&/^an[áa]lise/i.test(f1.nome))f1.nome='Solicitado';
+  const f2=a.fluxo.find(x=>x.id==='execucao');if(f2&&/^em execu/i.test(f2.nome))f2.nome='Em andamento';
+  [{id:'barter',nome:'Barter · troca de nota',equipe:'Barter e Fertilizante',cor:'#8A6D1F'},{id:'compras',nome:'Compras · suprimentos e preço',equipe:'Compras',cor:'#7E57B0'},{id:'faturamento',nome:'Faturamento',equipe:'Faturamento',cor:'#2B63A3'},{id:'logistica',nome:'Logística',equipe:'Logística',cor:'#5E7F1C'}].forEach(e=>{
+    if(a.fluxo.some(s=>s.id===e.id||eqNorm(s.equipe)===eqNorm(e.equipe)))return;let i=a.fluxo.findIndex(s=>s.tipo!=='aberto');if(i<0)i=a.fluxo.length;a.fluxo.splice(i,0,{...e,tipo:'aberto',desvio:true})});
+  a.fluxo.forEach(s=>{if(s.desvio)s.mostraComo='execucao'})}
+/* Customer Service: depois de Em andamento (e das pausas nas áreas) vem a Conferência, antes de Finalizar */
+function confCS(c){const a=(c.areas||[]).find(x=>x.id==='customer');if(!a||!a.fluxo||a.fluxo.some(x=>x.id==='conferencia'))return;
+  let i=a.fluxo.findIndex(s=>s.tipo!=='aberto');if(i<0)i=a.fluxo.length;a.fluxo.splice(i,0,{id:'conferencia',nome:'Conferência',equipe:'Customer Service',cor:'#7E57B0',tipo:'aberto'})}
+/* Central de Notas: Solicitação (solicitante) → Aprovação de compra (Orçamento) → Lançamento de pedido (Central de Notas) → Aprovação de pedido (Orçamento) → Lançamento de nota (Central de Notas) → Finalizado. Sem pausas; só devolve para uma etapa anterior, com observação. */
+function fluxoNotas(c){const a=(c.areas||[]).find(x=>x.id==='notas');if(!a||!a.fluxo)return;const old=a.fluxo,g=id=>old.find(x=>x.id===id);
+  const ap=g('aprov-orc'),lp=g('lib-pedido'),ln=g('lancamento'),fin=g('concluido');if(!ap||!lp||!ln||!fin)return;
+  const sol=g('aguardando')||{id:'aguardando',equipe:'Solicitante',cor:'#B7791F',tipo:'espera'};
+  sol.nome='Solicitação';sol.equipe='Solicitante';sol.solicitanteAtua=true;
+  ap.nome='Aprovação de compra';ap.equipe='Orçamento';lp.nome='Aprovação de pedido';lp.equipe='Orçamento';ln.nome='Lançamento de nota';ln.equipe='Central de Notas';
+  const ped=g('lanc-pedido')||{id:'lanc-pedido',nome:'Lançamento de pedido',equipe:'Central de Notas',cor:'#2B7A9B',tipo:'aberto'};
+  const usados=['aguardando','aprov-orc','lanc-pedido','lib-pedido','lancamento'];
+  a.fluxo=[sol,ap,ped,lp,ln,...old.filter(x=>!usados.includes(x.id)&&!x.desvio)]}
+/* o solicitante ajusta e reenvia para a etapa que devolveu (Central de Notas) */
+function reenviarBtn(t){if(t.areaId!=='notas'||!podeAtuar(t))return null;const fl=fluxoArea(t.areaId);
+  const ult=[...(t.tempos||[])].reverse().find((x,i)=>i>0&&fl.some(f=>f.id===x.status&&f.tipo==='aberto'));const alvo=ult?stById(t,ult.status):fl.find(f=>f.tipo==='aberto');if(!alvo)return null;
+  return h('button',{type:'button',class:'btn sm primary',onclick:()=>mudarStatus(t,alvo.id)},`Reenviar para ${alvo.nome}`)}
+const CONS={tipo:'Alteração de consultor',op:{nome:'Alteração de consultor',campos:['Cliente','Nº do pedido','Consultor atual','Novo consultor'],similar:false,semProdutos:true}};
+function incluirConsultor(c){const a=(c.areas||[]).find(x=>x.id==='customer');if(!a)return;
+  a.tipos=a.tipos||[];if(!a.tipos.includes(CONS.tipo))a.tipos.push(CONS.tipo);
+  const cp=(a.campos||[]).find(x=>x.tipo==='pedidos');if(cp){cp.operacoes=cp.operacoes||[];if(!cp.operacoes.some(o=>o.nome===CONS.tipo))cp.operacoes.push(clone(CONS.op))}}
 function aplicarPrazos2(c){const A=id=>(c.areas||[]).find(x=>x.id===id);const E=(a,id,min,modo,fds)=>{const s=a&&(a.fluxo||[]).find(x=>x.id===id);if(s){s.slaMin=min;s.slaModo=modo;if(fds)s.slaSemFds=true;else delete s.slaSemFds}};
   let a=A('faturamento');if(a){a.prazoTxt='Prazo de faturamento: 5 min por solicitação (cada cliente/pedido incluído)';E(a,'novo',5,'op')}
   a=A('notas');if(a){a.sla=2;a.prazoTxt='Prazo de retorno: 2 h para recepcionar e 2 h para lançar o pedido ou a nota';const f=(a.fluxo||[]).find(x=>x.tipo==='aberto'&&!x.desvio);if(f)E(a,f.id,120,'soma');E(a,'lancamento',120,'soma')}
@@ -1383,6 +1415,12 @@ function stOf(t){const f=fluxoArea(t.areaId).find(s=>s.id===t.status);if(f)retur
   return {id:t.status,nome:(ult&&ult.nome)||t.status||'—',equipe:(ult&&ult.equipe)||'',cor:'#737F8E',tipo:['concluido','cancelado'].includes(t.status)?'final':'aberto'}}
 function stById(t,id){return fluxoArea(t.areaId).find(s=>s.id===id)||{id,nome:id,equipe:'',cor:'#737F8E',tipo:'aberto'}}
 function aberto(t){return stOf(t).tipo!=='final'}
+/* Status x área: numa pausa (Crédito, Barter…) o status continua sendo a etapa de onde a solicitação saiu; a área é quem está com ela agora */
+function baseDe(t){const st=stOf(t);if(!st.desvio||!aberto(t))return st;const fl=fluxoArea(t.areaId);
+  if(st.mostraComo){const b=fl.find(x=>x.id===st.mostraComo);if(b)return b}
+  return [...(t.tempos||[])].reverse().map(x=>fl.find(f=>f.id===x.status&&!f.desvio&&f.tipo==='aberto')).find(Boolean)||st}
+function chipArea(t){const st=stOf(t);const eq=aberto(t)?(st.equipe||''):'';if(!eq)return null;
+  return h('span',{class:'acom'+(st.desvio?' desv':''),style:st.desvio?`--c:${st.cor}`:'',title:'Área com a solicitação agora'},'Com: ',h('b',{text:eq}))}
 function areaCfg(id){return (cfg.areas||[]).find(a=>a.id===id)}
 function prazoH(t){const a=areaCfg(t.areaId);const pt=a&&a.slaPorTipo&&t.tipo&&a.slaPorTipo[t.tipo];return +pt||+(a&&a.sla)||+t.slaH||0}
 function uteisT(t,ini,fim){const a=areaCfg(t.areaId);return msUteis(ini,fim,!!(a&&a.slaSemSab))}
@@ -1459,9 +1497,11 @@ let editando=null;
 const MODO_MS=!!window.CENTRAL_CFG;let meEmail='',mePapel=null,ehEquipe=true;
 const lc=x=>String(x||'').trim().toLowerCase();
 let areaSel=null, tipoSel=null, formDirty=false, anexosSel={}, enviado=null;
-let filtros={area:'todas',status:'abertos',q:'',nota:'',filial:'todas',solicitante:'todos',minhas:false,equipe:'todas',time:false}, ticketSel=null, comentario='';
-try{const f=JSON.parse(localStorage.getItem('ca-filtros')||'null');if(f)for(const k of ['area','status','filial','solicitante','minhas','equipe','time'])if(k in f)filtros[k]=f[k]}catch(e){}
+let filtros={area:'todas',status:'abertos',q:'',nota:'',filial:'todas',solicitante:'todos',minhas:false,equipe:'todas',time:false,etapa:''}, ticketSel=null, comentario='';
+try{const f=JSON.parse(localStorage.getItem('ca-filtros')||'null');if(f)for(const k of ['area','filial','solicitante','minhas','equipe','time'])if(k in f)filtros[k]=f[k]}catch(e){}
 let filtrosAbertos=false;
+if(!['abertos','atrasados','espera','finalizados','todos','fin7'].includes(filtros.status))filtros.status='abertos';
+if(String(filtros.equipe).startsWith('passa|'))filtros.equipe='todas';
 function guardaFiltros(){try{const {area,status,filial,solicitante,minhas,equipe,time}=filtros;localStorage.setItem('ca-filtros',JSON.stringify({area,status,filial,solicitante,minhas,equipe,time}))}catch(e){}}
 let draft=null, draftIdx=0, draftDirty=false;
 let perfis={};
@@ -3314,7 +3354,7 @@ function bateBusca(t,q){
   return ws.every(w=>{if(txt.includes(w))return true;if(/^[\d.\-\/]+$/.test(w)){const d=w.replace(/\D/g,'').replace(/^0+/,'');return !!d&&txt.includes(d)}return false})
 }
 /* Meu time: só o que está numa etapa que depende do time (por área e etapa) */
-const TIME_ETAPAS={faturamento:['novo','manifesto'],notas:['lancamento','concluido'],logistica:['logistica','faturamento','manifesto'],customer:['analise','execucao'],recebimento:['entrada'],frotas:['direcionamento','andamento']};
+const TIME_ETAPAS={faturamento:['novo','manifesto'],notas:['lanc-pedido','lancamento','concluido'],logistica:['logistica','faturamento','manifesto'],customer:['analise','execucao','conferencia'],recebimento:['entrada'],frotas:['direcionamento','andamento']};
 function timeCasa(t){return (TIME_ETAPAS[t.areaId]||[]).includes(t.status)}
 function timeLabel(){return Object.entries(TIME_ETAPAS).map(([id,es])=>{const a=(cfg.areas||[]).find(x=>x.id===id);const fl=a?(a.fluxo||[]):[];return (a?a.nome:id)+': '+es.map(e=>(fl.find(x=>x.id===e)||{nome:e}).nome).join(', ')}).join(' | ')}
 function filtrar(){
@@ -3323,6 +3363,7 @@ function filtrar(){
   return tickets.filter(t=>{
     if(filtros.time&&!timeCasa(t))return false;
     if(filtros.area!=='todas'&&t.areaId!==filtros.area)return false;
+    if(filtros.etapa&&filtros.area!=='todas'&&modo!=='kanban'&&baseDe(t).id!==filtros.etapa)return false;
     if(filtros.filial!=='todas'&&filialDe(t)!==filtros.filial)return false;
     if(filtros.equipe!=='todas'){const[m,eq]=filtros.equipe.includes('|')?filtros.equipe.split('|'):['agora',filtros.equipe];
       const bate=x=>eqBate(x,eq);
@@ -3343,6 +3384,13 @@ function clienteRetira(t){return (t.campos||[]).some(c=>/cliente retira/i.test(S
 function ordemFila(a,b){return (aberto(b)-aberto(a))||(aberto(a)?((clienteRetira(b)-clienteRetira(a))||((+a.numero||0)-(+b.numero||0))||(a.criadoEm-b.criadoEm)):((b.atualizadoEm||0)-(a.atualizadoEm||0)))}
 const EQUIPES_BARRA=['Faturamento','Área de Crédito','Área de Compras','Área de Cadastro','Área de TI','Área Fiscal','Área de Orçamento','Barter e Fertilizante'];
 /* todas as equipes dos fluxos das áreas ativas (as principais primeiro) */
+/* Filtros de área: "de apoio" (as que recebem a pausa) e "do fluxo" (as que tocam a solicitação do começo ao fim) */
+const EQ_APOIO=['Área de Orçamento','Área de Crédito','Área de Compras','Comercial','Barter e Fertilizante','Área de TI','Área Fiscal','Área de Cadastro','Compra de Insumos','Sementes','Fertilizante','Especialidades'];
+const EQ_FLUXO_1=['Faturamento','Logística','Customer Service','Central de Notas'];
+function eqApoio(e){return EQ_APOIO.some(a=>eqNorm(a)===eqNorm(e))}
+function equipesFluxo(){const base=[...EQ_FLUXO_1];const resto=[];
+  [...equipesTodas(),'Solicitante'].forEach(e=>{if(eqApoio(e)||base.some(o=>eqNorm(o)===eqNorm(e))||resto.some(o=>eqNorm(o)===eqNorm(e)))return;resto.push(eqNome(e))});
+  return [...base,...resto.sort((x,y)=>x.localeCompare(y,'pt-BR'))]}
 function equipesTodas(){const out=[...EQUIPES_BARRA];const resto=[];
   for(const a of areasAtivas())for(const st of (a.fluxo||[])){const e=String(st.equipe||'').trim();if(!e||/^solicitante$/i.test(e))continue;
     if(![...out,...resto].some(x=>eqNorm(x)===eqNorm(e)))resto.push(eqNome(e))}
@@ -3352,16 +3400,16 @@ function renderPainel(){
   const main=$('#main');
   const semana=Date.now()-7*864e5;
   const stats=[
-    ['ativos','Em andamento',tickets.filter(t=>stOf(t).tipo==='aberto').length],
+    ['abertos','Em aberto',tickets.filter(aberto).length],
     ['espera','Em espera',tickets.filter(t=>stOf(t).tipo==='espera').length],
     ['atrasados','Fora do prazo',tickets.filter(atrasado).length,'crit'],
     ['fin7','Finalizados em 7 dias',tickets.filter(t=>!aberto(t)&&t.atualizadoEm>semana).length]];
   const statbar=h('div',{class:'statbar'},stats.map(([id,nm,n,c])=>h('button',{class:'stat'+(c&&n?' '+c:''),onclick:()=>{filtros.status=id;guardaFiltros();renderPainel()}},h('div',{class:'n',text:n}),h('div',{class:'small muted',text:nm}))));
   const lista=filtrar();
   const seg=h('div',{class:'seg',role:'group','aria-label':'Visualização'},[['quadro','Quadro'],['lista','Lista'],['kanban','Kanban']].map(([m,n])=>h('button',{type:'button','aria-pressed':String(modo===m),onclick:()=>{modo=m;try{localStorage.setItem('ca-modo',m)}catch(e){};renderPainel()}},n)));
-  const nAtivos=[filtros.time,filtros.area!=='todas',filtros.filial!=='todas',filtros.equipe!=='todas',filtros.solicitante!=='todos',filtros.minhas,!!filtros.q,!!filtros.nota,filtros.status!=='abertos'].filter(Boolean).length;
+  const nAtivos=[filtros.time,filtros.area!=='todas',filtros.filial!=='todas',filtros.equipe!=='todas',filtros.solicitante!=='todos',filtros.minhas,!!filtros.q,!!filtros.nota,filtros.status!=='abertos',!!filtros.etapa&&filtros.area!=='todas'].filter(Boolean).length;
   const campoF=(lab,el,extra)=>h('label',{class:'pf'+(extra?' '+extra:'')},h('span',{class:'pf-l',text:lab}),el);
-  const STS=[['abertos','Em aberto'],['ativos','Em andamento'],['atrasados','Fora do prazo'],['espera','Em espera'],['finalizados','Finalizados'],['todos','Todos']];
+  const STS=[['abertos','Em aberto'],['finalizados','Finalizados'],['fin7','Finalizados · últimos 7 dias'],['atrasados','Fora do prazo'],['espera','Em espera'],['todos','Todos']];
   const etapas=filtros.area!=='todas'?fluxoArea(filtros.area):[];
   const filtersEl=h('div',{class:'pfil'+(filtrosAbertos?' aberto':'')},
     h('div',{class:'pfil-1'},
@@ -3370,20 +3418,21 @@ function renderPainel(){
       h('input',{type:'text',class:'nota-f',id:'busca-nota',inputmode:'numeric','aria-label':'Nº da nota',placeholder:'Nº da nota',value:filtros.nota||'',oninput:e=>{filtros.nota=e.target.value;paintList()}}),
       h('button',{type:'button',class:'btn sm pf-mais','aria-expanded':String(filtrosAbertos),onclick:()=>{filtrosAbertos=!filtrosAbertos;renderPainel()}},(filtrosAbertos?'Menos filtros':'Filtros')+(nAtivos?` (${nAtivos})`:'')),
       h('span',{style:'flex:1'}),
-      nAtivos?h('button',{class:'btn sm ghost',onclick:()=>{filtros={area:'todas',status:'abertos',q:'',nota:'',filial:'todas',solicitante:'todos',minhas:false,equipe:'todas',time:false};guardaFiltros();renderPainel()}},`Limpar filtros (${nAtivos})`):null,
+      nAtivos?h('button',{class:'btn sm ghost',onclick:()=>{filtros={area:'todas',status:'abertos',q:'',nota:'',filial:'todas',solicitante:'todos',minhas:false,equipe:'todas',time:false,etapa:''};guardaFiltros();renderPainel()}},`Limpar filtros (${nAtivos})`):null,
       h('button',{type:'button',class:'chip pf-time','aria-pressed':String(!!filtros.time),title:timeLabel(),onclick:()=>{filtros.time=!filtros.time;if(filtros.time)filtros.area='todas';guardaFiltros();renderPainel()}},'Meu time',h('span',{class:'count',style:'margin-left:6px',text:tickets.filter(timeCasa).length})),
       h('button',{class:'btn sm',onclick:exportarCSV},'Exportar CSV')),
     modo==='kanban'?null:h('div',{class:'pfil-st chips',role:'group','aria-label':'Situação'},
-      STS.map(([v,n])=>h('button',{type:'button',class:'chip','aria-pressed':String(filtros.status===v||(v==='finalizados'&&filtros.status==='fin7')),onclick:()=>{filtros.status=v;guardaFiltros();renderPainel()}},n,v==='atrasados'?h('span',{class:'count'+(tickets.filter(atrasado).length?' crit':''),style:'margin-left:6px',text:tickets.filter(atrasado).length}):null)),
-      etapas.length?h('select',{'aria-label':'Etapa',class:'pf-etapa',onchange:e=>{filtros.status=e.target.value||'abertos';guardaFiltros();renderPainel()}},h('option',{value:''},'Qualquer etapa'),etapas.map(st=>h('option',{value:st.id,selected:filtros.status===st.id},'Etapa: '+st.nome))):null),
+      campoF('Situação',h('select',{id:'f-situacao',onchange:e=>{filtros.status=e.target.value;guardaFiltros();renderPainel()}},STS.map(([v,n])=>h('option',{value:v,selected:filtros.status===v},n+(v==='atrasados'?` (${tickets.filter(atrasado).length})`:v==='espera'?` (${tickets.filter(t=>stOf(t).tipo==='espera').length})`:'')))),filtros.status!=='abertos'?'on':''),
+      etapas.length?campoF('Status',h('select',{'aria-label':'Status',class:'pf-etapa',onchange:e=>{filtros.etapa=e.target.value;renderPainel()}},h('option',{value:''},'Qualquer status'),etapas.filter(s=>!s.desvio&&s.tipo!=='final').map(st=>h('option',{value:st.id,selected:filtros.etapa===st.id},st.nome))),filtros.etapa?'on':''):null),
     h('div',{class:'pfil-2'},
       campoF('Filial',h('select',{id:'f-filial-p',onchange:e=>{filtros.filial=e.target.value;guardaFiltros();renderPainel()}},h('option',{value:'todas'},'Todas'),
         [...new Set([...(cfg.filiais||[]).map(filialNome),...tickets.map(filialDe)].filter(Boolean))].map(f=>h('option',{value:f,selected:filtros.filial===f},f))),filtros.filial!=='todas'?'on':''),
-      campoF('Área',h('select',{id:'f-area',onchange:e=>{filtros.area=e.target.value;if(filtros.area!=='todas')filtros.time=false;if(!['abertos','atrasados','espera','finalizados','todos','fin7','ativos'].includes(filtros.status))filtros.status='abertos';guardaFiltros();renderPainel()}},h('option',{value:'todas'},'Todas'),areasAtivas().map(a=>h('option',{value:a.id,selected:filtros.area===a.id},a.nome))),filtros.area!=='todas'?'on':''),
-      (()=>{const eqs=[...equipesTodas(),'Solicitante'];
-        return campoF('Equipe',h('select',{id:'f-equipe',onchange:e=>{filtros.equipe=e.target.value;guardaFiltros();renderPainel()}},h('option',{value:'todas'},'Todas'),
-          h('optgroup',{label:'Está com a equipe agora'},eqs.map(eq=>h('option',{value:'agora|'+eq,selected:filtros.equipe==='agora|'+eq||filtros.equipe===eq||(filtros.equipe.startsWith('agora|')&&eqNorm(filtros.equipe.slice(6))===eqNorm(eq))},eqBate(eq,EQ_TROCAS)?'Trocas em aberto: '+eq:'Com: '+eq))),
-          h('optgroup',{label:'Acompanhar tudo que passa pela equipe'},eqs.map(eq=>h('option',{value:'passa|'+eq,selected:filtros.equipe==='passa|'+eq},'Passa por: '+eq)))),filtros.equipe!=='todas'?'on':'')})(),
+      campoF('Área',h('select',{id:'f-area',onchange:e=>{filtros.area=e.target.value;filtros.etapa='';if(filtros.area!=='todas')filtros.time=false;if(!['abertos','atrasados','espera','finalizados','todos','fin7','ativos'].includes(filtros.status))filtros.status='abertos';guardaFiltros();renderPainel()}},h('option',{value:'todas'},'Todas'),areasAtivas().map(a=>h('option',{value:a.id,selected:filtros.area===a.id},a.nome))),filtros.area!=='todas'?'on':''),
+      (()=>{const cur=filtros.equipe==='todas'?'':String(filtros.equipe||'');const eq=cur.includes('|')?cur.split('|')[1]:cur;
+        const sel=(id,lab,lista)=>{const meu=!!eq&&lista.some(x=>eqNorm(x)===eqNorm(eq));
+          return campoF(lab,h('select',{id,onchange:e=>{filtros.equipe=e.target.value||'todas';guardaFiltros();renderPainel()}},h('option',{value:''},'Todas'),
+            lista.map(x=>h('option',{value:'agora|'+x,selected:meu&&eqNorm(eq)===eqNorm(x)},eqBate(x,EQ_TROCAS)?'Trocas em aberto: '+x:x))),meu?'on':'')};
+        return [sel('f-apoio','Área de apoio',EQ_APOIO),sel('f-fluxo','Área do fluxo',equipesFluxo())]})(),
       campoF('Solicitante',h('select',{id:'f-solic',onchange:e=>{filtros.solicitante=e.target.value;guardaFiltros();renderPainel()}},h('option',{value:'todos'},'Todos'),
         [...new Set(tickets.map(t=>t.solicitante?.nome).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'pt-BR')).map(n=>h('option',{value:n,selected:filtros.solicitante===n},n))),filtros.solicitante!=='todos'?'on':''),
       meId?h('button',{type:'button',class:'chip pf-minhas','aria-pressed':String(!!filtros.minhas),onclick:()=>{filtros.minhas=!filtros.minhas;guardaFiltros();renderPainel()}},'Só as minhas'):null));
@@ -3392,7 +3441,7 @@ function renderPainel(){
   const board=h('div',{class:'board nodetail'},modo==='kanban'?h('div',{style:'min-width:0;display:flex;flex-direction:column;gap:10px'},
     h('div',{class:'chips kchips'},h('span',{class:'lbl',style:'align-self:center',text:'Fluxo da área'}),areasAtivas().map(a=>h('button',{type:'button',class:'chip','aria-pressed':String(areaKanban()===a.id),onclick:()=>{filtros.area=a.id;renderPainel()}},h('span',{class:'dot',style:`background:${a.cor};margin-right:6px`}),a.nome))),listEl):listEl);
   const eqAgora=eq=>tickets.filter(t=>aberto(t)&&(eqBate(eq,EQ_TROCAS)?ehTroca(t):eqBate(stOf(t).equipe,eq))).length;
-  const eqbar=h('div',{class:'eqbar',role:'group','aria-label':'Equipes de apoio'},h('span',{class:'lbl',text:'Com a equipe'}),
+  const eqbar=h('div',{class:'eqbar',role:'group','aria-label':'Equipes de apoio'},h('span',{class:'lbl',text:'Com a área'}),
     equipesTodas().map(eq=>{const on=filtros.equipe==='agora|'+eq||filtros.equipe===eq;const n=eqAgora(eq);
       return h('button',{type:'button',class:'eqchip'+(n||on?'':' zero'),'aria-pressed':String(on),onclick:()=>{filtros.equipe=on?'todas':'agora|'+eq;renderPainel()}},eq,h('span',{class:'count',text:n}))}));
   const prevOv=document.querySelector('.overlay');const prevTop=prevOv&&prevOv.dataset.n===String(ticketSel)?prevOv.scrollTop:0;
@@ -3436,7 +3485,7 @@ function buscaPessoa(id,valor,salvar,ph){
   return h('span',{class:'presp'},atual,h('span',{class:'bpess'},wrap,eu&&eu!==valor?h('button',{type:'button',class:'btn sm',title:'Colocar o seu nome',onclick:()=>salvar(eu)},'Eu assumo'):null));
 }
 /* ===== Rostos: foto da conta Microsoft (quando autorizada) ou iniciais ===== */
-const PERFIL_NOME={atendente:'Equipe',admin:'Administrador',solicitante:'Solicitante'};
+const PERFIL_NOME={atendente:'Corporativo',admin:'Administrador',solicitante:'Solicitante'};
 function pessoaPor(nome){const n=itNorm(nome).trim();if(!n)return null;return (cfg.solicitantes||[]).find(x=>itNorm(x.nome).trim()===n)||null}
 const FOTOS=new Map();let _fotoTk=null;
 function fotoToken(){if(!MODO_MS||!MS.msal||!MS.account)return Promise.resolve(null);
@@ -3481,7 +3530,7 @@ function qLinha(t){
       h('span',{class:'s'},[t.solicitante?.nome,filialDe(t),'aberto '+rel(t.criadoEm)].filter(Boolean).join(' · '),ab&&clienteRetira(t)?h('span',{class:'tag2 retira',style:'margin:0 0 0 6px',text:'RETIRA'}):null,oc?h('span',{class:'late',text:` · ⚠ ${oc}`}):null)),
     h('span',{class:'qresp'},t.responsavel?avatar(t.responsavel,30):h('span',{class:'av vazio',title:'Sem responsável',text:'?'})),
     h('span',{class:'qpz'},h('span',{class:'qbar'},h('i',{style:`width:${pz.pct}%;background:${pz.cor}`})),h('small',{class:pz.late?'late':'',text:pz.txt})),
-    h('span',{class:'qst',style:`background:${st.cor}`,title:st.equipe?`${st.nome} · ${st.equipe}`:st.nome},h('span',{text:(st.desvio&&ab?'↳ ':'')+st.nome})),
+    h('span',{class:'qst',style:`background:${baseDe(t).cor}`,title:st.equipe?`${baseDe(t).nome} · Com: ${st.equipe}`:st.nome},h('span',{text:baseDe(t).nome+(st.desvio&&ab?' · ↳ '+st.equipe:'')})),
     h('span',{class:'qarea'},h('b',{style:`background:color-mix(in srgb,${t.cor||'#737F8E'} 14%,var(--surface));color:color-mix(in srgb,${t.cor||'#737F8E'} 80%,var(--ink))`,text:t.areaNome||''})));
 }
 function respOps(t){return [...new Set(Object.values(t.opResp||{}).filter(Boolean))]}
@@ -3513,8 +3562,8 @@ function linhaChamado(t){
       h('span',{class:'meta'},h('span',{class:'dot',style:`background:${t.cor};border-radius:50%;width:8px;height:8px`}),h('b',{text:t.areaNome}),t.tipo&&!String(t.titulo||'').startsWith(t.tipo)?` · ${t.tipo}`:''),
       h('span',{class:'meta sub'},`${t.solicitante?.nome||''}${filialDe(t)?' · '+filialDe(t):''} · aberto ${rel(t.criadoEm)}`,oc?h('span',{class:'late',text:` · ⚠ ${oc} ocorrência${oc>1?'s':''}`}):null)),
     h('span',{class:'c-etapa'},
-      h('span',{class:'stc'},st.desvio&&ab?h('span',{class:'desv',text:'↳'}):null,pill(st)),
-      ab&&seg?h('span',{class:'meta sub',text:`${st.equipe?st.equipe+' · ':''}há ${fmtDur(Date.now()-seg.inicio)}`}):null,
+      h('span',{class:'stc'},pill(baseDe(t))),
+      ab?h('span',{class:'meta sub'},chipArea(t),seg?` · há ${fmtDur(Date.now()-seg.inicio)}`:''):null,
       progresso(t)),
     h('span',{class:'c-resp'},t.responsavel?[avatar(t.responsavel,30),h('span',{class:'rn',text:t.responsavel})]:[h('span',{class:'av vazio',text:'?'}),h('span',{class:'rn muted',text:ab?'Sem responsável':'—'})]),
     h('span',{class:'c-prazo'},prazo,slaEl));
@@ -3522,8 +3571,8 @@ function linhaChamado(t){
 function areaKanban(){if(filtros.area!=='todas')return filtros.area;const at=areasAtivas();const com=at.find(a=>tickets.some(t=>t.areaId===a.id&&aberto(t)));return (com||at[0]||cfg.areas[0]).id}
 function paintKanban(box){
   const aid=areaKanban();const l=filtrar().filter(t=>t.areaId===aid);const limite=Date.now()-30*864e5;
-  box.replaceChildren(...fluxoArea(aid).map(st=>{
-    let itens=l.filter(t=>t.status===st.id);let ocultos=0;
+  box.replaceChildren(...fluxoArea(aid).filter(s=>!s.desvio).map(st=>{
+    let itens=l.filter(t=>baseDe(t).id===st.id);let ocultos=0;
     if(st.tipo==='final'){const rec=itens.filter(t=>t.atualizadoEm>limite);ocultos=itens.length-rec.length;itens=rec}
     const col=h('section',{class:'kcol','aria-label':st.nome},
       h('header',{class:'khead'},h('span',{class:'kdot',style:`background:${st.cor}`}),h('span',{class:'kname'},h('span',{text:st.nome}),st.equipe?h('span',{class:'keq',text:st.equipe}):null),h('span',{class:'count',text:itens.length})),
@@ -3548,6 +3597,7 @@ function kCard(t){
     h('div',{class:'kline'},h('span',{class:'mono small muted',text:numFmt(t.numero)}),aberto(t)&&clienteRetira(t)?h('span',{class:'tag2 retira',text:'Cliente retira'}):null),
     h('div',{class:'kt',text:t.titulo}),
     t.ultimaObs&&aberto(t)&&eqNorm(t.ultimaObs.para)===eqNorm(stOf(t).equipe||stOf(t).nome)?h('div',{class:'kobs',text:t.ultimaObs.texto}):null,
+    aberto(t)?h('div',{class:'small'},chipArea(t)):null,
     h('div',{class:'small muted',text:`${t.areaNome} · ${t.tipo}`}),
     h('div',{class:'kline small'},h('span',{class:'muted',text:`${t.solicitante?.nome||''} · ${filialDe(t)}`}),h('span',{class:late?'late':'muted',text:late?'atrasado':(segAtual(t)&&aberto(t)?fmtDur(Date.now()-segAtual(t).inicio)+' aqui':rel(t.criadoEm))})),
     h('div',{class:'resp'+(t.responsavel?'':' sem')},t.responsavel?avatar(t.responsavel,22):icone('pessoas','ico'),t.responsavel?h('span',{},'Atendendo: ',h('b',{text:t.responsavel})):'Sem responsável'),
@@ -3573,7 +3623,7 @@ function renderDetalhe(t){
       h('span',{class:'dh2-n mono',text:numFmt(t.numero)})),
     h('h2',{text:t.titulo}),
     fl.length>1?h('div',{class:'dh2-prog','aria-hidden':'true'},fl.map((s,k)=>h('span',{class:st.tipo==='final'||k<ia?'ok':k===ia?'now':'',title:s.nome}))):null,
-    h('div',{class:'dh2-st'},ab?[fl.length>1&&!st.desvio&&ia<fl.length?`Etapa ${ia+1} de ${fl.length} · `:'',h('b',{text:(st.desvio?'↳ ':'')+st.nome}),st.equipe?` · ${st.equipe}`:'',' · ',h('span',{class:pz.late?'dh2-late':'',text:pz.txt})]:[h('b',{text:st.nome}),` · ${fmtData(t.atualizadoEm)}`]));
+    h('div',{class:'dh2-st'},ab?[fl.length>1&&!st.desvio&&ia<fl.length?`Etapa ${ia+1} de ${fl.length} · `:'',h('b',{text:baseDe(t).nome}),st.equipe?h('span',{},' · Com: ',h('b',{text:st.equipe})):'',' · ',h('span',{class:pz.late?'dh2-late':'',text:pz.txt})]:[h('b',{text:st.nome}),` · ${fmtData(t.atualizadoEm)}`]));
   const nH=(t.historico||[]).length;
   const tabs=h('nav',{class:'dtabs','aria-label':'Seções da solicitação'},[['pedido','Pedido'],['atend','Atendimento'],['anx',`Anexos · ${(t.anexos||[]).length}`],['hist',`Histórico · ${nH}`]].map(([k,n])=>h('button',{type:'button','aria-current':detTab===k?'page':null,onclick:()=>{detTab=k;renderPainel()}},n)));
   /* ---- Pedido ---- */
@@ -3617,15 +3667,15 @@ function renderDetalhe(t){
       t.ocorrencias.map(o=>h('div',{class:'ocitem'},h('div',{class:'small'},h('b',{text:o.tipo}),h('span',{class:'muted',text:` · ${fmtData(o.em)} · em ${o.no}${o.fotos?` · ${o.fotos} foto(s)`:''}`})),h('div',{class:'desc',text:o.texto})))):null,
     acoesChamado(t)?h('div',{class:'dsec'},acoesChamado(t)):null];
   /* ---- Atendimento ---- */
-  const etapaCard=(conteudo)=>h('div',{class:'dsec detapa'},h('div',{class:'detapa-h'},h('span',{text:ab?(podeAtuar(t)?'Etapa atual · com você':'Etapa atual'):'Encerrada'}),h('b',{text:(st.desvio?'↳ ':'')+st.nome}),st.equipe?h('small',{text:'Equipe '+st.equipe}):null),h('div',{class:'detapa-c'},...conteudo));
+  const etapaCard=(conteudo)=>h('div',{class:'dsec detapa'},h('div',{class:'detapa-h'},h('span',{text:ab?(podeAtuar(t)?'Etapa atual · com você':'Etapa atual'):'Encerrada'}),h('b',{text:baseDe(t).nome}),st.equipe?h('small',{text:'Com a área: '+st.equipe}):null),h('div',{class:'detapa-c'},...conteudo));
   const obs=t.ultimaObs&&ab?h('div',{class:'obsbox'},h('div',{class:'small'},h('b',{text:ehEquipe?`Motivo do envio para ${t.ultimaObs.para}`:'Observação da equipe'}),h('span',{class:'muted',text:` · ${fmtData(t.ultimaObs.em)}`})),h('div',{class:'desc',text:t.ultimaObs.texto})):null;
   const atend=ehEquipe?[
     h('div',{class:'dsec'},h('div',{class:'lbl',text:'Responsável'}),buscaPessoa('d-resp',t.responsavel,v=>salvarCampo(t,{responsavel:v},`Responsável: ${v||'—'}`),pessoasCad().length?'Digite para buscar o nome…':'Cadastre pessoas em Configurar → Solicitantes')),
     etapaCard([obs,camposEquipeBloco(t)||(ab?h('span',{class:'small muted',text:'Nada a preencher nesta etapa. Use o botão abaixo para avançar.'}):null),
       h('details',{class:'dmanual'},h('summary',{},'Mudar a etapa manualmente'),h('label',{class:'field'},h('span',{},'Etapa'),h('select',{id:'d-status',onchange:e=>mudarStatus(t,e.target.value)},[...flAll,...(flAll.some(s=>s.id===t.status)?[]:[st])].map(s=>h('option',{value:s.id,selected:s.id===t.status},s.equipe?`${s.nome} · ${s.equipe}`:s.nome)))))]),
-    ab?h('div',{class:'dsec'},h('div',{class:'lbl',text:'Encaminhar para outra área'}),encaminhar(t),ocorrenciaBloco(t)):null,
+    ab?(()=>{const en=encaminhar(t),oc=ocorrenciaBloco(t);return (en||oc)?h('div',{class:'dsec'},en?h('div',{class:'lbl',text:t.areaId==='notas'?'Devolver para ajuste':'Encaminhar para outra área'}):null,en,oc):null})():null,
     tempoEtapas(t)]:[
-    etapaCard([obs,ab&&st.tipo==='espera'?h('div',{class:'dresp'},h('b',{text:'O que fazer agora'}),h('span',{text:'Responda na aba Histórico e, se pedirem algum documento, anexe na aba Anexos. A equipe retoma o atendimento a partir da sua resposta.'}),h('div',{class:'dresp-b'},h('button',{type:'button',class:'btn sm primary',onclick:()=>{detTab='hist';renderPainel();setTimeout(()=>document.getElementById('d-coment')?.focus(),50)}},'Responder no Histórico'),h('button',{type:'button',class:'btn sm',onclick:()=>{detTab='anx';renderPainel()}},'Anexar documento'))):null,podeAtuar(t)&&ab?ocorrenciaBloco(t):null,!obs&&!(podeAtuar(t)&&ab)?h('span',{class:'small muted',text:ab?`A equipe ${st.equipe||''} está cuidando. Você recebe aviso quando precisar agir.`:'Solicitação encerrada.'}):null]),
+    etapaCard([obs,ab&&st.tipo==='espera'?h('div',{class:'dresp'},h('b',{text:'O que fazer agora'}),h('span',{text:'Responda na aba Histórico e, se pedirem algum documento, anexe na aba Anexos. A equipe retoma o atendimento a partir da sua resposta.'}),h('div',{class:'dresp-b'},h('button',{type:'button',class:'btn sm primary',onclick:()=>{detTab='hist';renderPainel();setTimeout(()=>document.getElementById('d-coment')?.focus(),50)}},'Responder no Histórico'),h('button',{type:'button',class:'btn sm',onclick:()=>{detTab='anx';renderPainel()}},'Anexar documento'),reenviarBtn(t))):null,podeAtuar(t)&&ab?ocorrenciaBloco(t):null,!obs&&!(podeAtuar(t)&&ab)?h('span',{class:'small muted',text:ab?`A equipe ${st.equipe||''} está cuidando. Você recebe aviso quando precisar agir.`:'Solicitação encerrada.'}):null]),
     tempoEtapas(t)];
   /* ---- Histórico ---- */
   const hist=[h('div',{class:'dsec dcompose'},
@@ -3734,33 +3784,37 @@ async function registrarOcorrencia(t,d,btn){
     delete ocDraft[t.numero];await gravar(t,patch,{tipo:'comentario',texto:`Ocorrência (${d.tipo}) em ${oc.no}: ${oc.texto}${novos.length?` · ${novos.length} foto(s)`:''} ${volta?` · voltou para ${stById(t,volta).nome}`:''}`});toast('Ocorrência registrada.');
   }catch(e){btn.disabled=false;btn.textContent='Tentar de novo';toast((e&&e.userMsg)||'Não foi possível registrar.')}
 }
+/* Pausa só no Faturamento: Faturamento e Logística só mandam para outra área na etapa Faturamento; o Customer Service direciona a partir de Solicitado / Em andamento */
+function optsEnc(t,fl,st){const base=fl.filter(s=>s.id!==t.status&&s.tipo!=='final');const pausa={faturamento:['novo'],logistica:['faturamento'],customer:['analise','execucao']}[t.areaId];
+  if(t.areaId==='notas'){const ia=fl.findIndex(s=>s.id===t.status);return fl.filter((s,i)=>i<ia&&s.tipo!=='final'&&!s.desvio)}
+  if(!pausa)return base;return (pausa.includes(t.status)||st.desvio)?base.filter(s=>s.desvio):[]}
 function encaminhar(t){
   if(!aberto(t))return null;
   const fl=fluxoArea(t.areaId);const st=stOf(t);
   const ant=[...(t.tempos||[])].reverse().find((x,i)=>i>0&&x.status!==t.status&&fl.some(f=>f.id===x.status&&f.tipo!=='final'));
   const eqAtual=st.equipe||'';
-  const opts=fl.filter(s=>s.id!==t.status&&s.tipo!=='final');
+  const opts=optsEnc(t,fl,st);if(!opts.length)return null;
   const seg=((t.campos||[]).find(c=>/^segmento$/i.test(c.rotulo||''))||{}).valor||'';
   const sug=seg?opts.find(s=>(s.segmentos||[]).includes(seg)):null;
-  const d=encDraft[t.numero]||(encDraft[t.numero]={para:(sug||opts.find(s=>s.equipe&&s.equipe!==eqAtual)||opts[0]||{}).id||'',obs:''});
+  const d=encDraft[t.numero]||(encDraft[t.numero]={para:(sug||(t.areaId==='notas'?opts[opts.length-1]:opts.find(s=>s.equipe&&s.equipe!==eqAtual))||opts[0]||{}).id||'',obs:''});
   const sel=h('select',{id:'d-enc','aria-label':'Encaminhar para',onchange:e=>{d.para=e.target.value}},opts.map(s=>h('option',{value:s.id,selected:d.para===s.id},s.equipe?`${s.nome} · ${s.equipe}`:s.nome)));
   const txt=h('textarea',{id:'d-obs',style:'min-height:64px',placeholder:'Ex.: Cliente Renan Pires sem limite de crédito para o pedido 123. Liberar R$ 40 mil.',value:d.obs,oninput:e=>{d.obs=e.target.value}});
-  const enviar=async(para,devolver)=>{const o=d.obs.trim()||(devolver?'Liberado, retornando ao fluxo.':'');if(!o){toast('Escreva a observação antes de encaminhar.');txt.focus();return}
+  const enviar=async(para,devolver)=>{const o=d.obs.trim()||(devolver&&t.areaId!=='notas'?'Liberado, retornando ao fluxo.':'');if(!o){toast('Escreva a observação antes de encaminhar.');txt.focus();return}
     const trava=travaAvanco(t,para);if(trava){toast(trava);return}
     const alvo=stById(t,para);const patch={...statusPatch(t,para),ultimaObs:{texto:o,em:Date.now(),para:alvo.equipe||alvo.nome,de:eqAtual}};
     delete encDraft[t.numero];await gravar(t,patch,{tipo:'comentario',texto:`${devolver?'Devolvido':'Encaminhado'} para ${alvo.nome}${alvo.equipe?' ('+alvo.equipe+')':''}: ${o}`});toast(`Enviado para ${alvo.equipe||alvo.nome}.`)};
   return h('div',{class:'enc'},
-    h('div',{class:'small',style:'font-weight:600',text:'Encaminhar com observação'}),
+    h('div',{class:'small',style:'font-weight:600',text:t.areaId==='notas'?'Devolver com observação (explique o que precisa ser ajustado)':'Encaminhar com observação'}),
     sug?h('div',{class:'small muted',text:`Segmento ${seg}: área responsável sugerida ${sug.equipe||sug.nome}.`}):null,
     h('div',{class:'enc-r'},sel),txt,
     h('div',{class:'enc-b'},
-      h('button',{type:'button',class:'btn sm primary',onclick:()=>enviar(sel.value)},'Encaminhar'),
-      ant?h('button',{type:'button',class:'btn sm',onclick:()=>enviar(ant.status,true),title:'Devolve para o status anterior; a observação é opcional'},`Devolver para ${stById(t,ant.status).nome}`):null));
+      h('button',{type:'button',class:'btn sm primary',onclick:()=>enviar(sel.value)},t.areaId==='notas'?'Devolver':'Encaminhar'),
+      ant&&t.areaId!=='notas'?h('button',{type:'button',class:'btn sm',onclick:()=>enviar(ant.status,true),title:'Devolve para o status anterior; a observação é opcional'},`Devolver para ${stById(t,ant.status).nome}`):null));
 }
 function ehSolicitante(t){return !!(meId&&t.solicitante&&t.solicitante.uid===meId)}
 function comSolicitante(t){const s=stOf(t);return s.tipo==='espera'&&/solicitante/i.test((s.equipe||'')+' '+s.nome)}
-/* Solicitante: só vê, acompanha e baixa anexos; edita apenas quando o chamado volta para ele (Aguardando solicitante) ou quando a etapa é dele. Atendente e administrador editam e anexam. */
-function podeEditar(t){return podeAdmin||ehEquipe||(comSolicitante(t)&&(ehSolicitante(t)||!meId))}
+/* Solicitante: só vê, acompanha e baixa anexos; edita apenas quando o chamado volta para ele (Aguardando solicitante) ou quando a etapa é dele. Corporativo (atendente): atende, anexa e leva a solicitação para frente ou para trás, mas não edita nem exclui. Administrador faz tudo. */
+function podeEditar(t){return podeAdmin||(comSolicitante(t)&&(ehSolicitante(t)||!meId))}
 function editarChamado(t){
   const area=cfg.areas.find(a=>a.id===t.areaId);if(!area){toast('A área deste chamado não existe mais.');return}
   enviado=null;editando=t.numero;areaSel=area.id;anexosSel={};anexosRemover=new Set();widgetSel={};
@@ -4149,7 +4203,7 @@ function cfgSolicitantes(){
   const add=()=>{arr.push({id:'s'+Math.random().toString(36).slice(2,8),nome:'',email:'',setor:'',telefone:'',ativo:true});marcarSujo();renderConfig();setTimeout(()=>{const l=document.querySelectorAll('.srow input[aria-label="Nome"]');l[l.length-1]?.focus()},0)};
   return [h('div',{class:'sec'},
     h('div',{class:'sectitle'},h('h3',{style:'font-size:22px',text:'Solicitantes autorizados'}),h('button',{class:'btn sm primary',onclick:add},'+ Solicitante')),
-    h('p',{class:'hint',text:'Pessoas com acesso à central. Perfil: Solicitante abre e acompanha só as próprias solicitações; Atendente vê o painel e atende; Administrador também configura. No portal Microsoft 365, quem entra com o e-mail corporativo cadastrado aqui já é o solicitante automaticamente: o nome, o setor e o e-mail entram sozinhos em toda solicitação, sem escolher na lista. A filial é escolhida em cada solicitação. Desative em vez de excluir para manter o histórico.'}),
+    h('p',{class:'hint',text:'Pessoas com acesso à central. Perfil: Solicitante abre solicitações, acompanha as de todos e só edita a sua quando ela volta para a etapa dele; Corporativo vê o painel, atende e leva a solicitação para frente ou para trás, mas não edita nem exclui; Administrador faz tudo, inclusive editar, excluir e configurar. No portal Microsoft 365, quem entra com o e-mail corporativo cadastrado aqui já é o solicitante automaticamente: o nome, o setor e o e-mail entram sozinhos em toda solicitação, sem escolher na lista. A filial é escolhida em cada solicitação. Desative em vez de excluir para manter o histórico.'}),
     h('label',{class:'chk'},h('input',{type:'checkbox',id:'s-exigir',checked:!!draft.exigirCadastro,onchange:e=>{draft.exigirCadastro=e.target.checked;marcarSujo()}}),'Só aceitar solicitações de pessoas cadastradas aqui'),
     arr.length?h('div',{class:'tbl'},
       h('div',{class:'srow sh'},['Nome','E-mail','Setor','Telefone','Perfil','Ativo',''].map(t=>h('span',{class:'lbl',text:t}))),
@@ -4158,7 +4212,7 @@ function cfgSolicitantes(){
         h('input',{type:'email','aria-label':'E-mail',placeholder:'nome@empresa.com.br',value:x.email,oninput:e=>{x.email=e.target.value.trim().toLowerCase();marcarSujo()}}),
         h('input',{type:'text','aria-label':'Setor',placeholder:'Setor',value:x.setor||'',oninput:e=>{x.setor=e.target.value;marcarSujo()}}),
         h('input',{type:'text','aria-label':'Telefone',placeholder:'(65) 9…',value:x.telefone||'',oninput:e=>{x.telefone=e.target.value;marcarSujo()}}),
-        h('select',{'aria-label':'Perfil',onchange:e=>{x.perfil=e.target.value;marcarSujo()}},[['solicitante','Solicitante'],['atendente','Atendente (equipe)'],['admin','Administrador']].map(([v,n])=>h('option',{value:v,selected:(x.perfil||'solicitante')===v},n))),
+        h('select',{'aria-label':'Perfil',onchange:e=>{x.perfil=e.target.value;marcarSujo()}},[['solicitante','Solicitante'],['atendente','Corporativo'],['admin','Administrador']].map(([v,n])=>h('option',{value:v,selected:(x.perfil||'solicitante')===v},n))),
         h('label',{class:'chk'},h('input',{type:'checkbox','aria-label':'Ativo',checked:x.ativo!==false,onchange:e=>{x.ativo=e.target.checked;marcarSujo();e.target.closest('.srow').classList.toggle('off',!x.ativo)}}),h('span',{class:'only-m',text:'Ativo'})),
         h('button',{class:'iconbtn','aria-label':'Remover '+(x.nome||'solicitante'),onclick:()=>{arr.splice(k,1);marcarSujo();renderConfig()}},'✕')))):
       h('div',{class:'empty'},'Nenhum solicitante cadastrado ainda. Enquanto a lista estiver vazia, o formulário pede nome, filial e contato.',h('div',{style:'margin-top:10px'},h('button',{class:'btn sm primary',onclick:add},'+ Cadastrar o primeiro'))))];
@@ -4411,6 +4465,10 @@ function migrar(c){
   if(!c.migPerfilVeic){const a=(c.areas||[]).find(x=>x.id==='logistica');if(a){const m=MODELO.areas.find(x=>x.id==='logistica').camposEquipe.find(x=>x.id==='perfil-veiculo');a.camposEquipe=a.camposEquipe||[];if(!a.camposEquipe.some(x=>x.id==='perfil-veiculo')){const ix=a.camposEquipe.findIndex(x=>x.id==='motorista');a.camposEquipe.splice(ix<0?a.camposEquipe.length:ix+1,0,clone(m))}}c.migPerfilVeic=true}
   if(!c.migRO){incluirRO(c);c.migRO=true}
   if(!c.migLiq){incluirLiquidados(c);c.migLiq=true}
+  if(!c.migConsultor){incluirConsultor(c);c.migConsultor=true}
+  if(!c.migCSFluxo){fluxoCS(c);c.migCSFluxo=true}
+  if(!c.migCSConf){confCS(c);c.migCSConf=true}
+  if(!c.migNotasFluxo){fluxoNotas(c);c.migNotasFluxo=true}
   if(!c.migROLargo){const a=(c.areas||[]).find(x=>x.id==='customer');const cp=a&&(a.campos||[]).find(x=>x.tipo==='pedidos');const op=cp&&(cp.operacoes||[]).find(o=>o.nome===RO.tipo);if(op)op.largo=true;c.migROLargo=true}
   if(!c.migItensNota){const a=(c.areas||[]).find(x=>x.id==='notas');if(a&&a.campos&&!a.campos.some(x=>x.tipo==='itensnota')){const ix=a.campos.findIndex(x=>/^n[ºo°]?\s*da nota$/i.test(x.rotulo||''));
       a.campos=a.campos.filter(x=>!/^n[ºo°]?\s*da nota$/i.test(x.rotulo||'')&&!(x.tipo==='moeda'&&/^valor$/i.test(x.rotulo||'')));
