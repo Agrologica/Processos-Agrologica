@@ -1,4 +1,4 @@
-<!doctype html>
+<<!doctype html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
@@ -1496,6 +1496,7 @@ let view=(['abrir','painel','transf','sem','empil','tv','assin','indicadores','d
 let editando=null;
 const MODO_MS=!!window.CENTRAL_CFG;let meEmail='',mePapel=null,ehEquipe=true;
 const lc=x=>String(x||'').trim().toLowerCase();
+let ticketsSig='', cfgSig='', painelPendente=false;
 let areaSel=null, tipoSel=null, formDirty=false, anexosSel={}, enviado=null;
 let filtros={area:'todas',status:'abertos',q:'',nota:'',filial:'todas',solicitante:'todos',minhas:false,equipe:'todas',time:false,etapa:''}, ticketSel=null, comentario='';
 try{const f=JSON.parse(localStorage.getItem('ca-filtros')||'null');if(f)for(const k of ['area','filial','solicitante','minhas','equipe','time'])if(k in f)filtros[k]=f[k]}catch(e){}
@@ -5619,7 +5620,9 @@ render();
   render();
 })();
 function ligarBanco(){
+  document.addEventListener('focusout',()=>{setTimeout(()=>{if(painelPendente&&view==='painel'&&!/^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement||{}).tagName||'')){painelPendente=false;renderPainel()}},150)});
   db.doc('admin/config').onSnapshot(s=>{
+    const sgc=s.exists&&s.data().cfg?JSON.stringify(s.data().cfg):'-';if(sgc===cfgSig)return;cfgSig=sgc; /* configuração igual: não refaz o formulário */
     if(s.exists&&s.data().cfg){cfg=migrar(clone(s.data().cfg));cfgExiste=true}else{cfgExiste=false}
     if(view==='config'&&!draftDirty)draft=clone(cfg);
     renderTabs();
@@ -5631,7 +5634,10 @@ function ligarBanco(){
   if(!MODO_MS)db.collection('esteira').orderBy('criadoEm','desc').limit(3000).onSnapshot(s=>{sem=s.docs.map(x=>x.data());semOk=true;renderTabs();if(view==='sem')paintSem()},e=>{console.warn('esteira',e);toast('Não foi possível carregar a esteira de sementes.')});
   if(!MODO_MS)db.collection('transferencias').orderBy('criadoEm','desc').limit(1000).onSnapshot(s=>{transf=s.docs.map(x=>x.data());trfOk=true;renderTabs();if(view==='transf')paintTrf()},e=>{console.warn('transferencias',e);toast('Não foi possível carregar as transferências.')});
   db.collection('chamados').orderBy('criadoEm','desc').limit(1000).onSnapshot(s=>{
-    tickets=s.docs.map(x=>x.data());
+    const novos=s.docs.map(x=>x.data());
+    const sg=novos.map(o=>[o.numero,o.atualizadoEm||0,o.status,(o.historico||[]).length,(o.anexos||[]).length].join('|')).join(';');
+    if(sg===ticketsSig&&tickets.length)return; /* nada mudou: não redesenha a tela (era a "piscada" a cada 20 s) */
+    ticketsSig=sg;tickets=novos;
     renderTabs();
     if(view==='indicadores')renderIndicadores();
     if(view==='dash')renderDash();
@@ -5639,7 +5645,8 @@ function ligarBanco(){
       const ativo=document.activeElement;const id=ativo&&ativo.id;
       if(id==='d-coment'||String(id||'').startsWith('d-resp')||id==='busca'||id==='busca-nota'){ /* não interromper quem está digitando */
         const t=tickets.find(t=>t.numero===ticketSel);const tl=document.getElementById('timeline');if(t&&tl)pintarHistorico(t,tl);
-      }else renderPainel();
+      }else if(ativo&&/^(INPUT|TEXTAREA|SELECT)$/.test(ativo.tagName)&&$('#main').contains(ativo)){painelPendente=true} /* digitando em outro campo: atualiza quando sair dele */
+      else renderPainel();
     }
   },e=>{setBanner('A conexão com a fila caiu. Recarregue a página para voltar a receber atualizações.')});
 }
