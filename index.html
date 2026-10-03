@@ -1,4 +1,4 @@
-<<!doctype html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
@@ -3446,7 +3446,7 @@ function renderPainel(){
     equipesTodas().map(eq=>{const on=filtros.equipe==='agora|'+eq||filtros.equipe===eq;const n=eqAgora(eq);
       return h('button',{type:'button',class:'eqchip'+(n||on?'':' zero'),'aria-pressed':String(on),onclick:()=>{filtros.equipe=on?'todas':'agora|'+eq;renderPainel()}},eq,h('span',{class:'count',text:n}))}));
   const prevOv=document.querySelector('.overlay');const prevTop=prevOv&&prevOv.dataset.n===String(ticketSel)?prevOv.scrollTop:0;
-  let ov=null;if(sel){ov=h('div',{class:'overlay'+(telaCheia?' cheia':''),'data-n':String(sel.numero),onclick:e=>{if(e.target===ov)fecharDetalhe()}},renderDetalhe(sel))}else telaCheia=false;
+  let ov=null;if(sel){ov=h('div',{class:'overlay'+(telaCheia?' cheia':''),'data-n':String(sel.numero),style:(prevOv&&prevOv.dataset.n===String(sel.numero))?'animation:none':'',onclick:e=>{if(e.target===ov)fecharDetalhe()}},renderDetalhe(sel))}else telaCheia=false;
   document.body.classList.toggle('modal-aberto',!!sel);
   main.replaceChildren(statbar,filtersEl,board,...(ov?[ov]:[]));if(ov&&prevTop)ov.scrollTop=prevTop;
   paintList();
@@ -5620,7 +5620,7 @@ render();
   render();
 })();
 function ligarBanco(){
-  document.addEventListener('focusout',()=>{setTimeout(()=>{if(painelPendente&&view==='painel'&&!/^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement||{}).tagName||'')){painelPendente=false;renderPainel()}},150)});
+  document.addEventListener('focusout',()=>{setTimeout(()=>{if(painelPendente&&view==='painel'&&!/^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement||{}).tagName||'')){painelPendente=false;renderPainel()}},900)});
   db.doc('admin/config').onSnapshot(s=>{
     const sgc=s.exists&&s.data().cfg?JSON.stringify(s.data().cfg):'-';if(sgc===cfgSig)return;cfgSig=sgc; /* configuração igual: não refaz o formulário */
     if(s.exists&&s.data().cfg){cfg=migrar(clone(s.data().cfg));cfgExiste=true}else{cfgExiste=false}
