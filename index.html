@@ -4931,6 +4931,14 @@ function migrar(c){
   if(!c.migDivergencias){incluirDivergencias(c);c.migDivergencias=true}
   if(!c.migNotif){incluirNotificacao(c);c.migNotif=true}
   if(!c.migPagto){incluirPagamento(c);c.migPagto=true}
+  /* dados bancários: um único campo, que só abre quando a forma de pagamento é depósito/PIX/à vista (confere as opções reais da lista; roda sempre, não duplica) */
+  {const n=(c.areas||[]).find(x=>x.id==='notas');const fp=n&&(n.campos||[]).find(x=>x.id==='forma-pagamento');
+   if(n&&fp){const ops=(fp.opcoes&&fp.opcoes.length?fp.opcoes:PAGTO_OPC).filter(o=>/dep[oó]sito|pix|[àa] vista|transfer/i.test(o));
+     const bk=n.campos.find(x=>x.id==='dados-bancarios')||n.campos.find(x=>/dados banc|chave pix/i.test(x.rotulo||''));
+     n.campos=n.campos.filter(x=>x===bk||!/dados banc|chave pix/i.test(x.rotulo||''));
+     const campo=bk||{id:'dados-bancarios',rotulo:'Dados bancários e/ou chave PIX (banco, agência, conta, titular e CPF/CNPJ)',tipo:'textolongo',obrigatorio:true,opcoes:[]};
+     campo.id='dados-bancarios';delete campo.tipos;campo.regra={acao:'mostrar',campo:'forma-pagamento',op:'igual',valores:ops.length?ops:['Depósito em conta ou PIX','À vista']};
+     const sem=n.campos.filter(x=>x!==campo);const ip=sem.findIndex(x=>x.id==='forma-pagamento');sem.splice(ip+1,0,campo);n.campos=sem}}
   if(!c.migEmpManut){incluirEmpManut(c);c.migEmpManut=true}
   if(!c.migLojaFat){lojaNoFaturamento(c);c.migLojaFat=true}
   if(!c.migCSFluxo){fluxoCS(c);c.migCSFluxo=true}
