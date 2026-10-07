@@ -266,7 +266,8 @@ input:focus,select:focus,textarea:focus{border-color:var(--accent);outline:none;
 .pend-a{color:var(--ink-3)}.pend-x{color:var(--crit);font-size:12px;font-weight:600}
 .resumo .rcard{padding:12px 11px 11px}.resumo .rcard .rtop{gap:7px}.resumo .rcard .rico{width:28px;height:28px;border-radius:8px}.resumo .rcard .rico svg{width:17px;height:17px}.resumo .rcard .rnm{font-size:12px}
 .rcard{position:relative;overflow:hidden;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 14px 12px;cursor:pointer;display:flex;flex-direction:column;gap:2px;transition:transform .15s,box-shadow .15s,border-color .15s;color:var(--ink);font:inherit}
-.rcard:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(13,43,78,.10);border-color:color-mix(in srgb,var(--rc) 45%,var(--line))}
+.rcard:hover{border-color:color-mix(in srgb,var(--rc) 45%,var(--line))}
+.res-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
 .rcard[aria-pressed="true"]{border-color:var(--rc);box-shadow:0 0 0 2px color-mix(in srgb,var(--rc) 30%,transparent)}
 .rcard[disabled]{cursor:default;transform:none}
 .rcard .rtop{display:flex;align-items:center;gap:9px}
@@ -1151,7 +1152,20 @@ button.as-k{cursor:pointer}button.as-k:hover{background:var(--surface-2)}.as-k.c
 
 .sem-src{padding:14px 18px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 .sem-wrap{overflow-x:auto}
-.sem-r{display:grid;grid-template-columns:150px minmax(130px,.9fr) minmax(150px,1fr) 190px 150px 190px 190px 140px;gap:10px;align-items:start;padding:10px 14px;border-bottom:1px solid var(--line);font-size:13.5px;min-width:1380px}
+.sem-r{display:grid;grid-template-columns:140px minmax(150px,1fr) minmax(150px,1fr) 140px 180px 150px 190px 200px 150px;gap:10px;align-items:start;padding:10px 14px;border-bottom:1px solid var(--line);font-size:13.5px;min-width:1600px}
+.sem-r.t-canc{box-shadow:inset 3px 0 0 #737F8E;background:color-mix(in srgb,#737F8E 6%,var(--surface))}.sem-r.t-canc>span:not(.trf-acao){opacity:.7}
+.sem-tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:3px}.sem-tags .pill{font-size:11px;padding:1px 7px}
+.sem-cgl{display:flex;flex-direction:column;gap:2px}.sem-cgl .kdot{display:inline-block;width:8px;height:8px;margin-right:2px}
+.sem-flx{display:flex;gap:6px;flex-wrap:wrap;margin:-6px 0 14px}.sem-fx{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px 12px 4px 4px;font-size:13px}.sem-fx>b{width:22px;height:22px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:12px}.sem-fx small{color:var(--ink-3);margin-left:6px}
+.sem-cg{grid-column:1 / -1;background:var(--bg);border-bottom:1px solid var(--line);padding:12px 14px 14px 28px;display:flex;flex-direction:column;gap:6px;min-width:1600px;box-shadow:inset 3px 0 0 #1F5FAD}
+.sem-cgh{display:flex;flex-direction:column;gap:1px;margin-bottom:4px}
+.sem-cgr{display:grid;grid-template-columns:44px 110px 150px 150px 180px minmax(180px,320px) 110px;gap:8px;align-items:center}.sem-cgr input,.sem-cgr select{min-height:34px;padding:4px 8px;font-size:13px}
+.sem-cgr.cab{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:700}.sem-cgr.nova{border-top:1px dashed var(--line-2);padding-top:8px;margin-top:2px}
+.sv{display:flex;flex-direction:column;gap:14px}.sv-sec{padding:16px 18px;display:flex;flex-direction:column;gap:12px}.sv-sec h3{font-size:16px}.sv-top{display:flex;flex-direction:column;gap:2px}
+.sv-bar{display:flex;height:14px;border-radius:7px;overflow:hidden;gap:2px}.sv-bar span{min-width:4px}
+.sv-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}.sv-tile{border:1px solid var(--line);border-left:4px solid var(--c);border-radius:10px;padding:10px 12px;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px;background:var(--surface)}.sv-n{font-family:var(--f-display);font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.1}.sv-l{flex-basis:100%;font-size:12.5px;font-weight:600;color:var(--ink-2)}
+.sv-wrap{overflow-x:auto}.sv-tab{width:100%;border-collapse:collapse;font-size:13px;min-width:860px}.sv-tab th{font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);font-weight:700;text-align:left;padding:6px 8px;border-bottom:1px solid var(--line-2);white-space:nowrap}.sv-tab td{padding:7px 8px;border-bottom:1px solid var(--line)}.sv-tab .num{text-align:right;font-variant-numeric:tabular-nums}.sv-tab td.z{color:var(--ink-3)}.sv-tab td.hl{font-weight:700}.sv-tab .kdot{display:inline-block;width:8px;height:8px}.sv-tab td:first-child,.sv-tab th:first-child{min-width:200px}
+@media (max-width:760px){.sem-cg{min-width:0;padding-left:14px}.sem-cgr{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.sem-cgr.cab{display:none}.sem-cgr>b{grid-column:1 / -1}}
 .sem-r:last-child{border-bottom:0}
 .sem-r.sem-h{background:var(--surface-2);font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);font-weight:700;padding-block:8px;align-items:center}
 .sem-r.t-ag{box-shadow:inset 3px 0 0 #6D28D9}.sem-r.t-neg{box-shadow:inset 3px 0 0 #B42318;background:color-mix(in srgb,#B42318 4%,var(--surface))}.sem-r.t-lib{box-shadow:inset 3px 0 0 #1F5FAD}.sem-r.t-ok{box-shadow:inset 3px 0 0 #2E7D32}
@@ -1520,6 +1534,7 @@ const MODELO={
      campos:[campo('Fornecedor','texto',1),campo('CNPJ do fornecedor','texto',1),{id:'itens-nota',rotulo:'Itens da nota',tipo:'itensnota',obrigatorio:true,opcoes:[],max:8},campo('Vencimento','data',1),{id:'rateio-cc',rotulo:'Centro de custo',tipo:'centrocusto',obrigatorio:true,opcoes:[],max:10}],
      anexos:[anexo('Nota fiscal (PDF ou XML)',1),anexo('Boleto',0)],
      etapas:['Validar nota na SEFAZ','Conferir centro de custo e aprovação','Lançar no ERP','Programar pagamento'],
+camposEquipe:[{id:'numero-pedido',rotulo:'Nº do(s) pedido(s)',tipo:'pedidonum',status:'lanc-pedido',tipos:[],obrigatorio:true,dica:'Informe o nº do pedido lançado no sistema. Se for mais de um, separe por vírgula (ex.: 12345, 12346).'}],
      fluxo:[{id:'aprov-orc',nome:'Aprovação do orçamento',equipe:'Orçamento',cor:'#6D28D9',tipo:'aberto'},{id:'lancamento',nome:'Lançamento da nota',equipe:'Central de Notas',cor:'#0E7C66',tipo:'aberto'},{id:'lib-pedido',nome:'Liberação do pedido',equipe:'Orçamento',cor:'#C2410C',tipo:'aberto'},{id:'aguardando',nome:'Aguardando solicitante',equipe:'Solicitante',cor:'#B7791F',tipo:'espera'},{id:'concluido',nome:'Finalizado',equipe:'Central de Notas',cor:'#2E7D32',tipo:'final'},{id:'cancelado',nome:'Cancelado',equipe:'Central de Notas',cor:'#737F8E',tipo:'final'}]},
     {"id": "recebimento", "icone": "caixa", "nome": "Recebimento de Insumos", "sigla": "REC", "cor": "#4F6470", "sla": 24, "ativo": true, "descricao": "Chegada de mercadoria: validação da nota, descarga, fotos dos lotes e entrada no sistema.", "instrucoes": "Escolha o tipo de descarga, confira o NCM e anexe a nota fiscal. Compra e Retorno de armazenagem passam pela validação de Compras e Suprimentos; Transferência vai direto para a descarga.", "rotuloTipo": "Tipo de descarga", "tipos": ["Compra", "Transferência", "Retorno de armazenagem"], "inicioPorTipo": {"Compra": "validacao", "Retorno de armazenagem": "validacao", "Transferência": "descarga"}, "campos": [{"id": "fornecedor", "rotulo": "Fornecedor", "tipo": "texto", "obrigatorio": true, "opcoes": []}, {"id": "numero-nota", "rotulo": "Nº da nota", "tipo": "texto", "obrigatorio": true, "opcoes": []}, {"id": "ncm-confere", "rotulo": "NCM confere com a nota?", "tipo": "simnao", "obrigatorio": true, "opcoes": []}, {"id": "divergencia-ncm", "rotulo": "Qual a divergência de NCM?", "tipo": "textolongo", "obrigatorio": true, "opcoes": [], "regra": {"acao": "mostrar", "campo": "ncm-confere", "op": "igual", "valores": ["Não"]}}], "anexos": [{"id": "nota-fiscal", "nome": "Nota fiscal (PDF ou XML)", "obrigatorio": true, "quem": "solicitante", "moverPara": ""}, {"id": "fotos-lotes", "nome": "Fotos dos lotes", "obrigatorio": false, "quem": "equipe", "moverPara": "entrada"}, {"id": "comprovante-entrada", "nome": "Comprovante de entrada no sistema", "obrigatorio": false, "quem": "equipe", "moverPara": ""}], "camposEquipe": [{"id": "pedido", "rotulo": "Nº do pedido de compra", "tipo": "texto", "status": "validacao", "tipos": ["Compra"], "obrigatorio": true, "aoSim": ""}, {"id": "retorno-ok", "rotulo": "Retorno de armazenagem solicitado?", "tipo": "simnao", "status": "validacao", "tipos": ["Retorno de armazenagem"], "obrigatorio": true, "aoSim": "descarga"}], "ocorrencias": {"tipos": ["Erro de lote", "Produto avariado", "Produto faltando", "Divergência de nota", "Outro"], "voltarPara": "validacao"}, "etapas": [], "fluxo": [{"id": "validacao", "nome": "Validação · Compras e Suprimentos", "equipe": "Compras e Suprimentos", "cor": "#6D28D9", "tipo": "aberto"}, {"id": "descarga", "nome": "Descarga na unidade", "equipe": "Loja", "cor": "#C2410C", "tipo": "aberto", "solicitanteAtua": true, "exigeAnexo": "fotos-lotes"}, {"id": "entrada", "nome": "Entrada no sistema", "equipe": "Entrada de notas", "cor": "#0B4F8A", "tipo": "aberto"}, {"id": "aguardando", "nome": "Aguardando solicitante", "equipe": "Solicitante", "cor": "#B7791F", "tipo": "espera"}, {"id": "concluido", "nome": "Finalizado", "equipe": "Entrada de notas", "cor": "#2E7D32", "tipo": "final"}, {"id": "enviado-faturamento", "nome": "Enviado ao faturamento", "equipe": "Entrada de notas", "cor": "#2B63A3", "tipo": "final"}, {"id": "cancelado", "nome": "Cancelado", "equipe": "Entrada de notas", "cor": "#737F8E", "tipo": "final"}]},
     {"id": "frotas", "icone": "carro", "nome": "Frotas Leves", "sigla": "FRT", "cor": "#7E57B0", "sla": 24, "ativo": true, "descricao": "Checklist veicular, sinistro, avaria e manutenção dos veículos leves.", "instrucoes": "Escolha o que você precisa. Todas as solicitações pedem placa e KM. No checklist, marque cada item e anexe as fotos; o que não estiver na lista, escreva em \"Descrição e observações\".", "rotuloTipo": "O que você precisa?", "tipos": ["Checklist veicular", "Sinistro", "Avaria", "Manutenção"], "campos": [{"id": "placa", "rotulo": "Placa do veículo", "tipo": "texto", "obrigatorio": true, "opcoes": [], "tipos": []}, {"id": "km", "rotulo": "KM atual", "tipo": "numero", "obrigatorio": true, "opcoes": [], "tipos": ["Checklist veicular", "Avaria", "Manutenção"]}, {"id": "km-sinistro", "rotulo": "KM do veículo (se souber)", "tipo": "numero", "obrigatorio": false, "opcoes": [], "tipos": ["Sinistro"]}, {"id": "tipo-checklist", "rotulo": "Tipo de checklist", "tipo": "lista", "obrigatorio": true, "opcoes": ["Recebimento do veículo", "Periódico (mensal)", "Devolução do veículo"], "tipos": ["Checklist veicular"]}, {"id": "estado", "rotulo": "Estado do veículo", "tipo": "checklist", "obrigatorio": true, "opcoes": ["Lataria e pintura", "Para-choques", "Faróis e lanternas", "Para-brisa e vidros", "Retrovisores", "Pneus (incl. estepe)", "Rodas e calotas", "Adesivos da empresa", "Placas", "Bancos e estofados", "Painel sem luz de alerta", "Limpeza interna", "Documento (CRLV) no veículo", "Macaco, chave de roda e triângulo", "Nível de óleo e água", "Ar-condicionado"], "tipos": ["Checklist veicular"]}, {"id": "data-ocorrencia", "rotulo": "Data da ocorrência", "tipo": "data", "obrigatorio": true, "opcoes": [], "tipos": ["Sinistro", "Avaria"]}, {"id": "tipo-avaria", "rotulo": "Tipo de avaria", "tipo": "lista", "obrigatorio": true, "opcoes": ["Pneu", "Perda de placa", "Vidro", "Lataria", "Retrovisor", "Farol / lanterna", "Outro"], "tipos": ["Avaria"]}, {"id": "local", "rotulo": "Onde ocorreu (endereço / cidade)", "tipo": "texto", "obrigatorio": true, "opcoes": [], "tipos": ["Sinistro", "Avaria"]}, {"id": "partes", "rotulo": "Partes danificadas", "tipo": "decalque", "obrigatorio": true, "opcoes": [], "tipos": ["Avaria"]}, {"id": "descricao-ocorrencia", "rotulo": "Descreva o que aconteceu", "tipo": "textolongo", "obrigatorio": true, "opcoes": [], "tipos": ["Sinistro", "Avaria"]}, {"id": "tipo-manutencao", "rotulo": "Tipo de manutenção", "tipo": "lista", "obrigatorio": true, "opcoes": ["Corretiva", "Preventiva"], "tipos": ["Manutenção"]}, {"id": "data-manutencao", "rotulo": "Data desejada para a manutenção", "tipo": "data", "obrigatorio": true, "opcoes": [], "tipos": ["Manutenção"], "minDias": 5}, {"id": "oficina", "rotulo": "Oficina de preferência", "tipo": "texto", "obrigatorio": false, "opcoes": [], "tipos": ["Manutenção"]}, {"id": "cep", "rotulo": "CEP onde deseja fazer", "tipo": "texto", "obrigatorio": true, "opcoes": [], "tipos": ["Manutenção"]}, {"id": "municipio", "rotulo": "Município", "tipo": "texto", "obrigatorio": true, "opcoes": [], "tipos": ["Manutenção"]}, {"id": "servico", "rotulo": "Descreva o que precisa ser visto na manutenção", "tipo": "textolongo", "obrigatorio": true, "opcoes": [], "tipos": ["Manutenção"]}], "anexos": [{"id": "documento", "nome": "Documento do veículo (CRLV)", "obrigatorio": true, "quem": "solicitante", "moverPara": "", "tipos": []}, {"id": "foto-frente", "nome": "Foto da frente", "obrigatorio": true, "quem": "solicitante", "moverPara": "", "tipos": ["Checklist veicular"]}, {"id": "foto-laterais", "nome": "Fotos das laterais (esquerda e direita)", "obrigatorio": true, "quem": "solicitante", "moverPara": "", "tipos": ["Checklist veicular"]}, {"id": "foto-traseira", "nome": "Foto da traseira e do vidro traseiro", "obrigatorio": true, "quem": "solicitante", "moverPara": "", "tipos": ["Checklist veicular"]}, {"id": "foto-painel", "nome": "Foto do painel (com o KM)", "obrigatorio": true, "quem": "solicitante", "moverPara": "", "tipos": ["Checklist veicular"]}, {"id": "foto-interior", "nome": "Fotos do interior e dos estofados", "obrigatorio": true, "quem": "solicitante", "moverPara": "", "tipos": ["Checklist veicular"]}, {"id": "foto-portas", "nome": "Fotos das portas e vidros das portas", "obrigatorio": true, "quem": "solicitante", "moverPara": "", "tipos": ["Checklist veicular"]}, {"id": "foto-adesivos", "nome": "Fotos de todos os adesivos", "obrigatorio": true, "quem": "solicitante", "moverPara": "", "tipos": ["Checklist veicular"]}, {"id": "foto-placas", "nome": "Fotos das placas", "obrigatorio": true, "quem": "solicitante", "moverPara": "", "tipos": ["Checklist veicular"]}, {"id": "cnh", "nome": "CNH do condutor", "obrigatorio": true, "quem": "solicitante", "moverPara": "", "tipos": ["Sinistro", "Manutenção"]}, {"id": "boletim", "nome": "Boletim de ocorrência", "obrigatorio": true, "quem": "solicitante", "moverPara": "", "tipos": ["Sinistro"]}, {"id": "fotos-sinistro", "nome": "Fotos do sinistro", "obrigatorio": false, "quem": "solicitante", "moverPara": "", "tipos": ["Sinistro"]}, {"id": "fotos-avaria", "nome": "Fotos da avaria", "obrigatorio": true, "quem": "solicitante", "moverPara": "", "tipos": ["Avaria"]}, {"id": "nf-manutencao", "nome": "Nota fiscal / orçamento da manutenção", "obrigatorio": false, "quem": "equipe", "moverPara": "", "tipos": []}, {"id": "protocolo", "nome": "Protocolo ou laudo da locadora / seguradora", "obrigatorio": false, "quem": "equipe", "moverPara": "", "tipos": []}], "camposEquipe": [{"id": "acoes", "rotulo": "Ações necessárias", "tipo": "texto", "status": "andamento", "tipos": ["Checklist veicular"], "obrigatorio": false, "aoSim": ""}, {"id": "protocolo-sin", "rotulo": "Protocolo da locadora / seguradora", "tipo": "texto", "status": "direcionamento", "tipos": ["Sinistro"], "obrigatorio": false, "aoSim": ""}, {"id": "agendamento", "rotulo": "Oficina e data agendadas", "tipo": "texto", "status": "direcionamento", "tipos": ["Manutenção", "Avaria"], "obrigatorio": false, "aoSim": ""}], "ocorrencias": {"tipos": ["Item reprovado no checklist", "Manutenção necessária", "Avaria encontrada", "Documentação pendente", "Outro"], "voltarPara": "andamento"}, "etapas": [], "fluxo": [{"id": "andamento", "nome": "Em andamento", "equipe": "Frotas", "cor": "#7E57B0", "tipo": "aberto"}, {"id": "direcionamento", "nome": "Direcionamento (locadora, seguradora ou oficina)", "equipe": "Frotas", "cor": "#0B4F8A", "tipo": "aberto"}, {"id": "aguardando", "nome": "Aguardando solicitante", "equipe": "Solicitante", "cor": "#B7791F", "tipo": "espera"}, {"id": "concluido", "nome": "Finalizado", "equipe": "Frotas", "cor": "#2E7D32", "tipo": "final"}, {"id": "cancelado", "nome": "Cancelado", "equipe": "Frotas", "cor": "#737F8E", "tipo": "final"}]},
@@ -1530,7 +1545,7 @@ const MODELO={
      campos:[campo('Local / setor','texto',1),campo('Equipamento','texto'),campo('Está parando a operação?','simnao',1)],
      anexos:[anexo('Foto do problema',0)],
      etapas:['Avaliar no local','Solicitar material ou terceiro','Executar serviço','Validar com o solicitante']},
-    {"id": "logistica", "icone": "caminhao", "nome": "Logística", "sigla": "LOG", "cor": "#5E7F1C", "sla": 24, "ativo": true, "descricao": "Carga: venda, transferência, devolução de compra e retorno de armazenagem, com a ordem das entregas.", "instrucoes": "Clique no tipo de cada entrega (Venda, Transferência, Devolução de compra ou Retorno de armazenagem) na ordem em que vai acontecer: a primeira que você incluir é a 1ª entrega, a próxima é a 2ª, e assim por diante (até 10). Dá para mudar a ordem com as setas. Na Venda, anexe a planilha padrão da carga.", "rotuloTipo": "Tipo de carga", "tipos": ["Venda", "Transferência", "Devolução de compra", "Retorno de armazenagem"], "campos": [{"id": "entregas", "rotulo": "Entregas da carga (na ordem)", "tipo": "pedidos", "obrigatorio": true, "opcoes": [], "maxClientes": 10, "maxProdutos": 10, "operacoes": [{"nome": "Venda", "campos": ["Cliente / fornecedor", "Fazenda", "Ponto no Google Maps"], "similar": false, "semProdutos": true}, {"nome": "Transferência", "campos": ["Filial de origem", "Filial de destino"], "similar": false, "semProdutos": false}, {"nome": "Devolução de compra", "campos": ["Fornecedor", "NF de origem"], "similar": false, "semProdutos": false, "lote": true, "largo": true}, {"nome": "Retorno de armazenagem", "campos": ["Cliente", "Fazenda", "Ponto no Google Maps"], "similar": false, "semProdutos": false, "largo": true}], "sequencia": "Entrega"}, {"id": "data-entrega", "rotulo": "Data desejada de entrega", "tipo": "data", "obrigatorio": true, "opcoes": []}], "anexos": [{"id": "planilha-carga", "nome": "Planilha padrão da carga (vendas)", "obrigatorio": true, "quem": "solicitante", "moverPara": "", "modelo": ["Nome do cliente", "Fazenda", "Série do pedido", "Pedido", "Produto", "Quantidade", "Faturar similar (Sim/Não)", "Similar"], "tipos": ["Venda"]}, {"id": "nf-receita-ficha", "nome": "Nota fiscal + receita + ficha", "obrigatorio": false, "quem": "equipe", "moverPara": "manifesto", "moverParaTroca": "transito"}, {"id": "mdfe-cte", "nome": "Manifesto (MDF-e) e CT-e", "obrigatorio": false, "quem": "equipe", "moverPara": "carregamento"}, {"id": "ordem-assinada", "nome": "Ordem de carregamento assinada pelo motorista", "obrigatorio": false, "quem": "equipe", "moverPara": "transito"}, {"id": "comprovantes", "nome": "Comprovantes de entrega", "obrigatorio": false, "quem": "equipe", "moverPara": "entregue"}], "camposEquipe": [{"id": "transportadora", "rotulo": "Transportadora contratada", "tipo": "texto", "status": "logistica", "tipos": [], "obrigatorio": true, "aoSim": ""}, {"id": "placa-caminhao", "rotulo": "Placa do caminhão", "tipo": "texto", "status": "logistica", "tipos": [], "obrigatorio": true, "aoSim": ""}, {"id": "motorista", "rotulo": "Motorista", "tipo": "texto", "status": "logistica", "tipos": [], "obrigatorio": false, "aoSim": ""}, {"id": "perfil-veiculo", "rotulo": "Perfil do veículo", "tipo": "lista", "opcoes": ["3/4", "Truck", "Toco", "Bitruck", "LS", "LS 4 eixos", "Bitrem", "Rodotrem curto", "Rodotrem longo"], "status": "logistica", "tipos": [], "obrigatorio": true, "aoSim": ""}], "ocorrencias": {"tipos": ["Entrega recusada", "Endereço / ponto errado", "Produto avariado", "Falta de produto", "Outro"], "voltarPara": "logistica"}, "etapas": [], "fluxo": [{"id": "logistica", "nome": "Logística · contratação do caminhão", "equipe": "Logística", "cor": "#5E7F1C", "tipo": "aberto", "slaMin": 2880, "slaModo": "soma"}, {"id": "faturamento", "nome": "Faturamento", "equipe": "Faturamento", "cor": "#2B63A3", "tipo": "aberto", "slaMin": 5, "slaModo": "op"}, {"id": "credito", "nome": "Crédito · limite", "equipe": "Crédito", "cor": "#B3261E", "tipo": "aberto", "desvio": true, "slaMin": 5, "slaModo": "cada"}, {"id": "compras", "nome": "Compras · suprimentos e preço", "equipe": "Compras", "cor": "#7E57B0", "tipo": "aberto", "desvio": true, "slaMin": 5, "slaModo": "cada"}, {"id": "comercial", "nome": "Comercial · margem e liberação", "equipe": "Comercial", "cor": "#B08A12", "tipo": "aberto", "desvio": true, "slaMin": 5, "slaModo": "cada"}, {"id": "manifesto", "nome": "Emissão de manifesto", "equipe": "Logística", "cor": "#6D28D9", "tipo": "aberto"}, {"id": "carregamento", "nome": "Carregamento", "equipe": "Loja", "cor": "#C2410C", "tipo": "aberto", "exigeAnexo": "ordem-assinada"}, {"id": "transito", "nome": "Em trânsito", "equipe": "Logística", "cor": "#0B4F8A", "tipo": "aberto"}, {"id": "entregue", "nome": "Entregue · auditoria", "equipe": "Logística", "cor": "#0E7C66", "tipo": "aberto"}, {"id": "aguardando", "nome": "Aguardando solicitante", "equipe": "Solicitante", "cor": "#B7791F", "tipo": "espera"}, {"id": "concluido", "nome": "Finalizado", "equipe": "Logística", "cor": "#2E7D32", "tipo": "final"}, {"id": "cancelado", "nome": "Cancelado", "equipe": "Logística", "cor": "#737F8E", "tipo": "final"}]},
+    {"id": "logistica", "icone": "caminhao", "nome": "Logística", "sigla": "LOG", "cor": "#5E7F1C", "sla": 24, "ativo": true, "descricao": "Carga: venda, transferência, devolução de compra e retorno de armazenagem, com a ordem das entregas.", "instrucoes": "Clique no tipo de cada entrega (Venda, Transferência, Devolução de compra ou Retorno de armazenagem) na ordem em que vai acontecer: a primeira que você incluir é a 1ª entrega, a próxima é a 2ª, e assim por diante (até 10). Dá para mudar a ordem com as setas. Na Venda, anexe a planilha padrão da carga.", "rotuloTipo": "Tipo de carga", "tipos": ["Venda", "Transferência", "Devolução de compra", "Retorno de armazenagem"], "campos": [{"id": "entregas", "rotulo": "Entregas da carga (na ordem)", "tipo": "pedidos", "obrigatorio": true, "opcoes": [], "maxClientes": 10, "maxProdutos": 10, "operacoes": [{"nome": "Venda", "campos": ["Cliente / fornecedor", "Fazenda", "Ponto no Google Maps"], "similar": false, "semProdutos": true}, {"nome": "Transferência", "campos": ["Filial de origem", "Filial de destino"], "similar": false, "semProdutos": false}, {"nome": "Devolução de compra", "campos": ["Fornecedor", "NF de origem"], "similar": false, "semProdutos": false, "lote": true, "largo": true}, {"nome": "Retorno de armazenagem", "campos": ["Cliente", "Fazenda", "Ponto no Google Maps"], "similar": false, "semProdutos": false, "largo": true}], "sequencia": "Entrega"}, {"id": "data-entrega", "rotulo": "Data desejada de entrega", "tipo": "data", "obrigatorio": true, "opcoes": []}], "anexos": [{"id": "planilha-carga", "nome": "Planilha padrão da carga (vendas)", "obrigatorio": true, "quem": "solicitante", "moverPara": "", "modelo": ["Nome do cliente", "Fazenda", "Série do pedido", "Pedido", "Produto", "Quantidade", "Faturar similar (Sim/Não)", "Similar"], "tipos": ["Venda"]}, {"id": "nf-receita-ficha", "nome": "Nota fiscal + receita + ficha", "obrigatorio": false, "quem": "equipe", "moverPara": "manifesto", "moverParaTroca": "transito"}, {"id": "mdfe-cte", "nome": "Manifesto (MDF-e) e CT-e", "obrigatorio": false, "quem": "equipe", "moverPara": "carregamento"}, {"id": "ordem-assinada", "nome": "Ordem de carregamento assinada pelo motorista", "obrigatorio": false, "quem": "equipe", "moverPara": "transito"}, {"id": "comprovantes", "nome": "Comprovantes de entrega", "obrigatorio": false, "quem": "equipe", "moverPara": "entregue"}], "camposEquipe": [{"id": "transportadora", "rotulo": "Transportadora contratada", "tipo": "texto", "status": "logistica", "tipos": [], "obrigatorio": true, "aoSim": ""}, {"id": "placa-caminhao", "rotulo": "Placa do caminhão", "tipo": "texto", "status": "logistica", "tipos": [], "obrigatorio": true, "aoSim": ""}, {"id": "motorista", "rotulo": "Motorista", "tipo": "texto", "status": "logistica", "tipos": [], "obrigatorio": false, "aoSim": ""}, {"id": "perfil-veiculo", "rotulo": "Perfil do veículo", "tipo": "lista", "opcoes": ["3/4", "Truck", "Toco", "Bitruck", "LS", "LS 4 eixos", "Bitrem", "Rodotrem curto", "Rodotrem longo"], "status": "logistica", "tipos": [], "obrigatorio": true, "aoSim": ""}, {"id": "km-viagem", "rotulo": "KM total da viagem", "tipo": "numero", "status": "entregue", "tipos": [], "obrigatorio": true, "aoSim": ""}, {"id": "valor-motorista", "rotulo": "Valor total do motorista (R$)", "tipo": "moeda", "status": "entregue", "tipos": [], "obrigatorio": false, "aoSim": ""}, {"id": "valor-transportadora", "rotulo": "Valor total da transportadora (R$)", "tipo": "moeda", "status": "entregue", "tipos": [], "obrigatorio": true, "aoSim": ""}], "ocorrencias": {"tipos": ["Entrega recusada", "Endereço / ponto errado", "Produto avariado", "Falta de produto", "Outro"], "voltarPara": "logistica"}, "etapas": [], "fluxo": [{"id": "logistica", "nome": "Logística · contratação do caminhão", "equipe": "Logística", "cor": "#5E7F1C", "tipo": "aberto", "slaMin": 2880, "slaModo": "soma"}, {"id": "faturamento", "nome": "Faturamento", "equipe": "Faturamento", "cor": "#2B63A3", "tipo": "aberto", "slaMin": 5, "slaModo": "op"}, {"id": "credito", "nome": "Crédito · limite", "equipe": "Crédito", "cor": "#B3261E", "tipo": "aberto", "desvio": true, "slaMin": 5, "slaModo": "cada"}, {"id": "compras", "nome": "Compras · suprimentos e preço", "equipe": "Compras", "cor": "#7E57B0", "tipo": "aberto", "desvio": true, "slaMin": 5, "slaModo": "cada"}, {"id": "comercial", "nome": "Comercial · margem e liberação", "equipe": "Comercial", "cor": "#B08A12", "tipo": "aberto", "desvio": true, "slaMin": 5, "slaModo": "cada"}, {"id": "manifesto", "nome": "Emissão de manifesto", "equipe": "Logística", "cor": "#6D28D9", "tipo": "aberto"}, {"id": "carregamento", "nome": "Carregamento", "equipe": "Loja", "cor": "#C2410C", "tipo": "aberto", "exigeAnexo": "ordem-assinada"}, {"id": "transito", "nome": "Em trânsito", "equipe": "Logística", "cor": "#0B4F8A", "tipo": "aberto"}, {"id": "entregue", "nome": "Entregue · auditoria", "equipe": "Logística", "cor": "#0E7C66", "tipo": "aberto"}, {"id": "aguardando", "nome": "Aguardando solicitante", "equipe": "Solicitante", "cor": "#B7791F", "tipo": "espera"}, {"id": "concluido", "nome": "Finalizado", "equipe": "Logística", "cor": "#2E7D32", "tipo": "final"}, {"id": "cancelado", "nome": "Cancelado", "equipe": "Logística", "cor": "#737F8E", "tipo": "final"}]},
     {"id": "customer", "icone": "headset", "nome": "Customer Service", "sigla": "CS", "cor": "#1F7A8C", "sla": 24, "ativo": true, "descricao": "Cancelamento de pedido (total ou parcial), PDF do pedido e envio do pedido para assinatura digital.", "instrucoes": "Clique no tipo de solicitação e preencha os dados. No cancelamento parcial, informe cada produto e a quantidade a cancelar (até 5 itens).", "tipos": ["Cancelamento total do pedido", "Cancelamento parcial do pedido", "PDF do pedido", "Pedido para assinatura digital"], "campos": [{"id": "solicitacoes-cs", "rotulo": "Solicitação", "tipo": "pedidos", "obrigatorio": true, "opcoes": [], "maxClientes": 5, "maxProdutos": 5, "operacoes": [{"nome": "Cancelamento total do pedido", "campos": ["Cliente", "Nº do pedido"], "similar": false, "semProdutos": true}, {"nome": "Cancelamento parcial do pedido", "campos": ["Cliente", "Nº do pedido"], "similar": false, "semProdutos": false}, {"nome": "PDF do pedido", "campos": ["Cliente", "Nº do pedido", "E-mail", "Telefone"], "similar": false, "semProdutos": true}, {"nome": "Pedido para assinatura digital", "campos": ["Cliente", "Nº do pedido", "E-mail para envio", "Telefone para envio"], "similar": false, "semProdutos": true}]}], "anexos": [{"id": "pdf-pedido", "nome": "PDF do pedido", "obrigatorio": false, "quem": "equipe", "moverPara": "", "tipos": ["PDF do pedido"]}, {"id": "comprovante-assinatura", "nome": "Comprovante de envio para assinatura", "obrigatorio": false, "quem": "equipe", "moverPara": "", "tipos": ["Pedido para assinatura digital"]}, {"id": "comprovante-cancelamento", "nome": "Comprovante do cancelamento", "obrigatorio": false, "quem": "equipe", "moverPara": "", "tipos": ["Cancelamento total do pedido", "Cancelamento parcial do pedido"]}], "etapas": [], "fluxo": [{"id": "analise", "nome": "Análise · Customer Service", "equipe": "Customer Service", "cor": "#1F7A8C", "tipo": "aberto"}, {"id": "execucao", "nome": "Em execução", "equipe": "Customer Service", "cor": "#0E7C66", "tipo": "aberto"}, {"id": "aguardando", "nome": "Aguardando solicitante", "equipe": "Solicitante", "cor": "#B7791F", "tipo": "espera"}, {"id": "concluido", "nome": "Finalizado", "equipe": "Customer Service", "cor": "#2E7D32", "tipo": "final"}, {"id": "cancelado", "nome": "Cancelado", "equipe": "Customer Service", "cor": "#737F8E", "tipo": "final"}]},
     {id:'estrutura',icone:'predio',nome:'Gestão de Estrutura',sigla:'EST',cor:CORES[5],sla:72,ativo:true,
      descricao:'Facilities: layout, mobiliário, limpeza, acessos e segurança.',
@@ -1607,12 +1622,12 @@ function incluirPagamento(c){const a=(c.areas||[]).find(x=>x.id==='notas');if(!a
   const iv=a.campos.findIndex(x=>/^vencimento$/i.test(x.rotulo||''));const pos=iv<0?a.campos.length:iv+1;
   a.campos.splice(pos,0,
     {id:'forma-pagamento',rotulo:'Forma de pagamento',tipo:'lista',obrigatorio:true,opcoes:PAGTO_OPC.slice()},
-    {id:'dados-bancarios',rotulo:'Dados bancários e/ou chave PIX (banco, agência, conta, titular e CPF/CNPJ)',tipo:'textolongo',obrigatorio:true,opcoes:[],regra:{acao:'mostrar',campo:'forma-pagamento',op:'igual',valores:['Depósito em conta ou PIX','À vista']}});
+    {id:'dados-bancarios',rotulo:'Dados bancários e/ou chave PIX (banco, agência, conta, titular e CPF/CNPJ)',tipo:'textolongo',obrigatorio:true,opcoes:[],regra:{acao:'mostrar',campo:'forma-pagamento',op:'igual',valores:['Depósito em conta ou PIX']}});
   a.anexos=a.anexos||[];const bol=a.anexos.find(x=>/^boleto$/i.test(x.nome||''));
   if(bol){bol.obrigatorio=true;bol.regra={campo:'forma-pagamento',valores:['Boleto']}}else a.anexos.push({id:'boleto',nome:'Boleto',obrigatorio:true,quem:'solicitante',moverPara:'',regra:{campo:'forma-pagamento',valores:['Boleto']}});
   if(!a.anexos.some(x=>x.id==='fatura'))a.anexos.push({id:'fatura',nome:'Fatura',obrigatorio:true,quem:'solicitante',moverPara:'',regra:{campo:'forma-pagamento',valores:['Fatura']}});
   if(!a.anexos.some(x=>x.id==='comprovante-pagamento'))a.anexos.push({id:'comprovante-pagamento',nome:'Comprovante de pagamento',obrigatorio:true,quem:'solicitante',moverPara:'',regra:{campo:'forma-pagamento',valores:['Já pago (liquidado)']}});
-  a.instrucoes=(a.instrucoes||'').replace(/ e o boleto, se houver\./,'.')+' Escolha a forma de pagamento: Boleto (anexe o boleto), Depósito em conta ou PIX e À vista (informe os dados bancários e/ou a chave PIX), Fatura (anexe a fatura) ou Já pago (anexe o comprovante).'}
+  a.instrucoes=(a.instrucoes||'').replace(/ e o boleto, se houver\./,'.')+' Escolha a forma de pagamento: Boleto (anexe o boleto), Depósito em conta ou PIX (informe os dados bancários e/ou a chave PIX), À vista, Fatura (anexe a fatura) ou Já pago (anexe o comprovante).'}
 /* Empilhadeira · unidade: checklist semanal + solicitação de manutenção (corretiva/preventiva) atendida pela Logística, no modelo de Frotas */
 function incluirEmpManut(c){c.areas=c.areas||[];let a=c.areas.find(x=>x.id==='empilhadeiras');
   if(!a){a={id:'empilhadeiras',sigla:'EMP',cor:'#B08A12'};c.areas.push(a)}
@@ -2788,7 +2803,7 @@ function renderAbrir(){
         h('span',{class:'badge',style:`background:${a.cor}`},icone(a.icone)),
         h('span',{class:'txt'},h('h3',{text:a.nome}),h('span',{class:'sla',text:a.descricao||`Prazo de ${a.sla} h`})))),
         h('button',{class:'area',type:'button',onclick:()=>go('transf')},h('span',{class:'badge',style:'background:var(--hl)'},iconeD(ICONES_NAV.transf)),h('span',{class:'txt'},h('h3',{text:'Transferência entre filiais'}),h('span',{class:'sla',text:'Incluir e acompanhar transferências de produto'}))),
-        h('button',{class:'area',type:'button',onclick:()=>go('sem')},h('span',{class:'badge',style:'background:#2A7549'},icone('folha')),h('span',{class:'txt'},h('h3',{text:'Esteira de Sementes'}),h('span',{class:'sla',text:'Carteira por planilha: calendarização, crédito, compras e logística'}))),
+        h('button',{class:'area',type:'button',onclick:()=>go('sem')},h('span',{class:'badge',style:'background:#2A7549'},icone('folha')),h('span',{class:'txt'},h('h3',{text:'Esteira de Sementes'}),h('span',{class:'sla',text:'Carteira por planilha: crédito, compras, financeiro, comercial e cargas'}))),
         h('button',{class:'area',type:'button',onclick:()=>go('assin')},h('span',{class:'badge',style:'background:#6D28D9'},icone('nota')),h('span',{class:'txt'},h('h3',{text:'Situação dos pedidos'}),h('span',{class:'sla',text:'Assinatura, etapa de aprovação, margem e itens de cada pedido'}))),
         invCard(),
         h('button',{class:'area',type:'button',onclick:()=>go('empil')},h('span',{class:'badge',style:'background:#B08A12'},iconeD(ICONES_NAV.empil)),h('span',{class:'txt'},h('h3',{text:'Empilhadeira · unidade'}),h('span',{class:'sla',text:'Checklist semanal e solicitação de manutenção (corretiva ou preventiva)'})))));
@@ -3785,7 +3800,7 @@ function timeLabel(){return Object.entries(TIME_ETAPAS).map(([id,es])=>{const a=
 function filtrar(){
   const q=filtros.q;
   const stOkM=(t,l)=>!l.length||l.some(v=>statusOk(t,v));
-  if(!ehEquipe)return tickets.filter(t=>stOkM(t,filtros.status)).filter(t=>bateBusca(t,q)).sort((a,b)=>b.criadoEm-a.criadoEm);
+  /* solicitante usa os mesmos filtros e cartões da equipe */
   const eqPasse=(t,val)=>{const[m,eq]=String(val).includes('|')?String(val).split('|'):['agora',val];
     const bate=x=>eqBate(x,eq);
     if(m==='agora'&&eqBate(eq,EQ_TROCAS))return ehTroca(t);
@@ -3828,6 +3843,7 @@ function equipesTodas(){const out=[...EQUIPES_BARRA];const resto=[];
     if(![...out,...resto].some(x=>eqNorm(x)===eqNorm(e)))resto.push(eqNome(e))}
   return [...out,...resto.sort((x,y)=>x.localeCompare(y,'pt-BR'))]}
 function prioPeso(t){return {Urgente:3,Alta:2,Normal:1,Baixa:0}[t.prioridade]??1}
+let resumoOculto=false;try{resumoOculto=localStorage.getItem('ca-resumo')==='0'}catch(e){}
 function renderPainel(){
   const main=$('#main');filtros.time=false;
   const semana=Date.now()-7*864e5;
@@ -3885,7 +3901,8 @@ function renderPainel(){
   const RES=[['Logística','caminhao','#EE6A1F','logistica'],['Faturamento','recibo','#2B63A3','faturamento'],['Central de Notas','nota','#0E7C66'],['Customer Service','headset','#C2410C','customer'],['Área de Crédito','cartao','#2A7549'],['Área de Compras','carrinho','#9A6212'],['Comercial','grafico','#6D28D9'],['Loja','predio','#4F6470'],['Frotas','carro','#7E57B0','frotas'],['Área de Orçamento','calculadora','#0D2B4E'],['Área de TI','monitor','#475569'],['Área Fiscal','balanca','#B42318'],['Barter e Fertilizante','folha','#3F7D2E'],['Solicitante','pessoas','#737F8E']];
   const RES_EXTRA={'Frotas':['carro','#7E57B0'],'Área Fiscal':['balanca','#B42318'],'Área de TI':['monitor','#475569'],'Área de Orçamento':['calculadora','#0D2B4E'],'Área de Cadastro':['pessoas','#5B6B7F'],'Barter e Fertilizante':['folha','#3F7D2E'],'Solicitante':['pessoas','#737F8E']};
   const corA=(id,c)=>{const a=id&&areasAtivas().find(x=>x.id===id);return (a&&a.cor)||c};
-  const abertosVis=tickets.filter(aberto);
+  const baseOk=t=>(!filtros.area.length||filtros.area.includes(t.areaId))&&(!filtros.filial.length||filtros.filial.includes(filialDe(t)))&&(!filtros.solicitante.length||filtros.solicitante.includes(t.solicitante?.nome||''))&&(!filtros.minhas||(meId&&t.solicitante?.uid===meId))&&(!filtros.nota||bateNota(t,filtros.nota))&&(!filtros.q||bateBusca(t,filtros.q));
+  const abertosVis=tickets.filter(aberto).filter(baseOk);
   const comEq=eq=>abertosVis.filter(t=>eqBate(eq,EQ_TROCAS)?ehTroca(t):eqBate(stOf(t).equipe,eq));
   const itensRes=RES.map(([eq,ic,c,id])=>({eq,ic,cor:corA(id,c)}));
   [...equipesTodas(),'Solicitante'].forEach(eq=>{if(itensRes.some(x=>eqNorm(x.eq)===eqNorm(eq)))return;if(!comEq(eq).length)return;const ex=RES_EXTRA[eq]||['headset','#5B6B7F'];itensRes.push({eq,ic:ex[0],cor:ex[1]})});
@@ -3893,13 +3910,14 @@ function renderPainel(){
   const resumo=h('div',{class:'resumo',role:'group','aria-label':'Solicitações abertas por área'},itensRes.map(it=>{
     const ls=comEq(it.eq),n=ls.length,at=ls.filter(atrasado).length;const on=filtros.equipe.includes('agora|'+it.eq);
     const sub=!n?h('div',{class:'rsub mute',text:'Nada pendente'}):at?h('div',{class:'rsub crit',text:`${at} fora do prazo`}):h('div',{class:'rsub ok',text:'Tudo no prazo'});
-    return h('button',{type:'button',class:'rcard'+(n?'':' zero'),style:'--rc:'+it.cor,'aria-pressed':String(on),disabled:ehEquipe?null:true,title:ehEquipe?(on?'Mostrar todas':'Ver as solicitações com '+nomeRes(it.eq)):null,
-      onclick:()=>{if(!ehEquipe)return;filtros.equipe=on?filtros.equipe.filter(v=>v!=='agora|'+it.eq):[...filtros.equipe,'agora|'+it.eq];filtros.st='';if(!on&&!filtros.status.some(v=>['abertos','atrasados','espera'].includes(v)))filtros.status=['abertos'];guardaFiltros();renderPainel()}},
+    return h('button',{type:'button',class:'rcard'+(n?'':' zero'),style:'--rc:'+it.cor,'aria-pressed':String(on),title:on?'Mostrar todas':'Ver as solicitações com '+nomeRes(it.eq),
+      onclick:()=>{mfAberto=null;filtros.equipe=on?filtros.equipe.filter(v=>v!=='agora|'+it.eq):[...filtros.equipe,'agora|'+it.eq];filtros.st='';if(!on&&!filtros.status.some(v=>['abertos','atrasados','espera'].includes(v)))filtros.status=['abertos'];guardaFiltros();renderPainel()}},
       h('div',{class:'rtop'},h('span',{class:'rico'},icone(it.ic)),h('span',{class:'rnm',text:nomeRes(it.eq)})),
-      h('div',{class:'rn'},String(n),h('small',{text:n===1?'solicitação':'solicitações'})),sub,
-      h('span',{class:'rmark'},icone(it.ic)))}));
+      h('div',{class:'rn'},String(n),h('small',{text:n===1?'solicitação':'solicitações'})),sub)}));
+  const resumoBar=h('div',{class:'res-bar'},h('span',{class:'lbl',text:'Pendências por área'+((filtros.area.length||filtros.filial.length||filtros.solicitante.length||filtros.minhas||filtros.q||filtros.nota)?' · com os filtros de baixo':'')}),
+    h('button',{type:'button',class:'linkbtn',style:'margin:0','aria-expanded':String(!resumoOculto),onclick:()=>{resumoOculto=!resumoOculto;try{localStorage.setItem('ca-resumo',resumoOculto?'0':'1')}catch(e){};renderPainel()}},resumoOculto?'Mostrar':'Ocultar'));
   let pend=null;
-  if(ehEquipe&&filtros.equipe.some(v=>String(v).startsWith('agora|'))){const eqs=filtros.equipe.filter(v=>String(v).startsWith('agora|')).map(v=>v.slice(6));const ls=[...new Set(eqs.flatMap(comEq))];const g=new Map();
+  if(filtros.equipe.some(v=>String(v).startsWith('agora|'))){const eqs=filtros.equipe.filter(v=>String(v).startsWith('agora|')).map(v=>v.slice(6));const ls=[...new Set(eqs.flatMap(comEq))];const g=new Map();
     for(const t of ls){const k=t.areaId+'|'+t.status;const a=(cfg.areas||[]).find(x=>x.id===t.areaId);const o=g.get(k)||{k,area:a?a.nome:t.areaId,etapa:stOf(t).nome,n:0,at:0};o.n++;if(atrasado(t))o.at++;g.set(k,o)}
     const its=[...g.values()].sort((a,b)=>b.n-a.n);const variasAreas=new Set(its.map(x=>x.area)).size>1;
     pend=h('div',{class:'pend'},h('span',{class:'pend-t',text:`Pendente com ${eqs.map(nomeRes).join(', ')}:`}),
@@ -3908,7 +3926,7 @@ function renderPainel(){
   const prevOv=document.querySelector('.overlay');const prevTop=prevOv&&prevOv.dataset.n===String(ticketSel)?prevOv.scrollTop:0;
   let ov=null;if(sel){ov=h('div',{class:'overlay'+(telaCheia?' cheia':''),'data-n':String(sel.numero),style:(prevOv&&prevOv.dataset.n===String(sel.numero))?'animation:none':'',onclick:e=>{if(e.target===ov)fecharDetalhe()}},renderDetalhe(sel))}else telaCheia=false;
   document.body.classList.toggle('modal-aberto',!!sel);
-  main.replaceChildren(resumo,...(pend?[pend]:[]),statbar,filtersEl,board,...(ov?[ov]:[]));if(ov&&prevTop)ov.scrollTop=prevTop;
+  main.replaceChildren(resumoBar,...(resumoOculto?[]:[resumo]),...(pend?[pend]:[]),statbar,filtersEl,board,...(ov?[ov]:[]));if(ov&&prevTop)ov.scrollTop=prevTop;
   paintList();
   function paintList(){
     if(modo==='kanban'){paintKanban(listEl);return}
@@ -4206,6 +4224,14 @@ async function gravar(t,patch,ev){
 }
 let encDraft={};
 function ceVisivel(t,c){const m=c.mostrarSe;if(!m||!m.campo)return true;return String((t.equipeCampos||{})[m.campo]||'')===String(m.valor||'')}
+/* KM e valores em R$: aceita 1250 / 1.250 / 3500,5 / R$ 3.500,50 / 3500.50; devolve formatado ou null se não for número válido (> 0) */
+function fmtNumCampo(tipo,txt){let x=String(txt||'').replace(/R\$|km|\s/gi,'');if(!x)return '';
+  if(!/^[\d.,]+$/.test(x))return null;const ci=x.lastIndexOf(','),pi=x.lastIndexOf('.');
+  if(ci>=0){x=x.replace(/\./g,'').replace(',','.')}else if(pi>=0&&(x.split('.').length>2||x.length-pi-1===3))x=x.replace(/\./g,'');
+  const n=Number(x);if(!isFinite(n)||n<=0)return null;
+  return tipo==='moeda'?'R$ '+n.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}):n.toLocaleString('pt-BR',{maximumFractionDigits:1})+' km'}
+/* Nº do(s) pedido(s): aceita vírgula, ponto e vírgula, barra, espaço ou quebra de linha; tira repetidos; até 10 pedidos */
+function fmtPedidos(x){const ps=[...new Set(String(x||'').split(/[\s,;\/|]+/).map(v=>v.replace(/\D/g,'').replace(/^0+(?=\d)/,'')).filter(Boolean))];if(!ps.length)return String(x||'').trim()?null:'';if(ps.length>10)return null;return ps.join(', ')}
 function camposEquipeBloco(t){
   if(!aberto(t))return null;const cs=camposEquipeDe(t,true).filter(c=>ceVisivel(t,c));if(!cs.length)return null;
   return h('div',{class:'eqbox'},h('div',{class:'small',style:'font-weight:600',text:`Preencher em ${stOf(t).nome}`}),
@@ -4214,7 +4240,10 @@ function camposEquipeBloco(t){
         c.tipo==='simnao'?h('select',{'aria-label':c.rotulo,onchange:e=>salvarCampoEquipe(t,c,e.target.value)},h('option',{value:''},'Selecione'),['Sim','Não'].map(o=>h('option',{value:o,selected:v===o},o))):
         c.tipo==='lista'?h('select',{'aria-label':c.rotulo,onchange:e=>salvarCampoEquipe(t,c,e.target.value)},h('option',{value:''},'Selecione'),[...(c.opcoes||[]),...(v&&!(c.opcoes||[]).includes(v)?[v]:[])].map(o=>h('option',{value:o,selected:v===o},o))):
         c.tipo==='textolongo'?h('textarea',{style:'min-height:70px',placeholder:c.id==='parecer'?'O que foi conferido e o que foi identificado':c.id==='decisao'?'O que foi decidido e o que foi feito para resolver':c.rotulo,value:v,onchange:e=>salvarCampoEquipe(t,c,e.target.value.trim())}):
+        (c.tipo==='numero'||c.tipo==='moeda')?h('input',{type:'text',inputmode:'decimal',value:v,placeholder:c.tipo==='moeda'?'R$ 0,00':'Ex.: 1.250',onchange:e=>{const f=fmtNumCampo(c.tipo,e.target.value);if(f===null){toast(`"${c.rotulo}": informe só o número${c.tipo==='moeda'?' (ex.: 3.500,00)':' (ex.: 1250)'}.`);e.target.value=v;return}e.target.value=f;salvarCampoEquipe(t,c,f)}}):
+        c.tipo==='pedidonum'?h('input',{type:'text',inputmode:'numeric',value:v,placeholder:'Ex.: 12345 ou 12345, 12346',onchange:e=>{const f=fmtPedidos(e.target.value);if(f===null){toast(`"${c.rotulo}": informe o nº do pedido (só números; vários separados por vírgula, até 10).`);e.target.value=v;return}e.target.value=f;salvarCampoEquipe(t,c,f)}}):
         h('input',{type:'text',value:v,placeholder:c.rotulo,onchange:e=>salvarCampoEquipe(t,c,e.target.value.trim())}),
+        c.dica?h('span',{class:'hint',text:c.dica}):null,
         c.aoSim?h('span',{class:'hint',text:`"Sim" move para ${stById(t,c.aoSim).nome}`+(c.aoNao?` · "Não" (com o motivo) move para ${stById(t,c.aoNao).nome}`:'')}):null)})));
 }
 function avancarBloco(t){
@@ -4624,7 +4653,7 @@ function cfgCamposEquipe(a){
     h('p',{class:'hint',text:'A equipe preenche no status escolhido. Se for obrigatório, o chamado não avança sem ele (Sim/Não precisa estar "Sim"). "Se Sim, mover para" avança sozinho.'}),
     h('div',{class:'tbl'},arr.map((c,k)=>h('div',{class:'frow eqrow'},
       h('input',{type:'text','aria-label':'Nome do campo',placeholder:'Ex.: Nº do pedido de compra',value:c.rotulo,oninput:e=>{c.rotulo=e.target.value;marcarSujo()}}),
-      h('select',{'aria-label':'Tipo',onchange:e=>{c.tipo=e.target.value;marcarSujo();renderConfig()}},[['texto','Texto'],['textolongo','Texto longo'],['simnao','Sim / Não'],['lista','Lista de opções']].map(([v,n])=>h('option',{value:v,selected:c.tipo===v},n))),
+      h('select',{'aria-label':'Tipo',onchange:e=>{c.tipo=e.target.value;marcarSujo();renderConfig()}},[['texto','Texto'],['textolongo','Texto longo'],['numero','Número (KM)'],['moeda','Valor em R$'],['simnao','Sim / Não'],['lista','Lista de opções']].map(([v,n])=>h('option',{value:v,selected:c.tipo===v},n))),
       h('select',{'aria-label':'Status',onchange:e=>{c.status=e.target.value;marcarSujo()}},fl.map(st=>h('option',{value:st.id,selected:c.status===st.id},'Em: '+st.nome))),
       h('label',{class:'chk'},h('input',{type:'checkbox',checked:!!c.obrigatorio,onchange:e=>{c.obrigatorio=e.target.checked;marcarSujo()}}),'Obrigatório p/ avançar'),
       rowBtns(arr,k),
@@ -4931,13 +4960,18 @@ function migrar(c){
   if(!c.migDivergencias){incluirDivergencias(c);c.migDivergencias=true}
   if(!c.migNotif){incluirNotificacao(c);c.migNotif=true}
   if(!c.migPagto){incluirPagamento(c);c.migPagto=true}
+  /* "Tipo de pagamento" saiu: vale só a "Forma de pagamento" (remove o campo antigo e solta o que dependia dele) */
+  (c.areas||[]).forEach(a=>{const velhos=(a.campos||[]).filter(x=>x.id!=='forma-pagamento'&&/^\s*tipo\s+(de\s+)?pag/i.test(x.rotulo||''));if(!velhos.length)return;
+    const ids=velhos.map(x=>x.id);a.campos=a.campos.filter(x=>!ids.includes(x.id));
+    for(const x of [...a.campos,...(a.anexos||[])])if(x.regra&&ids.includes(x.regra.campo))delete x.regra});
   /* dados bancários: um único campo, que só abre quando a forma de pagamento é depósito/PIX/à vista (confere as opções reais da lista; roda sempre, não duplica) */
   {const n=(c.areas||[]).find(x=>x.id==='notas');const fp=n&&(n.campos||[]).find(x=>x.id==='forma-pagamento');
-   if(n&&fp){const ops=(fp.opcoes&&fp.opcoes.length?fp.opcoes:PAGTO_OPC).filter(o=>/dep[oó]sito|pix|[àa] vista|transfer/i.test(o));
+   if(n&&fp){const ops=(fp.opcoes&&fp.opcoes.length?fp.opcoes:PAGTO_OPC).filter(o=>/dep[oó]sito|pix|transfer/i.test(o));
      const bk=n.campos.find(x=>x.id==='dados-bancarios')||n.campos.find(x=>/dados banc|chave pix/i.test(x.rotulo||''));
      n.campos=n.campos.filter(x=>x===bk||!/dados banc|chave pix/i.test(x.rotulo||''));
      const campo=bk||{id:'dados-bancarios',rotulo:'Dados bancários e/ou chave PIX (banco, agência, conta, titular e CPF/CNPJ)',tipo:'textolongo',obrigatorio:true,opcoes:[]};
-     campo.id='dados-bancarios';delete campo.tipos;campo.regra={acao:'mostrar',campo:'forma-pagamento',op:'igual',valores:ops.length?ops:['Depósito em conta ou PIX','À vista']};
+     campo.id='dados-bancarios';delete campo.tipos;campo.regra={acao:'mostrar',campo:'forma-pagamento',op:'igual',valores:ops.length?ops:['Depósito em conta ou PIX']};
+     if(n.instrucoes)n.instrucoes=n.instrucoes.replace('Depósito em conta ou PIX e À vista (informe os dados bancários e/ou a chave PIX)','Depósito em conta ou PIX (informe os dados bancários e/ou a chave PIX), À vista');
      const sem=n.campos.filter(x=>x!==campo);const ip=sem.findIndex(x=>x.id==='forma-pagamento');sem.splice(ip+1,0,campo);n.campos=sem}}
   if(!c.migEmpManut){incluirEmpManut(c);c.migEmpManut=true}
   if(!c.migLojaFat){lojaNoFaturamento(c);c.migLojaFat=true}
@@ -4967,6 +5001,8 @@ function migrar(c){
   if(!c.migFrotasSla3){const a=(c.areas||[]).find(x=>x.id==='frotas');if(a){a.slaPorTipo={...(a.slaPorTipo||{}),'Checklist veicular':24};a.slaSemSab=true;a.prazoTxt='Checklist: 3 dias úteis · demais: 48 h úteis (segunda a sexta, em horário comercial)'}c.migFrotasSla3=true}
   if(!c.migManutUteis){const a=(c.areas||[]).find(x=>x.id==='frotas');const f=a&&(a.campos||[]).find(x=>x.id==='data-manutencao');if(f){f.minDias=3;f.diasUteis=true}c.migManutUteis=true}
   if(!c.migFiliais2026){c.filiais=clone(MODELO.filiais);c.migFiliais2026=true}
+  if(!c.migNotasPedido){const a=(c.areas||[]).find(x=>x.id==='notas');if(a){a.camposEquipe=a.camposEquipe||[];if(!a.camposEquipe.some(x=>x.id==='numero-pedido')){const m=MODELO.areas.find(x=>x.id==='notas').camposEquipe.find(x=>x.id==='numero-pedido');if(m)a.camposEquipe.unshift(clone(m))}}c.migNotasPedido=true}
+  if(!c.migEntregueValores){const a=(c.areas||[]).find(x=>x.id==='logistica');if(a){a.camposEquipe=a.camposEquipe||[];for(const id of ['km-viagem','valor-motorista','valor-transportadora']){if(a.camposEquipe.some(x=>x.id===id))continue;const m=MODELO.areas.find(x=>x.id==='logistica').camposEquipe.find(x=>x.id===id);if(m)a.camposEquipe.push(clone(m))}}c.migEntregueValores=true}
   if(!c.migTransf2){const a=(c.areas||[]).find(x=>x.id==='transferencia');if(a)a.ativo=false;c.migTransf2=true}
   delete c.status;return c;
 }
@@ -5392,17 +5428,40 @@ async function trfExcel(lista){
 }
 
 /* ===================== ESTEIRA DE SEMENTES (aba própria, uma linha por pedido/material, alimentada por planilha) =====================
-   A carteira entra por planilha (Filial, Cliente, Material, Pedido de compra, Pedido de venda, Série, Quantidade). Cada importação só ACRESCENTA
-   linhas novas; o que já existe (e o andamento de cada linha) é mantido. Consultor informa fazenda, ponto e data de entrega → Crédito libera →
-   Compras informa fornecedor e local de carregamento → só então a Logística avança (contratação → carregamento → trânsito → finalizado). */
+   1) A carteira entra por planilha (Filial, Cliente, Inscrição estadual, CPF/CNPJ, Material, Quantidade; Pedido, Série e Situação do pedido
+      quando houver). Cada importação ACRESCENTA as linhas novas e, nas que já existem, só atualiza a situação do pedido (normal, cancelado,
+      baixado) e a quantidade. O andamento de cada linha é mantido. Linha que não veio na carteira nova fica marcada "fora da carteira".
+   2) Três liberações em paralelo: Crédito (libera ou nega) · Compras (pedido de compra, fornecedor, local de carregamento) ·
+      Financeiro (liquidado ou a prazo libera; não liquidado segura).
+   3) Com as três liberadas, o Comercial informa a fazenda e o ponto de entrega (coordenadas).
+   4) A Logística programa as cargas: uma linha pode sair em várias cargas, cada uma com volume, data de carregamento, previsão de entrega,
+      transportadora e situação (programada → em carregamento → em trânsito → entregue). O saldo é o que ainda não tem carga.
+   A aba "Volumes" soma as sacas por etapa (aguardando, liberado sem carga, programado, em carregamento, em trânsito, entregue, cancelado). */
 let sem=[],semOk=false;
-const sm={st:'abertos',fil:'todas',cli:'todos',q:'',nega:{},conf:{}};
-const SEM_LOG=[['contratacao','Em contratação','#B45309'],['carregamento','Em carregamento','#1F5FAD'],['transito','Em trânsito','#0E7490'],['finalizado','Finalizado','#2E7D32']];
-const SEM_ST={aguardando:['Aguardando etapas','#6D28D9'],negado:['Crédito negado','#B42318'],contratacao:['Em contratação','#B45309'],carregamento:['Em carregamento','#1F5FAD'],transito:['Em trânsito','#0E7490'],finalizado:['Finalizado','#2E7D32']};
-function semPend(o){const p=[];if(!o.entrega)p.push('Calendarização');if(!(o.cred&&o.cred.ok===true))p.push('Crédito');if(!(o.comp&&o.comp.fornecedor&&o.comp.local))p.push('Compras');return p}
-function semStatus(o){if(o.cred&&o.cred.ok===false)return 'negado';if(semPend(o).length)return 'aguardando';return o.log||'contratacao'}
+const sm={st:'abertos',fil:'todas',cli:'todos',q:'',nega:{},conf:{},aba:'esteira',abre:{},nova:{}};
+try{const a=localStorage.getItem('ca-sem-aba');if(a==='volumes')sm.aba=a}catch(e){}
+const SEM_FIN=[['liquidado','Liquidado','#2E7D32'],['prazo','A prazo','#1F5FAD'],['nao','Não liquidado','#B42318']];
+const SEM_CG=[['programada','Programada','#6D28D9'],['carregamento','Em carregamento','#1F5FAD'],['transito','Em trânsito','#0E7490'],['entregue','Entregue','#2E7D32']];
+const SEM_ST={cancelado:['Pedido cancelado','#737F8E'],baixado:['Pedido baixado','#5B6B7F'],negado:['Crédito negado','#B42318'],aguardando:['Aguardando liberações','#6D28D9'],comercial:['Aguardando comercial','#B45309'],programar:['Liberado p/ logística','#C2410C'],programada:['Carga programada','#6D28D9'],carregamento:['Em carregamento','#1F5FAD'],transito:['Em trânsito','#0E7490'],finalizado:['Finalizado','#2E7D32']};
+const semN=n=>(+n||0).toLocaleString('pt-BR',{maximumFractionDigits:2});
+const semFaz=o=>(o.com&&o.com.fazenda)||o.fazenda||'';
+const semPonto=o=>(o.com&&o.com.ponto)||o.ponto||'';
+const semPC=o=>(o.comp&&o.comp.pcompra)||o.pcompra||'';
+function semSit(o){const s=itNorm(o.sitPed||'');return /cancel/.test(s)?'cancelado':/baix|encerr|liquidad|atendid/.test(s)?'baixado':'normal'}
+/* liberações: crédito, compras e financeiro (em paralelo) */
+function semLib(o){const p=[];if(!(o.cred&&o.cred.ok===true))p.push('Crédito');if(!(semPC(o)&&o.comp&&o.comp.fornecedor&&o.comp.local))p.push('Compras');
+  const f=o.fin&&o.fin.sit;if(f!=='liquidado'&&f!=='prazo')p.push(f==='nao'?'Financeiro (não liquidado)':'Financeiro');return p}
+function semComOk(o){return !!(semFaz(o)&&pontoCoord(semPonto(o)))}
+function semPend(o){const p=semLib(o);if(!p.length&&!semComOk(o))p.push('Comercial');return p}
+const semCargas=o=>Array.isArray(o.cargas)?o.cargas:[];
+function semVol(o){const v={programada:0,carregamento:0,transito:0,entregue:0};for(const c of semCargas(o))v[c.st in v?c.st:'programada']+=(+c.vol||0);
+  v.alocado=v.programada+v.carregamento+v.transito+v.entregue;v.saldo=Math.max(0,(+o.qtd||0)-v.alocado);return v}
+function semStatus(o){const si=semSit(o);if(si!=='normal')return si;
+  if(o.cred&&o.cred.ok===false)return 'negado';if(semLib(o).length)return 'aguardando';if(!semComOk(o))return 'comercial';
+  const v=semVol(o);const tot=+o.qtd||0;if(tot&&v.entregue>=tot)return 'finalizado';
+  if(v.transito)return 'transito';if(v.carregamento)return 'carregamento';if(v.programada)return 'programada';return 'programar'}
 function semOcupado(){const a=document.activeElement;const l=document.getElementById('sem-lista');return !!(a&&l&&l.contains(a)&&/^(INPUT|SELECT|TEXTAREA)$/.test(a.tagName))||Object.keys(sm.nega).length>0}
-function semFechado(o){return semStatus(o)==='finalizado'}
+function semFechado(o){return ['finalizado','cancelado','baixado'].includes(semStatus(o))}
 function semHash(s){let a=2166136261,b=5381;for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);a=Math.imul(a^c,16777619);b=(Math.imul(b,33)^c)>>>0}return (a>>>0).toString(36)+b.toString(36)}
 /* ---------- armazenamento ---------- */
 /* No Microsoft 365 a esteira fica na lista "EsteiraSementes" do site da central (criada sozinha no primeiro uso) */
@@ -5420,12 +5479,12 @@ async function semCarregar(){if(!MODO_MS||!MS.siteId||semCarregando)return;semCa
 async function semCriarLote(lista){
   if(MODO_MS){for(let i=0;i<lista.length;i+=10){await Promise.all(lista.slice(i,i+10).map(o=>msSemGravar(o)))}sem.unshift(...lista);return}
   for(let i=0;i<lista.length;i+=25){await Promise.all(lista.slice(i,i+25).map(o=>db?db.doc('esteira/'+o.id).set(o):Promise.resolve()))}if(!db)sem.unshift(...lista)}
-async function semAtualizar(o,patch,txt){
+async function semAtualizar(o,patch,txt,semPintar){
   const agora=Date.now();const ev={em:agora,por:trfEu().nome,texto:up(txt)};
   if(MODO_MS){const n={...o,...patch,atualizadoEm:agora,historico:[...(o.historico||[]),ev]};await msSemGravar(n);Object.assign(o,n)}
   else if(db){await db.doc('esteira/'+o.id).update({...patch,atualizadoEm:agora,historico:[...(o.historico||[]),ev]})}
   else Object.assign(o,patch,{atualizadoEm:agora,historico:[...(o.historico||[]),ev]});
-  renderTabs();paintSem();
+  if(!semPintar){renderTabs();paintSem()}
 }
 async function semExcluir(o){
   if(MODO_MS){const id=MS.semIds[o.id];if(id){const lid=await msLista('EsteiraSementes',SEM_COLS);await gx('DELETE',`/sites/${MS.siteId}/lists/${lid}/items/${id}`);delete MS.semIds[o.id]}sem=sem.filter(x=>x.id!==o.id)}
@@ -5433,9 +5492,12 @@ async function semExcluir(o){
 async function semSeguro(fn,msg){try{await fn()}catch(e){console.warn(e);toast(msg||'Não foi possível salvar. Tente de novo.');paintSem()}}
 /* ---------- leitura da planilha ---------- */
 const semNrm=v=>itNorm(v).replace(/[.:_]/g,' ').replace(/\s+/g,' ').trim();
-const SEM_SIN={filial:['filial','unidade'],cliente:['cliente','nome do cliente','razao social'],material:['material','produto','semente','descricao do material','descricao'],
-  pvenda:['pedido de venda','pedido venda','ped venda','pv','pedido','ordem de venda'],pcompra:['pedido de compra','pedido compra','ped compra','pedido de compras','pc'],
-  serie:['serie','serie do pedido','serie de pedido'],qtd:['quantidade','qtd','qtde','quant','volume'],venc:['data vencimento','vencimento','data de vencimento'],
+const SEM_SIN={filial:['filial','unidade'],cliente:['cliente','nome do cliente','razao social','nome cliente'],
+  ie:['inscricao estadual','insc estadual','inscr estadual','ie','i e','inscricao'],doc:['cpf','cnpj','cpf/cnpj','cnpj/cpf','cpf cnpj','cnpj cpf','cpf ou cnpj','documento'],
+  sit:['situacao do pedido','situacao pedido','status do pedido','status pedido','situacao','status','sit pedido'],
+  material:['material','produto','semente','descricao do material','descricao'],
+  pvenda:['pedido de venda','pedido venda','ped venda','pv','pedido','ordem de venda','nº do pedido','n do pedido','numero do pedido'],pcompra:['pedido de compra','pedido compra','ped compra','pedido de compras','pc'],
+  serie:['serie','serie do pedido','serie de pedido'],qtd:['quantidade','qtd','qtde','quant','volume','quantidade (sc)','qtd (sc)'],venc:['data vencimento','vencimento','data de vencimento'],
   pterc:['ped terceiro','pedido terceiro','pedido de terceiro','ped terceiros'],forn:['fornecedor']};
 function semLer(buf){
   if(!window.XLSX)throw new Error('O leitor de planilhas ainda está carregando. Tente de novo em alguns segundos.');
@@ -5444,49 +5506,65 @@ function semLer(buf){
     for(let i=0;i<Math.min(20,linhas.length);i++){const cab=linhas[i].map(semNrm);const mapa={};const usa=new Set();
       const acha=(sin,ap)=>{let ix=cab.findIndex((c,k)=>!usa.has(k)&&k>=(ap||0)&&sin.includes(c));if(ix<0)ix=cab.findIndex((c,k)=>!usa.has(k)&&k>=(ap||0)&&c&&sin.some(s=>s.length>4&&c.startsWith(s)));return ix};
       const pega=(id,ap)=>{const ix=acha(SEM_SIN[id],ap);if(ix>=0){mapa[id]=ix;usa.add(ix)}return ix};
-      for(const id of ['pcompra','pterc','forn','venc','serie','qtd','material','cliente'])pega(id);
+      for(const id of ['sit','ie','doc','pcompra','pterc','forn','venc','serie','qtd','material','cliente'])pega(id);
       pega('filial');const pv=pega('pvenda');
       /* layout com duas colunas "Pedido": a 1ª é o pedido de venda e a 2ª (mais à direita) é o pedido de compra */
       if(!('pcompra' in mapa)&&pv>=0){const p2=acha(SEM_SIN.pvenda,pv+1);if(p2>=0){mapa.pcompra=p2;usa.add(p2)}}
       const n=Object.keys(mapa).length;if(!melhor||n>melhor.n)melhor={n,mapa,linhas,i,aba:nome}}}
-  if(!melhor||melhor.n<3||!('material' in melhor.mapa))throw new Error('Não reconheci as colunas. A planilha precisa ter Filial, Cliente, Produto/Material, Pedido e Quantidade/Volume (use a planilha modelo).');
+  if(!melhor||melhor.n<3||!('material' in melhor.mapa))throw new Error('Não reconheci as colunas. A planilha precisa ter Filial, Cliente, Inscrição estadual, CPF/CNPJ, Material e Quantidade (use a planilha modelo).');
   const mapa=new Map();const M=melhor.mapa;
   for(const l of melhor.linhas.slice(melhor.i+1)){const g=id=>M[id]==null?'':l[M[id]];
-    const r={filial:String(g('filial')).trim(),cliente:String(g('cliente')).trim(),material:String(g('material')).trim(),pcompra:String(g('pcompra')).trim(),pvenda:String(g('pvenda')).trim(),serie:String(g('serie')).trim(),qtd:dNum(g('qtd'))||0,
+    const r={filial:String(g('filial')).trim(),cliente:String(g('cliente')).trim(),ie:String(g('ie')).trim(),doc:String(g('doc')).trim(),sit:String(g('sit')).trim(),
+      material:String(g('material')).trim(),pcompra:String(g('pcompra')).trim(),pvenda:String(g('pvenda')).trim(),serie:String(g('serie')).trim(),qtd:dNum(g('qtd'))||0,
       pterc:String(g('pterc')).trim(),forn:String(g('forn')).trim(),venc:(()=>{const d=dataBR(g('venc'));return d?new Date(d).toISOString().slice(0,10):''})()};
     if(!r.material&&!r.cliente&&!r.pvenda)continue;
-    r.chave=itNorm([r.filial,r.pvenda||r.pcompra,r.serie,r.material].join('|'));
+    /* chave da linha: com pedido = filial + pedido + série + material; sem pedido = filial + CPF/CNPJ (ou IE, ou cliente) + material */
+    r.chave=itNorm(r.pvenda||r.pcompra?[r.filial,r.pvenda||r.pcompra,r.serie,r.material].join('|'):[r.filial,r.doc||r.ie||r.cliente,r.material].join('|'));
     const x=mapa.get(r.chave);
-    if(x){x.qtd+=r.qtd;for(const k of ['pcompra','pterc','forn','venc'])if(!x[k]&&r[k])x[k]=r[k]}else mapa.set(r.chave,r)}
+    if(x){x.qtd+=r.qtd;for(const k of ['pcompra','pterc','forn','venc','ie','doc','sit'])if(!x[k]&&r[k])x[k]=r[k]}else mapa.set(r.chave,r)}
   if(!mapa.size)throw new Error('A planilha não tem linhas preenchidas.');
-  const nomes={filial:'Filial',cliente:'Cliente',material:'Produto',pvenda:'Pedido',qtd:'Volume',pcompra:'Pedido de compra',pterc:'Ped. Terceiro',forn:'Fornecedor',venc:'Data Vencimento'};
-  return {rows:[...mapa.values()],aba:melhor.aba,ignoradas:Object.keys(nomes).filter(k=>!(k in M)).map(k=>nomes[k])};
+  const nomes={filial:'Filial',cliente:'Cliente',ie:'Inscrição estadual',doc:'CPF/CNPJ',material:'Material',qtd:'Quantidade',pvenda:'Pedido',sit:'Situação do pedido'};
+  return {rows:[...mapa.values()],aba:melhor.aba,temSit:'sit' in M,ignoradas:Object.keys(nomes).filter(k=>!(k in M)).map(k=>nomes[k])};
 }
 async function semImportar(file,btn){
   if(btn)btn.disabled=true;
   try{
     const p=semLer(await file.arrayBuffer());const agora=Date.now();const eu=trfEu();
-    const exist=new Map(sem.map(o=>[o.chave,o]));
+    const exist=new Map(sem.map(o=>[o.chave,o]));const vistos=new Set();
     let numero=sem.reduce((m,o)=>Math.max(m,+o.numero||0),0);
-    const novas=[],atual=[];
-    for(const r of p.rows){const e=exist.get(r.chave);
-      if(!e){numero++;const o={id:'s'+semHash(r.chave),numero,chave:r.chave,criadoEm:agora,atualizadoEm:agora,importadoEm:agora,arquivo:file.name,por:eu,filial:up(r.filial),cliente:up(r.cliente),material:up(r.material),pcompra:r.pcompra,pterc:r.pterc,pvenda:r.pvenda,serie:r.serie,qtd:r.qtd,venc:r.venc,historico:[{em:agora,por:eu.nome,texto:up('IMPORTADA DA PLANILHA '+file.name)}]};
-        if(r.forn)o.comp={fornecedor:up(r.forn),por:eu.nome,em:agora};novas.push(o)}
-      else{const patch={};if(!e.pcompra&&r.pcompra)patch.pcompra=r.pcompra;if(!e.pterc&&r.pterc)patch.pterc=r.pterc;if(!e.venc&&r.venc)patch.venc=r.venc;
-        if(r.forn&&!(e.comp&&e.comp.fornecedor))patch.comp={...(e.comp||{}),fornecedor:up(r.forn)};
-        if(Object.keys(patch).length)atual.push([e,patch])}}
+    const novas=[],atual=[];let nCanc=0,nBaixa=0,nQtd=0;
+    for(const r of p.rows){const e=exist.get(r.chave);vistos.add(r.chave);
+      if(!e){numero++;const o={id:'s'+semHash(r.chave),numero,chave:r.chave,criadoEm:agora,atualizadoEm:agora,importadoEm:agora,arquivo:file.name,por:eu,
+          filial:up(r.filial),cliente:up(r.cliente),ie:up(r.ie),doc:up(r.doc),sitPed:up(r.sit||'NORMAL'),material:up(r.material),pvenda:r.pvenda,serie:r.serie,pterc:r.pterc,qtd:r.qtd,venc:r.venc,cargas:[],
+          historico:[{em:agora,por:eu.nome,texto:up('IMPORTADA DA PLANILHA '+file.name)}]};
+        if(r.pcompra||r.forn)o.comp={pcompra:r.pcompra,fornecedor:up(r.forn),por:eu.nome,em:agora};novas.push(o)}
+      else{const patch={},txt=[];
+        const sitNova=up(r.sit||'');if(p.temSit&&sitNova&&sitNova!==up(e.sitPed||'NORMAL')){patch.sitPed=sitNova;txt.push('SITUAÇÃO DO PEDIDO NO EXTRATO: '+(e.sitPed||'NORMAL')+' → '+sitNova);
+          const k=semSit({sitPed:sitNova});if(k==='cancelado')nCanc++;else if(k==='baixado')nBaixa++}
+        if(r.qtd&&Math.abs(r.qtd-(+e.qtd||0))>1e-9){patch.qtd=r.qtd;txt.push(`QUANTIDADE: ${semN(e.qtd)} → ${semN(r.qtd)} SC`);nQtd++}
+        if(!e.ie&&r.ie)patch.ie=up(r.ie);if(!e.doc&&r.doc)patch.doc=up(r.doc);
+        if(e.foraCarteira){patch.foraCarteira=false;txt.push('VOLTOU A APARECER NA CARTEIRA')}
+        if(!semPC(e)&&r.pcompra)patch.comp={...(e.comp||{}),pcompra:r.pcompra};
+        if(r.forn&&!(e.comp&&e.comp.fornecedor))patch.comp={...(patch.comp||e.comp||{}),fornecedor:up(r.forn)};
+        if(Object.keys(patch).length)atual.push([e,patch,txt.join(' · ')||'DADOS ATUALIZADOS PELA PLANILHA'])}}
+    /* linha aberta que não veio nesta carteira: fica marcada para conferência (não é cancelada sozinha) */
+    let nFora=0;
+    for(const e of sem){if(vistos.has(e.chave)||e.foraCarteira||semFechado(e))continue;atual.push([e,{foraCarteira:true},'NÃO VEIO NA CARTEIRA '+file.name+' · CONFERIR SE FOI CANCELADO OU BAIXADO']);nFora++}
     await semCriarLote(novas);
-    for(const [e,patch] of atual)await semAtualizar(e,patch,'DADOS DE COMPRA ATUALIZADOS PELA PLANILHA');
+    for(const [e,patch,t] of atual)await semAtualizar(e,patch,t,true);
     const ja=p.rows.length-novas.length;
-    toast(`${novas.length} linha${novas.length===1?'':'s'} nova${novas.length===1?'':'s'} importada${novas.length===1?'':'s'}${ja?` · ${ja} já existia${ja===1?'':'m'} (mantida${ja===1?'':'s'})`:''}${atual.length?` · ${atual.length} com dados de compra atualizados`:''}.`);
+    const partes=[`${novas.length} linha${novas.length===1?'':'s'} nova${novas.length===1?'':'s'}`];
+    if(ja)partes.push(`${ja} já existia${ja===1?'':'m'}`);if(nCanc)partes.push(`${nCanc} cancelada${nCanc===1?'':'s'}`);if(nBaixa)partes.push(`${nBaixa} baixada${nBaixa===1?'':'s'}`);
+    if(nQtd)partes.push(`${nQtd} com quantidade alterada`);if(nFora)partes.push(`${nFora} fora da carteira (conferir)`);
+    toast(partes.join(' · ')+'.');
     if(p.ignoradas.length)setTimeout(()=>toast('Colunas não encontradas: '+p.ignoradas.join(', ')+'.'),3400);
   }catch(e){console.warn(e);toast(e&&e.message?e.message:'Não foi possível importar a planilha.')}
-  if(btn)btn.disabled=false;paintSem();
+  if(btn)btn.disabled=false;renderTabs();paintSem();
 }
 async function semModelo(){
   if(!window.XLSX){toast('O gerador de Excel ainda está carregando. Tente de novo em alguns segundos.');return}
-  const cab=['Filial','Cliente','Produto','Pedido','Data Vencimento','Volume','Filial','Pedido','Ped. Terceiro','Fornecedor'];
-  const ex=[['CFS','CLIENTE EXEMPLO','SEM. SOJA EXEMPLO - BAG 5MM SEMENTES','6736','30/10/2026',34,'CFS','45','063/2026-CFS','FORNECEDOR EXEMPLO'],['CFS','CLIENTE EXEMPLO 2','SEM. MILHO EXEMPLO','6746','30/10/2026',11]];
+  const cab=['Filial','Cliente','Inscrição estadual','CPF/CNPJ','Material','Quantidade','Pedido','Série','Situação do pedido'];
+  const ex=[['LRV','CLIENTE EXEMPLO','13.456.789-0','123.456.789-00','SEMENTE SOJA EXEMPLO IPRO BAG 5MM',840,'6736','1','Normal'],['SORRISO','CLIENTE EXEMPLO 2','13.987.654-3','12.345.678/0001-90','SEMENTE MILHO EXEMPLO SC 60 MIL',300,'6746','1','Normal']];
   const ws=XLSX.utils.aoa_to_sheet([cab,...ex]);ws['!cols']=cab.map(c=>({wch:Math.max(c.length+4,16)}));
   const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,'Carteira');
   await salvarXlsx(XLSX.write(wb,{bookType:'xlsx',type:'array'}),'modelo-carteira-sementes.xlsx');
@@ -5497,82 +5575,168 @@ function renderSem(){
   const inp=h('input',{type:'file',accept:'.xlsx,.xlsm,.xls,.csv',hidden:true,onchange:e=>{const f=e.target.files[0];e.target.value='';if(f)semImportar(f,bUp)}});
   const bUp=h('button',{class:'btn primary',type:'button',onclick:()=>inp.click()},'↑ Importar carteira (planilha)');
   $('#main').replaceChildren(
-    h('div',{class:'intro'},h('div',{},h('h2',{text:'Esteira de Sementes'}),h('p',{text:'A carteira entra por planilha e cada importação só acrescenta o que é novo. O consultor informa fazenda, ponto e data de entrega; o Crédito libera; Compras informa fornecedor e local de carregamento. Só depois a Logística avança.'}))),
+    h('div',{class:'intro'},h('div',{},h('h2',{text:'Esteira de Sementes'}),h('p',{text:'A carteira entra por planilha (pedidos até ontem). Crédito, Compras e Financeiro liberam ao mesmo tempo; depois o Comercial informa fazenda e ponto, e a Logística programa as cargas.'})),
+      h('div',{class:'seg',role:'tablist','aria-label':'Visão'},[['esteira','Esteira'],['volumes','Volumes']].map(([k,n])=>h('button',{type:'button',role:'tab','aria-pressed':String(sm.aba===k),'aria-selected':String(sm.aba===k),onclick:()=>{sm.aba=k;try{localStorage.setItem('ca-sem-aba',k)}catch(e){};renderSem()}},n)))),
+    h('div',{class:'sem-flx','aria-label':'Como a esteira anda'},[['1','Carteira','planilha'],['2','Liberações','crédito · compras · financeiro'],['3','Comercial','fazenda e ponto'],['4','Logística','cargas e datas'],['5','Entregue','']].map(([n,t,s])=>h('span',{class:'sem-fx'},h('b',{text:n}),h('span',{},h('strong',{text:t}),s?h('small',{text:s}):null)))),
     h('section',{class:'card sem-src'},h('div',{id:'sem-info',class:'small muted'}),h('div',{class:'as-src-a'},podeAdmin?[inp,bUp]:null,h('button',{class:'btn',type:'button',onclick:semModelo},'Baixar planilha modelo'))),
     h('div',{id:'sem-filtros'}),h('div',{id:'sem-lista'}));
   paintSem();if(MODO_MS)semCarregar();
 }
+const semPill=(t,c)=>h('span',{class:'pill',style:`background:color-mix(in srgb,${c} 14%,var(--surface));color:color-mix(in srgb,${c} 80%,var(--ink))`,text:t});
 function semLinha(o){
-  const s=semStatus(o);const [stn,stc]=SEM_ST[s]||[s,'#737F8E'];const pend=semPend(o);const pode=true;
-  const pill=(t,c)=>h('span',{class:'pill',style:`background:color-mix(in srgb,${c} 14%,var(--surface));color:color-mix(in srgb,${c} 80%,var(--ink))`,text:t});
-  const txt=(k,ph,get,set)=>h('input',{type:'text',placeholder:ph,'aria-label':ph+' · linha '+o.numero,value:get()||'',class:get()?'':'trf-vazio',style:'text-transform:uppercase',
+  const s=semStatus(o);const [stn,stc]=SEM_ST[s]||[s,'#737F8E'];const fech=s==='cancelado'||s==='baixado';const lib=semLib(o);const v=semVol(o);const si=semSit(o);
+  const eu=()=>trfEu().nome;
+  const txt=(ph,get,set,extra)=>h('input',{type:'text',placeholder:ph,'aria-label':ph+' · linha '+o.numero,value:get()||'',disabled:fech,class:get()?'':'trf-vazio',style:'text-transform:uppercase',...(extra||{}),
     onchange:e=>{const v=up(e.target.value).trim();e.target.value=v;e.target.blur();if(v===(get()||''))return;semSeguro(()=>semAtualizar(o,set(v),`${ph.toUpperCase()}: ${v||'APAGADO'}`))}});
-  // calendarização
-  const cal=h('span',{class:'sem-stack','data-l':'Calendarização'},
-    txt('fazenda','Fazenda',()=>o.fazenda,v=>({fazenda:v})),
-    txt('ponto','Ponto da fazenda',()=>o.ponto,v=>({ponto:v})),
-    h('input',{type:'date','aria-label':'Data de entrega · linha '+o.numero,value:o.entrega||'',class:o.entrega?'':'trf-vazio',onchange:e=>{const v=e.target.value;e.target.blur();semSeguro(()=>semAtualizar(o,{entrega:v},`DATA DE ENTREGA: ${v?fmtDia(v):'APAGADA'}`))}}));
+  // pedido + extrato
+  const ped=h('span',{'data-l':'Pedido',class:'trf-cel'},h('b',{class:'small',text:o.filial||'—'}),
+    h('span',{class:'small muted',text:[o.pvenda&&'PV '+o.pvenda,o.serie&&'sér. '+o.serie,'nº '+o.numero].filter(Boolean).join(' · ')}),
+    h('span',{class:'sem-tags'},semPill(si==='cancelado'?'Cancelado':si==='baixado'?'Baixado':'Normal',si==='normal'?'#2E7D32':'#737F8E'),o.foraCarteira&&!fech?semPill('Fora da carteira','#B45309'):null));
+  const cli=h('span',{'data-l':'Cliente',class:'trf-cel'},h('b',{text:o.cliente||'—'}),h('span',{class:'small muted mono',text:[o.ie&&'IE '+o.ie,o.doc&&(String(o.doc).replace(/\D/g,'').length>11?'CNPJ ':'CPF ')+o.doc].filter(Boolean).join(' · ')||'IE / CPF não informados'}));
+  const mat=h('span',{'data-l':'Material',class:'trf-cel'},h('span',{text:o.material||'—'}),h('span',{class:'small mono',style:'font-weight:600',text:semN(o.qtd)+' sc'}),
+    semCargas(o).length?h('span',{class:'small muted',text:`saldo sem carga ${semN(v.saldo)} sc`}):null);
   // crédito
   let cre;
-  if(o.cred&&o.cred.ok===true)cre=h('span',{class:'trf-cel','data-l':'Crédito'},pill('Liberado','#2E7D32'),h('span',{class:'small muted',text:`${o.cred.por||''} · ${fmtData(o.cred.em).slice(0,8)}`}),h('button',{type:'button',class:'btn sm ghost',onclick:()=>semSeguro(()=>semAtualizar(o,{cred:null,log:null},'CRÉDITO REABERTO'))},'Desfazer'));
-  else if(o.cred&&o.cred.ok===false)cre=h('span',{class:'trf-cel','data-l':'Crédito'},pill('Negado','#B42318'),h('span',{class:'small',text:o.cred.motivo||''}),h('button',{type:'button',class:'btn sm ghost',onclick:()=>semSeguro(()=>semAtualizar(o,{cred:null},'CRÉDITO REABERTO'))},'Reabrir'));
+  if(fech)cre=h('span',{class:'small muted','data-l':'Crédito',text:o.cred?(o.cred.ok?'Liberado':'Negado'):'—'});
+  else if(o.cred&&o.cred.ok===true)cre=h('span',{class:'trf-cel','data-l':'Crédito'},semPill('Liberado','#2E7D32'),h('span',{class:'small muted',text:[o.cred.por,o.cred.em&&fmtData(o.cred.em).slice(0,8)].filter(Boolean).join(' · ')}),h('button',{type:'button',class:'btn sm ghost',onclick:()=>semSeguro(()=>semAtualizar(o,{cred:null},'CRÉDITO REABERTO'))},'Desfazer'));
+  else if(o.cred&&o.cred.ok===false)cre=h('span',{class:'trf-cel','data-l':'Crédito'},semPill('Negado','#B42318'),h('span',{class:'small',text:o.cred.motivo||''}),h('button',{type:'button',class:'btn sm ghost',onclick:()=>semSeguro(()=>semAtualizar(o,{cred:null},'CRÉDITO REABERTO'))},'Reabrir'));
   else if(sm.nega[o.id]!==undefined){const i=h('input',{type:'text',placeholder:'MOTIVO',value:sm.nega[o.id],style:'text-transform:uppercase',oninput:e=>{e.target.value=up(e.target.value);sm.nega[o.id]=e.target.value},onkeydown:e=>{if(e.key==='Enter')conf()}});
-    const conf=()=>{const m=up(sm.nega[o.id]).trim();if(!m){toast('Informe o motivo.');i.focus();return}delete sm.nega[o.id];semSeguro(()=>semAtualizar(o,{cred:{ok:false,por:trfEu().nome,em:Date.now(),motivo:m}},'CRÉDITO NEGADO: '+m))};
+    const conf=()=>{const m=up(sm.nega[o.id]).trim();if(!m){toast('Informe o motivo.');i.focus();return}delete sm.nega[o.id];semSeguro(()=>semAtualizar(o,{cred:{ok:false,por:eu(),em:Date.now(),motivo:m}},'CRÉDITO NEGADO: '+m))};
     cre=h('span',{class:'trf-nega','data-l':'Crédito'},i,h('button',{type:'button',class:'btn sm danger',onclick:conf},'Confirmar'),h('button',{type:'button',class:'btn sm ghost',onclick:()=>{delete sm.nega[o.id];paintSem()}},'Cancelar'));setTimeout(()=>{if(document.activeElement===document.body)i.focus()},0)}
-  else cre=h('span',{class:'trf-acts','data-l':'Crédito'},h('button',{type:'button',class:'btn sm trf-sim',onclick:()=>semSeguro(()=>semAtualizar(o,{cred:{ok:true,por:trfEu().nome,em:Date.now()}},'CRÉDITO LIBERADO'))},'Liberar'),h('button',{type:'button',class:'btn sm danger',onclick:()=>{sm.nega[o.id]='';paintSem()}},'Negar'));
+  else cre=h('span',{class:'trf-acts','data-l':'Crédito'},h('button',{type:'button',class:'btn sm trf-sim',onclick:()=>semSeguro(()=>semAtualizar(o,{cred:{ok:true,por:eu(),em:Date.now()}},'CRÉDITO LIBERADO'))},'Liberar'),h('button',{type:'button',class:'btn sm danger',onclick:()=>{sm.nega[o.id]='';paintSem()}},'Negar'));
   // compras
+  const cset=k=>v=>({comp:{...(o.comp||{}),pcompra:semPC(o),[k]:v,por:eu(),em:Date.now()}});
   const comp=h('span',{class:'sem-stack','data-l':'Compras'},
-    txt('fornecedor','Fornecedor',()=>o.comp?.fornecedor,v=>({comp:{...(o.comp||{}),fornecedor:v,por:trfEu().nome,em:Date.now()}})),
-    txt('local','Local de carregamento',()=>o.comp?.local,v=>({comp:{...(o.comp||{}),local:v,por:trfEu().nome,em:Date.now()}})));
-  // logística (só depois de calendarização + crédito + compras)
-  let log;
-  if(pend.length)log=h('span',{class:'small muted','data-l':'Logística',text:'Bloqueada · falta: '+pend.join(', ')});
+    txt('Pedido de compra',()=>semPC(o),cset('pcompra'),{inputmode:'numeric'}),
+    txt('Fornecedor',()=>o.comp&&o.comp.fornecedor,cset('fornecedor')),
+    txt('Local de carregamento',()=>o.comp&&o.comp.local,cset('local')));
+  // financeiro
+  const fv=o.fin&&o.fin.sit||'';const fc=(SEM_FIN.find(x=>x[0]===fv)||[])[2];
+  const fin=h('span',{class:'sem-stack','data-l':'Financeiro'},
+    h('select',{class:'sem-fin'+(fv?'':' trf-vazio'),disabled:fech,style:fc?`border-color:${fc};color:${fc};font-weight:700`:'','aria-label':'Financeiro · linha '+o.numero,
+      onchange:e=>{const v=e.target.value;e.target.blur();const n=(SEM_FIN.find(x=>x[0]===v)||[])[1]||'PENDENTE';semSeguro(()=>semAtualizar(o,{fin:v?{sit:v,por:eu(),em:Date.now()}:null},'FINANCEIRO: '+n))}},
+      h('option',{value:''},'SELECIONE'),SEM_FIN.map(([k,n])=>h('option',{value:k,selected:fv===k},n.toUpperCase()))),
+    fv==='nao'?h('span',{class:'small late',text:'Pendente de pagamento: não vai para a logística'}):fv?h('span',{class:'small muted',text:[o.fin.por,o.fin.em&&fmtData(o.fin.em).slice(0,8)].filter(Boolean).join(' · ')}):null);
+  // comercial (abre depois das três liberações)
+  let com;
+  if(fech)com=h('span',{class:'small muted','data-l':'Comercial',text:semFaz(o)||'—'});
+  else if(lib.length)com=h('span',{class:'small muted','data-l':'Comercial',text:'Abre depois de: '+lib.map(x=>x.replace(/ \(.*/,'')).join(', ')});
+  else{const pt=semPonto(o);const pc=pontoCoord(pt);
+    com=h('span',{class:'sem-stack','data-l':'Comercial'},
+      txt('Fazenda',()=>semFaz(o),v=>({com:{...(o.com||{}),fazenda:v,ponto:semPonto(o),por:eu(),em:Date.now()}})),
+      h('input',{type:'text',inputmode:'decimal',placeholder:'Ponto: -15.55412, -54.29811','aria-label':'Ponto de entrega (coordenadas) · linha '+o.numero,value:pt,class:pc?'':'trf-vazio',
+        onchange:e=>{const raw=e.target.value.trim();e.target.blur();if(raw===pt)return;
+          if(raw&&!pontoCoord(raw)){toast(pontoCurto(raw)?'Link curto do Google Maps não traz o ponto. Cole as coordenadas (ex.: -15.55412, -54.29811).':'O ponto precisa estar em coordenadas geográficas (ex.: -15.55412, -54.29811).');e.target.value=pt;return}
+          const v=raw?fmtCoord(pontoCoord(raw)):'';semSeguro(()=>semAtualizar(o,{com:{...(o.com||{}),fazenda:semFaz(o),ponto:v,por:eu(),em:Date.now()}},'PONTO DE ENTREGA: '+(v||'APAGADO')))}}),
+      pc?h('a',{class:'small',href:linkMapa(fmtCoord(pc)),target:'_blank',rel:'noopener',text:'✓ ver no mapa'}):null)}
+  // logística (cargas)
+  let log;const pend=semPend(o);const cgs=semCargas(o);
+  if(fech)log=h('span',{class:'small muted','data-l':'Logística',text:cgs.some(c=>c.st!=='entregue')?'⚠ pedido '+(s==='cancelado'?'cancelado':'baixado')+' com carga aberta: conferir':'Encerrada'});
+  else if(pend.length)log=h('span',{class:'small muted','data-l':'Logística',text:'Bloqueada · falta: '+pend.join(', ')});
   else log=h('span',{class:'sem-stack','data-l':'Logística'},
-    h('select',{class:'trf-flag f-'+(o.log||'contratacao'),'aria-label':'Situação da logística · linha '+o.numero,onchange:e=>{const v=e.target.value;e.target.blur();const n=(SEM_LOG.find(x=>x[0]===v)||[])[1]||v;semSeguro(()=>semAtualizar(o,{log:v,...(v==='finalizado'?{finalizadoEm:Date.now()}:{})},up(n)))}},SEM_LOG.map(([v,n])=>h('option',{value:v,selected:(o.log||'contratacao')===v},n.toUpperCase()))),
-    txt('transp','Transportadora / placa',()=>o.transp,v=>({transp:v})));
+    cgs.length?h('span',{class:'sem-cgl'},cgs.map((c,i)=>{const x=SEM_CG.find(y=>y[0]===c.st)||SEM_CG[0];return h('span',{class:'small'},h('i',{class:'kdot',style:`background:${x[2]}`}),` C${i+1} · ${semN(c.vol)} sc · ${x[1]}${c.dtCarr?' · carr. '+fmtDia(c.dtCarr).slice(0,5):''}`)})):h('span',{class:'small',style:'color:#C2410C;font-weight:600',text:`${semN(v.saldo)} sc sem carga`}),
+    h('button',{type:'button',class:'btn sm'+(cgs.length?'':' primary'),'aria-expanded':String(!!sm.abre[o.id]),onclick:()=>{sm.abre[o.id]=!sm.abre[o.id];paintSem()}},sm.abre[o.id]?'Fechar cargas':cgs.length?`Cargas (${cgs.length})`+(v.saldo?' · + nova':''):'+ Programar carga'));
   let ac=null;
   if(podeAdmin){const c=sm.conf[o.id];ac=h('button',{type:'button',class:'btn sm ghost danger',onclick:()=>{if(c){delete sm.conf[o.id];semSeguro(()=>semExcluir(o),'Não foi possível excluir.')}else{sm.conf[o.id]=1;paintSem();setTimeout(()=>{if(sm.conf[o.id]){delete sm.conf[o.id];paintSem()}},5000)}}},c?'Confirmar':'Excluir')}
-  const dias=o.entrega&&!semFechado(o)?Math.ceil((new Date(o.entrega+'T12:00:00')-Date.now())/864e5):null;
-  return h('div',{class:'sem-r'+(s==='negado'?' t-neg':s==='aguardando'?' t-ag':s==='finalizado'?' t-ok':' t-lib')},
-    h('span',{'data-l':'Filial / pedidos',class:'trf-cel'},h('b',{class:'small',text:o.filial||'—'}),h('span',{class:'small muted',text:[o.pvenda&&'PV '+o.pvenda,o.serie&&'sér. '+o.serie,o.pcompra&&'PC '+o.pcompra,o.pterc&&'Terc. '+o.pterc,o.venc&&'venc. '+fmtDia(o.venc)].filter(Boolean).join(' · ')})),
-    h('span',{'data-l':'Cliente',style:'font-weight:600',text:o.cliente||'—'}),
-    h('span',{'data-l':'Material',class:'trf-cel'},h('span',{text:o.material||'—'}),h('span',{class:'small muted mono',text:(+o.qtd||0).toLocaleString('pt-BR')+' sc'})),
-    cal,cre,comp,log,
-    h('span',{'data-l':'Situação',class:'trf-acao'},pill(stn,stc),s==='aguardando'?h('span',{class:'small muted',text:'falta: '+pend.join(', ')}):null,dias!==null&&dias<=3?h('span',{class:'small late',text:dias<0?`entrega atrasada ${-dias} d`:dias===0?'entrega hoje':`entrega em ${dias} d`}):null,ac));
+  const prox=cgs.filter(c=>c.st!=='entregue'&&c.prevEnt).map(c=>c.prevEnt).sort()[0];
+  const dias=prox&&!semFechado(o)?Math.ceil((new Date(prox+'T12:00:00')-Date.now())/864e5):null;
+  const cls=fech?' t-canc':s==='negado'?' t-neg':['aguardando','comercial'].includes(s)?' t-ag':s==='finalizado'?' t-ok':' t-lib';
+  return h('div',{class:'sem-r'+cls},ped,cli,mat,cre,comp,fin,com,log,
+    h('span',{'data-l':'Situação',class:'trf-acao'},semPill(stn,stc),s==='aguardando'?h('span',{class:'small muted',text:'falta: '+lib.join(', ')}):null,
+      dias!==null&&dias<=3?h('span',{class:'small late',text:dias<0?`entrega prevista atrasada ${-dias} d`:dias===0?'entrega prevista hoje':`entrega prevista em ${dias} d`}):null,ac));
 }
-function semFiltrada(){
-  const q=itNorm(sm.q).trim();
-  return sem.filter(o=>{const s=semStatus(o),p=semPend(o);
-    const okSt=sm.st==='abertos'?s!=='finalizado':sm.st==='fcal'?p.includes('Calendarização'):sm.st==='fcred'?(s==='negado'||p.includes('Crédito')):sm.st==='fcomp'?p.includes('Compras'):sm.st==='liberado'?(!p.length&&s!=='negado'):s===sm.st;
-    if(!okSt)return false;if(sm.fil!=='todas'&&o.filial!==sm.fil)return false;if(sm.cli!=='todos'&&o.cliente!==sm.cli)return false;
-    if(q&&!itNorm([o.numero,o.cliente,o.material,o.filial,o.pvenda,o.pcompra,o.serie,o.fazenda,o.comp?.fornecedor].join(' ')).includes(q))return false;return true})
-    .sort((a,b)=>(a.entrega||'9999').localeCompare(b.entrega||'9999')||a.numero-b.numero);
+/* painel de cargas da linha: uma linha pode sair em várias cargas */
+function semCargasPainel(o){
+  const cgs=semCargas(o);const v=semVol(o);const eu=trfEu().nome;
+  const salvar=(arr,t)=>semSeguro(()=>semAtualizar(o,{cargas:arr},t));
+  const linhas=cgs.map((c,i)=>{const muda=(k,val,t)=>{const arr=cgs.map(x=>x.id===c.id?{...x,[k]:val,...(k==='st'&&val==='entregue'?{entregueEm:Date.now()}:{}),por:eu,em:Date.now()}:x);salvar(arr,`CARGA ${i+1} · ${t}`)};
+    const x=SEM_CG.find(y=>y[0]===c.st)||SEM_CG[0];
+    return h('div',{class:'sem-cgr'},h('b',{text:'C'+(i+1)}),
+      h('input',{type:'text',inputmode:'decimal','aria-label':`Volume da carga ${i+1}`,value:semN(c.vol),onchange:e=>{const n=dNum(e.target.value);const max=v.saldo+(+c.vol||0);if(!(n>0)||n>max+1e-9){toast(`Volume da carga: entre 1 e ${semN(max)} sc.`);e.target.value=semN(c.vol);return}muda('vol',n,`VOLUME ${semN(n)} SC`)}}),
+      h('input',{type:'date','aria-label':`Data de carregamento da carga ${i+1}`,value:c.dtCarr||'',onchange:e=>muda('dtCarr',e.target.value,'DATA DE CARREGAMENTO '+(fmtDia(e.target.value)||'APAGADA'))}),
+      h('input',{type:'date','aria-label':`Previsão de entrega da carga ${i+1}`,value:c.prevEnt||'',min:c.dtCarr||null,onchange:e=>muda('prevEnt',e.target.value,'PREVISÃO DE ENTREGA '+(fmtDia(e.target.value)||'APAGADA'))}),
+      h('select',{class:'trf-flag f-'+c.st,'aria-label':`Situação da carga ${i+1}`,style:`color:${x[2]}`,onchange:e=>{const n=(SEM_CG.find(y=>y[0]===e.target.value)||[])[1]||'';muda('st',e.target.value,up(n))}},SEM_CG.map(([k,n])=>h('option',{value:k,selected:c.st===k},n.toUpperCase()))),
+      h('input',{type:'text','aria-label':`Transportadora / placa da carga ${i+1}`,placeholder:'TRANSPORTADORA / PLACA',value:c.transp||'',style:'text-transform:uppercase',onchange:e=>{const t=up(e.target.value).trim();e.target.value=t;muda('transp',t,'TRANSPORTADORA: '+(t||'APAGADA'))}}),
+      c.st==='programada'?h('button',{type:'button',class:'btn sm ghost danger',onclick:()=>salvar(cgs.filter(y=>y.id!==c.id),`CARGA ${i+1} EXCLUÍDA`)},'Excluir'):h('span'))});
+  const d=sm.nova[o.id]||(sm.nova[o.id]={vol:'',dtCarr:'',prevEnt:'',transp:''});
+  const nova=v.saldo>0?h('div',{class:'sem-cgr nova'},h('b',{text:'Nova'}),
+    h('input',{type:'text',inputmode:'decimal',placeholder:semN(v.saldo)+' sc','aria-label':'Volume da nova carga',value:d.vol,oninput:e=>{d.vol=e.target.value}}),
+    h('input',{type:'date','aria-label':'Data de carregamento da nova carga',value:d.dtCarr,oninput:e=>{d.dtCarr=e.target.value}}),
+    h('input',{type:'date','aria-label':'Previsão de entrega da nova carga',value:d.prevEnt,oninput:e=>{d.prevEnt=e.target.value}}),
+    h('span',{class:'small muted',text:'Entra como PROGRAMADA'}),
+    h('input',{type:'text',placeholder:'TRANSPORTADORA / PLACA','aria-label':'Transportadora / placa da nova carga',value:d.transp,style:'text-transform:uppercase',oninput:e=>{d.transp=up(e.target.value)}}),
+    h('button',{type:'button',class:'btn sm primary',onclick:()=>{const n=d.vol===''?v.saldo:dNum(d.vol);
+      if(!(n>0)||n>v.saldo+1e-9){toast(`Volume da carga: entre 1 e ${semN(v.saldo)} sc (saldo sem carga).`);return}
+      if(!d.dtCarr){toast('Informe a data de carregamento.');return}
+      if(d.prevEnt&&d.prevEnt<d.dtCarr){toast('A previsão de entrega não pode ser antes do carregamento.');return}
+      const c={id:'c'+Date.now().toString(36),vol:n,dtCarr:d.dtCarr,prevEnt:d.prevEnt,transp:up(d.transp).trim(),st:'programada',criadoEm:Date.now(),por:eu,em:Date.now()};
+      delete sm.nova[o.id];salvar([...cgs,c],`CARGA ${cgs.length+1} PROGRAMADA · ${semN(n)} SC · CARREGAMENTO ${fmtDia(c.dtCarr)}${c.prevEnt?' · ENTREGA PREVISTA '+fmtDia(c.prevEnt):''}`)}},'Incluir carga')):null;
+  return h('div',{class:'sem-cg'},
+    h('div',{class:'sem-cgh'},h('b',{text:`Cargas · ${o.cliente} · ${o.material}`}),h('span',{class:'small muted',text:`Total ${semN(o.qtd)} sc · em cargas ${semN(v.alocado)} sc · entregue ${semN(v.entregue)} sc · saldo sem carga ${semN(v.saldo)} sc`}),
+      h('span',{class:'small muted',text:`Entrega: ${semFaz(o)||'—'}${semPonto(o)?' · '+semPonto(o):''}`})),
+    h('div',{class:'sem-cgr cab','aria-hidden':'true'},['','Volume (sc)','Carregamento','Previsão de entrega','Situação','Transportadora / placa',''].map(t=>h('span',{text:t}))),
+    ...linhas,nova,!cgs.length&&!nova?h('div',{class:'small muted',text:'Sem saldo para nova carga.'}):null);
 }
+function semBase(){const q=itNorm(sm.q).trim();
+  return sem.filter(o=>{if(sm.fil!=='todas'&&o.filial!==sm.fil)return false;if(sm.cli!=='todos'&&o.cliente!==sm.cli)return false;
+    if(q&&!itNorm([o.numero,o.cliente,o.ie,o.doc,o.material,o.filial,o.pvenda,semPC(o),o.serie,semFaz(o),o.comp&&o.comp.fornecedor,...semCargas(o).map(c=>c.transp)].join(' ')).includes(q))return false;return true})}
+const SEM_CHIPS=[['abertos','Em aberto',o=>!semFechado(o)],['fcred','Falta crédito',o=>{const s=semStatus(o);return s==='negado'||(!['cancelado','baixado'].includes(s)&&semLib(o).includes('Crédito'))}],
+  ['fcomp','Falta compras',o=>!['cancelado','baixado'].includes(semStatus(o))&&semLib(o).includes('Compras')],['ffin','Falta financeiro',o=>!['cancelado','baixado'].includes(semStatus(o))&&semLib(o).some(x=>/^Financeiro/.test(x))],
+  ['fcom','Falta comercial',o=>semStatus(o)==='comercial'],['programar','Liberado p/ logística',o=>!semFechado(o)&&semStatus(o)!=='negado'&&!semPend(o).length&&semVol(o).saldo>0],
+  ['carregamento','Em carregamento',o=>semVol(o).carregamento>0],['transito','Em trânsito',o=>semVol(o).transito>0],['finalizado','Finalizados',o=>semStatus(o)==='finalizado'],
+  ['cancelados','Cancelados / baixados',o=>['cancelado','baixado'].includes(semStatus(o))],['fora','Fora da carteira',o=>!!o.foraCarteira&&!semFechado(o)]];
+function semFiltrada(){const f=(SEM_CHIPS.find(x=>x[0]===sm.st)||SEM_CHIPS[0])[2];
+  return semBase().filter(f).sort((a,b)=>{const pa=semCargas(a).filter(c=>c.st!=='entregue').map(c=>c.dtCarr).sort()[0]||'9999',pb=semCargas(b).filter(c=>c.st!=='entregue').map(c=>c.dtCarr).sort()[0]||'9999';return pa.localeCompare(pb)||a.numero-b.numero})}
 function paintSem(){
   const fBox=$('#sem-filtros'),lBox=$('#sem-lista');if(!fBox||!lBox)return;
   const ae=document.activeElement;if(ae&&lBox.contains(ae)&&/^(INPUT|SELECT|TEXTAREA)$/.test(ae.tagName)){clearTimeout(paintSem._t);paintSem._t=setTimeout(paintSem,2500);return}
   const info=$('#sem-info');if(info){const ult=sem.reduce((m,o)=>Math.max(m,o.importadoEm||0),0);const n=sem.filter(o=>o.importadoEm===ult).length;info.textContent=sem.length?`${sem.length} linha${sem.length>1?'s':''} na carteira · última importação ${fmtData(ult)} (${n} nova${n>1?'s':''}${sem.find(o=>o.importadoEm===ult)?.arquivo?' · '+sem.find(o=>o.importadoEm===ult).arquivo:''})`:'Nenhuma carteira importada ainda.'}
-  const cnt=f=>sem.filter(f).length;
-  const chips=[['abertos','Em aberto',cnt(o=>semStatus(o)!=='finalizado')],['fcal','Falta calendarização',cnt(o=>semPend(o).includes('Calendarização'))],['fcred','Falta crédito',cnt(o=>semStatus(o)==='negado'||semPend(o).includes('Crédito'))],['fcomp','Falta compras',cnt(o=>semPend(o).includes('Compras'))],['liberado','Liberado p/ logística',cnt(o=>!semPend(o).length&&semStatus(o)!=='negado')],['contratacao','Em contratação',cnt(o=>semStatus(o)==='contratacao')],['carregamento','Em carregamento',cnt(o=>semStatus(o)==='carregamento')],['transito','Em trânsito',cnt(o=>semStatus(o)==='transito')],['finalizado','Finalizados',cnt(o=>semStatus(o)==='finalizado')]];
+  const base=semBase();
   const fils=[...new Set(sem.map(o=>o.filial).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'pt-BR'));const clis=[...new Set(sem.map(o=>o.cliente).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'pt-BR'));
   const lista=semFiltrada();
-  fBox.replaceChildren(h('div',{class:'trf-f'},
-    h('div',{class:'chips',role:'group','aria-label':'Situação'},chips.map(([id,nm,n])=>h('button',{type:'button',class:'chip','aria-pressed':String(sm.st===id),onclick:()=>{sm.st=id;paintSem()}},nm,h('span',{class:'count',style:'margin-left:6px',text:n})))),
-    h('div',{class:'filters',style:'margin:0'},
+  const selF=h('div',{class:'filters',style:'margin:0'},
       h('select',{'aria-label':'Filtrar filial',onchange:e=>{sm.fil=e.target.value;paintSem()}},h('option',{value:'todas'},'TODAS AS FILIAIS'),fils.map(f=>h('option',{value:f,selected:sm.fil===f},f))),
       h('select',{'aria-label':'Filtrar cliente',onchange:e=>{sm.cli=e.target.value;paintSem()}},h('option',{value:'todos'},'TODOS OS CLIENTES'),clis.map(f=>h('option',{value:f,selected:sm.cli===f},f))),
-      h('input',{type:'text',class:'search',id:'sem-busca',placeholder:'Buscar cliente, material, pedido, fazenda…',value:sm.q,oninput:e=>{sm.q=e.target.value;const p=e.target.selectionStart;paintSem();const n=$('#sem-busca');if(n){n.focus();try{n.setSelectionRange(p,p)}catch(_){}}}}),
+      h('input',{type:'text',class:'search',id:'sem-busca',placeholder:'Buscar cliente, CPF, material, pedido, fazenda…',value:sm.q,oninput:e=>{sm.q=e.target.value;const p=e.target.selectionStart;paintSem();const n=$('#sem-busca');if(n){n.focus();try{n.setSelectionRange(p,p)}catch(_){}}}}),
       h('span',{style:'flex:1'}),
-      h('button',{type:'button',class:'btn sm',onclick:()=>semExcel(lista)},'↓ Baixar Excel da lista'))));
+      sm.aba==='esteira'?h('button',{type:'button',class:'btn sm',onclick:()=>semExcel(lista)},'↓ Baixar Excel da lista'):null);
+  if(sm.aba==='volumes'){fBox.replaceChildren(h('div',{class:'trf-f'},selF));lBox.replaceChildren(semVolumes(base));return}
+  fBox.replaceChildren(h('div',{class:'trf-f'},
+    h('div',{class:'chips',role:'group','aria-label':'Situação'},SEM_CHIPS.map(([id,nm,f])=>{const n=base.filter(f).length;if(!n&&!['abertos',sm.st].includes(id)&&['fora','cancelados'].includes(id))return null;
+      return h('button',{type:'button',class:'chip','aria-pressed':String(sm.st===id),onclick:()=>{sm.st=id;paintSem()}},nm,h('span',{class:'count',style:'margin-left:6px',text:n}))})),selF));
   if(!lista.length){lBox.replaceChildren(h('div',{class:'card empty'},sem.length?'Nenhuma linha com esses filtros.':(podeAdmin?'Importe a planilha da carteira para começar. Se quiser ver o formato, baixe a planilha modelo.':'Ainda não há carteira importada. O administrador importa a planilha.')));return}
-  const cab=h('div',{class:'sem-r sem-h','aria-hidden':'true'},['Filial / pedidos','Cliente','Material','Calendarização (consultor)','Crédito','Compras','Logística','Situação'].map(t=>h('span',{text:t})));
-  lBox.replaceChildren(h('div',{class:'card trf-tab sem-wrap'},cab,...lista.slice(0,300).map(semLinha)),
-    h('div',{class:'small muted',style:'margin-top:8px',text:`${lista.length} linha${lista.length>1?'s':''}${lista.length>300?' (mostrando as 300 primeiras por data de entrega; use os filtros)':''} · total ${lista.reduce((n,o)=>n+(+o.qtd||0),0).toLocaleString('pt-BR')} sc`}));
+  const cab=h('div',{class:'sem-r sem-h','aria-hidden':'true'},['Pedido · extrato','Cliente','Material','Crédito','Compras','Financeiro','Comercial','Logística','Situação'].map(t=>h('span',{text:t})));
+  lBox.replaceChildren(h('div',{class:'card trf-tab sem-wrap'},cab,...lista.slice(0,300).flatMap(o=>[semLinha(o),sm.abre[o.id]&&!semPend(o).length&&!['cancelado','baixado'].includes(semStatus(o))?semCargasPainel(o):null])),
+    h('div',{class:'small muted',style:'margin-top:8px',text:`${lista.length} linha${lista.length>1?'s':''}${lista.length>300?' (mostrando as 300 primeiras; use os filtros)':''} · total ${semN(lista.reduce((n,o)=>n+(+o.qtd||0),0))} sc`}));
+}
+/* ---------- aba Volumes: sacas por etapa, por filial e por material ---------- */
+const SEM_VB=[['lib','Aguardando liberações','#6D28D9'],['com','Aguardando comercial','#B45309'],['saldo','Liberado sem carga','#C2410C'],['programada','Carga programada','#7E57B0'],['carregamento','Em carregamento','#1F5FAD'],['transito','Em trânsito','#0E7490'],['entregue','Entregue','#2E7D32'],['canc','Cancelado / baixado','#737F8E']];
+function semBalde(o){const s=semStatus(o);const v=semVol(o);const r={lib:0,com:0,saldo:0,programada:v.programada,carregamento:v.carregamento,transito:v.transito,entregue:v.entregue,canc:0};
+  const resto=v.saldo;if(s==='cancelado'||s==='baixado'){r.canc=resto+v.programada;r.programada=0}else if(s==='negado'||s==='aguardando')r.lib=resto;else if(s==='comercial')r.com=resto;else r.saldo=resto;return r}
+function semVolumes(base){
+  const soma=ls=>{const t=Object.fromEntries(SEM_VB.map(x=>[x[0],0]));for(const o of ls){const b=semBalde(o);for(const k in t)t[k]+=b[k]}return t};
+  const tot=soma(base);const total=SEM_VB.reduce((n,x)=>n+tot[x[0]],0);
+  const tiles=h('div',{class:'sv-tiles'},SEM_VB.map(([k,n,c])=>h('div',{class:'sv-tile',style:'--c:'+c},h('span',{class:'sv-n',text:semN(tot[k])}),h('span',{class:'small muted',text:'sc'}),h('span',{class:'sv-l',text:n}))));
+  const barra=total?h('div',{class:'sv-bar',role:'img','aria-label':'Distribuição do volume por etapa'},SEM_VB.filter(x=>tot[x[0]]).map(([k,n,c])=>h('span',{style:`flex:${tot[k]};background:${c}`,title:`${n}: ${semN(tot[k])} sc`}))):null;
+  const tabela=(titulo,chave)=>{const g=new Map();for(const o of base){const k=chave(o)||'—';if(!g.has(k))g.set(k,[]);g.get(k).push(o)}
+    const rows=[...g.entries()].map(([k,ls])=>[k,soma(ls)]).sort((a,b)=>(b[1].carregamento+b[1].transito+b[1].saldo)-(a[1].carregamento+a[1].transito+a[1].saldo)||a[0].localeCompare(b[0],'pt-BR'));
+    return h('section',{class:'card sv-sec'},h('h3',{text:titulo}),h('div',{class:'sv-wrap'},h('table',{class:'sv-tab'},
+      h('thead',{},h('tr',{},h('th',{text:titulo.replace(/^Por /,'')}),SEM_VB.map(([k,n,c])=>h('th',{class:'num'},h('i',{class:'kdot',style:`background:${c}`}),' '+n)),h('th',{class:'num',text:'Total'}))),
+      h('tbody',{},rows.map(([k,t])=>h('tr',{},h('td',{text:k}),SEM_VB.map(([x])=>h('td',{class:'num'+(t[x]?'':' z')+(['carregamento','transito','saldo'].includes(x)&&t[x]?' hl':''),text:t[x]?semN(t[x]):'—'})),h('td',{class:'num',style:'font-weight:700',text:semN(SEM_VB.reduce((n,x)=>n+t[x[0]],0))})))))))};
+  const abertas=base.flatMap(o=>semCargas(o).map((c,i)=>({o,c,i}))).filter(x=>['carregamento','transito','programada'].includes(x.c.st)).sort((a,b)=>(a.c.dtCarr||'').localeCompare(b.c.dtCarr||''));
+  const cargas=h('section',{class:'card sv-sec'},h('h3',{text:'Cargas programadas, em carregamento e em trânsito'}),
+    abertas.length?h('div',{class:'sv-wrap'},h('table',{class:'sv-tab'},h('thead',{},h('tr',{},['Situação','Carregamento','Previsão','Filial','Cliente','Material','Volume (sc)','Transportadora / placa'].map((t,j)=>h('th',{class:j===6?'num':'',text:t})))),
+      h('tbody',{},abertas.map(({o,c,i})=>{const x=SEM_CG.find(y=>y[0]===c.st);return h('tr',{},h('td',{},semPill(x[1],x[2])),h('td',{text:fmtDia(c.dtCarr)||'—'}),h('td',{text:fmtDia(c.prevEnt)||'—'}),h('td',{text:o.filial}),h('td',{text:o.cliente}),h('td',{text:o.material+` · C${i+1}`}),h('td',{class:'num',style:'font-weight:700',text:semN(c.vol)}),h('td',{text:c.transp||'—'}))})))):
+      h('div',{class:'small muted',text:'Nenhuma carga aberta.'}));
+  if(!base.length)return h('div',{class:'card empty'},sem.length?'Nenhuma linha com esses filtros.':'Importe a carteira para ver os volumes.');
+  return h('div',{class:'sv'},h('section',{class:'card sv-sec'},h('div',{class:'sv-top'},h('h3',{text:`Volume da carteira · ${semN(total)} sc`}),h('span',{class:'small muted',text:'Cada saca aparece em uma etapa só. Uma linha liberada pode estar parte em carga e parte com saldo sem carga.'})),barra,tiles),
+    cargas,tabela('Por filial',o=>o.filial),tabela('Por material',o=>o.material));
 }
 async function semExcel(lista){
   if(!window.XLSX){toast('O gerador de Excel ainda está carregando. Tente de novo em alguns segundos.');return}
-  const cab=['Nº','Filial','Cliente','Material','Pedido de compra','Pedido de venda','Série','Quantidade','Fazenda','Ponto da fazenda','Data de entrega','Crédito','Crédito por','Fornecedor','Local de carregamento','Logística','Transportadora / placa','Situação'];
-  const linhas=lista.map(o=>[o.numero,o.filial,o.cliente,o.material,o.pcompra||'',o.pvenda||'',o.serie||'',+o.qtd||0,o.fazenda||'',o.ponto||'',o.entrega?fmtDia(o.entrega):'',o.cred?(o.cred.ok?'Liberado':'Negado: '+(o.cred.motivo||'')):'Pendente',o.cred?.por||'',o.comp?.fornecedor||'',o.comp?.local||'',semPend(o).length?'Bloqueada':((SEM_LOG.find(x=>x[0]===(o.log||'contratacao'))||[])[1]||''),o.transp||'',(SEM_ST[semStatus(o)]||[''])[0]]);
+  const cab=['Nº','Filial','Cliente','Inscrição estadual','CPF/CNPJ','Material','Pedido','Série','Situação do pedido (extrato)','Fora da carteira','Quantidade (sc)','Crédito','Crédito por','Pedido de compra','Fornecedor','Local de carregamento','Financeiro','Fazenda','Ponto de entrega','Cargas','Em carregamento (sc)','Em trânsito (sc)','Entregue (sc)','Saldo sem carga (sc)','Situação'];
+  const linhas=lista.map(o=>{const v=semVol(o);return [o.numero,o.filial,o.cliente,o.ie||'',o.doc||'',o.material,o.pvenda||'',o.serie||'',o.sitPed||'NORMAL',o.foraCarteira?'Sim':'',+o.qtd||0,o.cred?(o.cred.ok?'Liberado':'Negado: '+(o.cred.motivo||'')):'Pendente',o.cred?.por||'',semPC(o),o.comp?.fornecedor||'',o.comp?.local||'',(SEM_FIN.find(x=>x[0]===(o.fin&&o.fin.sit))||[0,'Pendente'])[1],semFaz(o),semPonto(o),
+    semCargas(o).map((c,i)=>`C${i+1}: ${semN(c.vol)} sc ${(SEM_CG.find(y=>y[0]===c.st)||[0,''])[1]}${c.dtCarr?' carr. '+fmtDia(c.dtCarr):''}${c.prevEnt?' prev. '+fmtDia(c.prevEnt):''}${c.transp?' '+c.transp:''}`).join(' | '),v.carregamento,v.transito,v.entregue,v.saldo,(SEM_ST[semStatus(o)]||[''])[0]]});
   const ws=XLSX.utils.aoa_to_sheet([cab,...linhas]);ws['!cols']=cab.map((c,j)=>({wch:Math.min(48,Math.max(c.length,...linhas.slice(0,200).map(l=>String(l[j]??'').length))+2)}));
   const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,'Esteira de sementes');
   await salvarXlsx(XLSX.write(wb,{bookType:'xlsx',type:'array'}),`esteira-sementes-${hojeISO()}.xlsx`);
@@ -7153,7 +7317,7 @@ function ligarBanco(){
     else if(view==='config')paintBar();
   },()=>{});
   if(!MODO_MS)db.collection('checklistEmp').orderBy('criadoEm','desc').limit(1000).onSnapshot(s=>{empL=s.docs.map(x=>x.data());empOk=true;if(view==='empil')paintEmp()},e=>{console.warn('checklistEmp',e)});
-  if(!MODO_MS)db.collection('esteira').orderBy('criadoEm','desc').limit(3000).onSnapshot(s=>{sem=s.docs.map(x=>x.data());semOk=true;renderTabs();if(view==='sem')paintSem()},e=>{console.warn('esteira',e);toast('Não foi possível carregar a esteira de sementes.')});
+  if(!MODO_MS)db.collection('esteira').orderBy('criadoEm','desc').limit(1000).onSnapshot(s=>{sem=s.docs.map(x=>x.data());semOk=true;renderTabs();if(view==='sem')paintSem()},e=>{console.warn('esteira',e);toast('Não foi possível carregar a esteira de sementes.')});
   if(!MODO_MS)db.collection('inventarios').orderBy('criadoEm','desc').limit(1000).onSnapshot(s=>{invL=s.docs.map(x=>x.data());invOk=true;if(view==='inv'&&!invOcupado())renderInv();else if(view==='abrir'&&!areaSel)renderAbrir()},e=>{console.warn('inventarios',e)});
   if(!MODO_MS)db.collection('transferencias').orderBy('criadoEm','desc').limit(1000).onSnapshot(s=>{transf=s.docs.map(x=>x.data());trfOk=true;renderTabs();if(view==='transf')paintTrf()},e=>{console.warn('transferencias',e);toast('Não foi possível carregar as transferências.')});
   db.collection('chamados').orderBy('criadoEm','desc').limit(1000).onSnapshot(s=>{
