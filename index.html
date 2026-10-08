@@ -2322,7 +2322,13 @@ function renderFrete(main){
   if(C.exemplo&&!F.exemplo){renderFreteGasto(main);return}
   const maxD=Math.max(C.rows.reduce((m,r)=>Math.max(m,r.d),0),F.rows.reduce((m,r)=>Math.max(m,r.d),0))||Date.now();
   const Pc=periodoRows(C.rows,{maxD,todas:true}),Pf=periodoRows(F.rows,{maxD,todas:true});
- 
+ // segmentos (rótulo da primeira vez que aparece)
+  const segs=new Map();for(const r of [...C.rows,...F.rows]){const s=r.ca||r.sg;if(s&&!segs.has(segK(s)))segs.set(segK(s),s)}
+  if(dsh.seg!=='todos'&&!segs.has(dsh.seg))dsh.seg='todos';
+  const noSeg=s=>dsh.seg==='todos'||segK(s)===dsh.seg;
+  const val=r=>/cancel|devol|estorn/i.test(r.st)?0:r.v;
+  const rec=Pc.atual.filter(r=>noSeg(r.ca)),fre=Pf.atual.filter(r=>noSeg(r.sg));
+  const recAnt=Pc.ant.filter(r=>noSeg(r.ca)),freAnt=Pf.ant.filter(r=>noSeg(r.sg));
   // por filial (todas as cadastradas, mesmo sem movimento)
   const nomes=[...new Set([...(cfg.filiais||[]).map(f=>f.nome),...rec.map(r=>dFilial(r.f)),...fre.map(r=>dFilial(r.f))])].filter(Boolean);
   const lin=nomes.map(n=>{const rr=rec.filter(r=>dFilial(r.f)===n),ff=fre.filter(r=>dFilial(r.f)===n);
