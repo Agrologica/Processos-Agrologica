@@ -2351,10 +2351,6 @@ function renderFrete(main){
   const sw=dashSwitch();
   const filtros=h('div',{class:'filters'},
     h('div',{class:'seg',role:'group','aria-label':'Período'},[[1,'Mês atual'],[3,'3 meses'],[6,'6 meses'],[12,'12 meses'],[0,'Tudo']].map(([v,n])=>h('button',{type:'button','aria-pressed':String(dsh.periodo===v),onclick:()=>{dsh.periodo=v;renderDash()}},n))));
-  const segChips=h('div',{class:'chips segchips',role:'group','aria-label':'Segmento'},h('span',{class:'lbl',text:'Segmento'}),
-    h('button',{type:'button',class:'chip','aria-pressed':String(dsh.seg==='todos'),onclick:()=>{dsh.seg='todos';renderDash()}},'Todos'),
-    [...segs.entries()].sort((a,b)=>a[1].localeCompare(b[1],'pt-BR')).map(([k,nm])=>h('button',{type:'button',class:'chip','aria-pressed':String(dsh.seg===k),onclick:()=>{dsh.seg=k;renderDash()}},nm)));
-  const stT=T.receita?stFrete(T.p):'sem';
   const kp=h('div',{class:'dks'},
     kpi('Receita faturada',brlC(T.receita),delta(T.receita,Ta.receita)),
     kpi('Frete pago',brlC(T.frete),`${intf(T.ctes)} CT-e${T.ctes===1?'':'s'}`),
