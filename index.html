@@ -492,6 +492,8 @@ details.fold > summary .small{margin-left:auto}
 .pctbar{display:flex;align-items:center;gap:8px}.pctbar .track{height:10px}
 .enc{display:flex;flex-direction:column;gap:8px;border:1px solid var(--line);border-radius:8px;padding:10px;background:var(--bg)}
 .enc-b{display:flex;gap:8px;flex-wrap:wrap}
+.cadbox{display:flex;flex-direction:column;gap:10px;border:1px solid var(--line-2);border-left:3px solid #0F766E;border-radius:8px;padding:10px 12px;background:var(--surface)}
+.cadbox .grid2{gap:10px 12px}.cadbox .bol{display:flex;flex-direction:column;gap:6px}.cadbox .bol .small{overflow-wrap:anywhere}
 .obsbox{border-left:3px solid var(--hl);background:color-mix(in srgb,var(--hl) 8%,var(--surface));border-radius:6px;padding:8px 10px}
 .kobs{font-size:12.5px;color:var(--ink-2);border-left:2px solid var(--hl);padding-left:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .keq{display:block;font-size:11.5px;font-weight:500;color:var(--ink-3)}
@@ -503,6 +505,24 @@ details.fold > summary .small{margin-left:auto}
 .trow{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:8px;align-items:center;font-size:13px}
 .trow .now{color:var(--accent);font-weight:600}
 .indgrid{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.perbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pernav{display:inline-flex;align-items:center;gap:4px;background:var(--surface);border:1px solid var(--line-2);border-radius:7px;padding:2px 4px}
+.pernav b{font-weight:600;min-width:150px;text-align:center;font-size:13.5px}
+.pernav .iconbtn{font-size:20px;padding:2px 10px}
+.arow{display:grid;grid-template-columns:minmax(170px,1.3fr) 76px 80px 92px minmax(170px,1.6fr) 76px 80px 120px;gap:12px;align-items:center;padding:9px 18px;border:0;border-bottom:1px solid var(--line);font-size:13px;min-width:930px;background:none;width:100%;text-align:left;cursor:pointer;color:var(--ink);font:inherit}
+.arow>span:first-child{position:sticky;left:0;z-index:1;background:var(--surface);margin-left:-18px;padding-left:18px;align-self:stretch;display:flex;align-items:center}
+.arow.bh>span:first-child{background:var(--surface-2)}
+.arow.sel>span:first-child{background:var(--accent-soft)}
+.arow:hover{background:var(--surface-2)}
+.arow.sel{background:var(--accent-soft)}
+.arow.zero{color:var(--ink-3)}
+.arow .num{text-align:right}
+.arow.bh{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:600;padding-block:8px;cursor:default;background:var(--surface-2)}
+.agrp{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--hl);padding:10px 18px 4px;min-width:930px}
+.drow{display:grid;grid-template-columns:minmax(170px,1.5fr) minmax(90px,1fr) 90px 120px 110px;gap:12px;align-items:center;padding:8px 18px;border-bottom:1px solid var(--line);font-size:13px;min-width:600px}
+.drow .c-resp,.arow .c-resp{grid-area:auto}
+.drow.bh{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+
 .ind{overflow:hidden}
 .indh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--line)}
 .indh h3{font-size:17px}
@@ -784,6 +804,23 @@ input.bad,select.bad{border-color:var(--crit)!important;background:var(--crit-so
 .crit-pill{background:var(--crit-soft)!important;color:var(--crit)!important}
 .dash-lnk{border:0;background:none;color:var(--accent);cursor:pointer;padding:0 0 0 4px;text-decoration:underline;font:inherit}
 .dash-como{padding:12px 16px;margin-top:14px}
+.rcg-f .pfil-2{grid-template-columns:repeat(5,minmax(0,1fr));border-top:0;padding-top:0}
+.rcg-f .pfil-1 .search{max-width:none}
+.rcg-kb{text-align:left;cursor:pointer;font:inherit;color:inherit}
+.rcg-kb[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+.rcg-r{cursor:pointer}
+.rcg-late td:first-child{box-shadow:inset 3px 0 0 var(--crit)}
+.rcg-cards{display:none;flex-direction:column;gap:10px}
+.rcg-c{display:flex;flex-direction:column;gap:8px;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px;font:inherit;color:var(--ink);cursor:pointer;width:100%}
+.rcg-c.rcg-late{border-left:4px solid var(--crit)}
+.rcg-ct{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.rcg-c dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 12px;margin:0;padding-top:8px;border-top:1px solid var(--line)}
+.rcg-c dl .full{grid-column:1/-1}
+.rcg-c dt{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+.rcg-c dd{margin:0;font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:13px}
+.rcg-c dd.tx{font-family:var(--f-body);font-weight:600}
+@media (max-width:1100px){.rcg-f .pfil-2{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:760px){.rcg-tab{display:none}.rcg-cards{display:flex}.rcg-f .pfil-2{grid-template-columns:repeat(2,minmax(0,1fr))}.rcg-f .pfil-2 .pf:first-child{grid-column:1/-1}}
 .dash-como summary{cursor:pointer}
 .dash-como ol{margin:10px 0;padding-left:20px;display:flex;flex-direction:column;gap:6px;color:var(--ink-2)}
 .dtip{position:fixed;z-index:80;background:var(--ink);color:var(--bg);padding:7px 10px;border-radius:7px;font-size:12.5px;pointer-events:none;box-shadow:var(--shadow);max-width:280px;font-variant-numeric:tabular-nums}
@@ -1565,6 +1602,9 @@ camposEquipe:[{id:'config-lancamento',rotulo:'Configuração(ões) de lançament
 MODELO.areas.forEach(a=>{if(!a.fluxo)a.fluxo=mkFluxo(a.nome)});
 const EQ_CADASTRO={id:'cadastro',nome:'Pendência de cadastro',equipe:'Área de Cadastro',cor:'#0F766E',tipo:'aberto',desvio:true};
 function incluirCadastro(c){const a=(c.areas||[]).find(x=>x.id==='notas');if(!a||!a.fluxo||a.fluxo.some(s=>s.id==='cadastro'||eqNorm(s.equipe)==='cadastro'))return;let i=a.fluxo.findIndex(s=>s.tipo!=='aberto');if(i<0)i=a.fluxo.length;a.fluxo.splice(i,0,clone(EQ_CADASTRO))}
+/* Área de Cadastro (Financeiro) disponível no Encaminhar de todas as áreas com fluxo */
+function incluirCadastroTodas(c){(c.areas||[]).forEach(a=>{if(!a.fluxo||a.id==='transferencia'||!a.fluxo.some(s=>s.tipo==='aberto'))return;if(a.fluxo.some(s=>s.id==='cadastro'||eqNorm(s.equipe)==='cadastro'))return;let i=a.fluxo.findIndex(s=>s.tipo!=='aberto');if(i<0)i=a.fluxo.length;a.fluxo.splice(i,0,clone(EQ_CADASTRO))})}
+const ehCadastroSt=s=>!!s&&(s.id==='cadastro'||eqNorm(s.equipe)==='cadastro');
 const EQUIPES_EXTRA=[{id:'ti',nome:'TI · suporte de sistema',equipe:'Área de TI',cor:'#0891B2',tipo:'aberto',desvio:true},{id:'fiscal',nome:'Fiscal · análise tributária',equipe:'Área Fiscal',cor:'#A3395A',tipo:'aberto',desvio:true},{id:'barter',nome:'Barter · troca de nota',equipe:'Barter e Fertilizante',cor:'#8A6D1F',tipo:'aberto',desvio:true}];
 const AREAS_TI_FISCAL=['faturamento','notas','logistica','recebimento'];
 const RO={tipo:"Registro de ocorrência (RO)",op:{"nome": "Registro de ocorrência (RO)", "campos": ["Nome do cliente", "Nota do produto", "Relatório do acontecido (obs)"], "similar": false, "semProdutos": false, "lote": true, "largo": true, "maxProdutos": 10},campo:{"id": "segmento", "rotulo": "Segmento", "tipo": "lista", "obrigatorio": true, "opcoes": ["Defensivo", "Semente de Milho", "Fertilizante", "Semente de Soja", "Especialidades"], "tipos": ["Registro de ocorrência (RO)"]},anexo:{"id": "fotos-operacao", "nome": "Fotos de toda a operação", "obrigatorio": true, "quem": "solicitante", "moverPara": "", "tipos": ["Registro de ocorrência (RO)"]},passos:[{"id": "compra-insumos", "nome": "Compra de Insumos", "equipe": "Compra de Insumos", "cor": "#6D28D9", "tipo": "aberto", "desvio": true, "segmentos": ["Defensivo"]}, {"id": "sementes", "nome": "Sementes", "equipe": "Sementes", "cor": "#5E7F1C", "tipo": "aberto", "desvio": true, "segmentos": ["Semente de Milho", "Semente de Soja"]}, {"id": "fertilizante", "nome": "Fertilizante", "equipe": "Fertilizante", "cor": "#8A6D1F", "tipo": "aberto", "desvio": true, "segmentos": ["Fertilizante"]}, {"id": "especialidades", "nome": "Especialidades", "equipe": "Especialidades", "cor": "#A3395A", "tipo": "aberto", "desvio": true, "segmentos": ["Especialidades"]}]};
@@ -1765,7 +1805,7 @@ const TRANSF_AREA={id:'transferencia',icone:'transferencia',nome:'Transferência
     {id:'previsao-carreg',rotulo:'Previsão de carregamento',tipo:'texto',status:'contratacao',tipos:[],obrigatorio:true,aoSim:''},
     {id:'recebido',rotulo:'Carga recebida na filial de destino?',tipo:'simnao',status:'transito',tipos:[],obrigatorio:true,aoSim:'concluido'}]};
 function incluirTransferencia(c){if(!c.areas||c.areas.some(a=>a.id==='transferencia'))return;const ix=c.areas.findIndex(a=>a.id==='logistica');c.areas.splice(ix<0?c.areas.length:ix+1,0,clone(TRANSF_AREA))}
-renomearEquipes(MODELO);incluirTIFiscal(MODELO);incluirCadastro(MODELO);incluirRO(MODELO);incluirLiquidados(MODELO);incluirConsultor(MODELO);incluirDivergencias(MODELO);incluirNotificacao(MODELO);incluirPagamento(MODELO);incluirEmpManut(MODELO);lojaNoFaturamento(MODELO);aplicarPrazos(MODELO);semSlaExterno(MODELO);aplicarPrazos2(MODELO);incluirBonificacao(MODELO);incluirVeiculos(MODELO);incluirFluxoFrotas(MODELO);
+renomearEquipes(MODELO);incluirTIFiscal(MODELO);incluirCadastro(MODELO);incluirCadastroTodas(MODELO);incluirRO(MODELO);incluirLiquidados(MODELO);incluirConsultor(MODELO);incluirDivergencias(MODELO);incluirNotificacao(MODELO);incluirPagamento(MODELO);incluirEmpManut(MODELO);lojaNoFaturamento(MODELO);aplicarPrazos(MODELO);semSlaExterno(MODELO);aplicarPrazos2(MODELO);incluirBonificacao(MODELO);incluirVeiculos(MODELO);incluirFluxoFrotas(MODELO);
 const TIPOS_STATUS=[['aberto','Em aberto · conta o prazo'],['espera','Em espera · pausa o prazo'],['final','Finalizado · encerra o chamado']];
 const CORES_STATUS=['#2B63A3','#1F5FAD','#0E7C66','#B7791F','#C2410C','#6D28D9','#2E7D32','#737F8E'];
 const TIPOS_CAMPO=[['pedidos','Clientes, pedidos e produtos'],['itensnota','Itens do cadastro com valor e nº da nota'],['centrocusto','Centro de custo com valor e nº da nota'],['placa','Placa (busca no cadastro de veículos)'],['filial','Filial (lista de filiais)'],['pessoa','Pessoa (busca no cadastro de pessoas)'],['checklist','Checklist (OK / problema / N.A.)'],['decalque','Desenho do veículo (marcar partes)'],['texto','Texto curto'],['textolongo','Texto longo'],['numero','Número'],['moeda','Valor (R$)'],['data','Data'],['lista','Lista de opções'],['simnao','Sim / Não']];
@@ -1973,7 +2013,7 @@ const DSH={
              ['03/09/2026','2','QBR4E21','Terceiro','Frete terceiro','Transportes Cerrado','3.850,00','620','','6','Entrega pedidos 104512, 104530']]}
 };
 let dsh={aba:'frete',periodo:12,filial:'todas',dados:{},carregando:{},erro:{}};
-try{const s=localStorage.getItem('ca-dash-aba');if(['frete','comercial','frota','sementes'].includes(s))dsh.aba=s;else if(s==='logistica')dsh.aba='frota'}catch(e){}
+try{const s=localStorage.getItem('ca-dash-aba');if(['cargas','frete','comercial','frota','sementes'].includes(s))dsh.aba=s;else if(s==='logistica')dsh.aba='frota'}catch(e){}
 const nrm=s=>String(s??'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]/g,'');
 const MESES=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
 const mesKey=ms=>{const d=new Date(ms);return d.getFullYear()*100+d.getMonth()};
@@ -2185,6 +2225,7 @@ function periodoRows(rows,opt={}){
 }
 function renderDash(){
   const main=$('#main');const tipo=dsh.aba;
+  if(tipo==='cargas'){renderCargasLog(main);return}
   if(tipo==='sementes'){renderCargasSem(main);return}
   if(tipo==='frete'){if(!dsh.dados.comercial||!dsh.dados.fretes){main.replaceChildren(h('div',{class:'intro'},h('div',{},h('h2',{text:'Dashboards'}),h('p',{text:'Carregando as planilhas…'}))));setTimeout(()=>{carregarDash('comercial');carregarDash('fretes')},0);return}
     carregarRegras();renderFrete(main);return}
@@ -2480,7 +2521,7 @@ function renderFreteGasto(main){
     como);
 }
 function dashSwitch(){
-  return h('div',{style:'display:flex;gap:10px;flex-wrap:wrap;align-items:center'},h('div',{class:'seg dash-sw',role:'tablist','aria-label':'Dashboard'},[['frete','Frete × receita'],['comercial','Comercial'],['frota','Frota por placa'],['sementes','Cargas de sementes']].map(([id,nm])=>h('button',{type:'button',role:'tab','aria-pressed':String(dsh.aba===id),onclick:()=>{dsh.aba=id;try{localStorage.setItem('ca-dash-aba',id)}catch(e){}renderDash()}},nm))),h('button',{type:'button',class:'btn primary',onclick:()=>go('tv')},'Central de Operação · modo TV'));
+  return h('div',{style:'display:flex;gap:10px;flex-wrap:wrap;align-items:center'},h('div',{class:'seg dash-sw',role:'tablist','aria-label':'Dashboard'},[['cargas','Relatório de cargas'],['frete','Frete × receita'],['comercial','Comercial'],['frota','Frota por placa'],['sementes','Cargas de sementes']].map(([id,nm])=>h('button',{type:'button',role:'tab','aria-pressed':String(dsh.aba===id),onclick:()=>{dsh.aba=id;try{localStorage.setItem('ca-dash-aba',id)}catch(e){}renderDash()}},nm))),h('button',{type:'button',class:'btn primary',onclick:()=>go('tv')},'Central de Operação · modo TV'));
 }
 
 /* ===================== DASHBOARD FROTA POR PLACA ===================== */
@@ -4432,16 +4473,53 @@ function encaminhar(t){
   const sug=seg?opts.find(s=>(s.segmentos||[]).includes(seg)):null;
   const dflt=sug||(ant&&opts.find(s=>s.id===ant.status&&t.areaId==='notas'))||opts.find(s=>s.id!=='cancelado'&&s.equipe&&s.equipe!==eqAtual)||opts.find(s=>s.id!=='cancelado')||opts[0]||{};
   const d=encDraft[t.numero]||(encDraft[t.numero]={para:dflt.id||'',obs:''});
-  const sel=h('select',{id:'d-enc','aria-label':'Encaminhar para',onchange:e=>{d.para=e.target.value}},opts.map(s=>h('option',{value:s.id,selected:d.para===s.id},s.equipe?`${s.nome} · ${s.equipe}`:s.nome)));
+  const cadSt=id=>ehCadastroSt(stById(t,id));
+  const cv=rx=>{const c=(t.campos||[]).find(c=>rx.test(c.id||'')||rx.test(c.rotulo||''));if(!c)return '';const v=c.valor;return String(v&&typeof v==='object'?(v.nome||v.descricao||v.texto||''):(v??'')).trim()};
+  if(!d.cad){const pv=t.cadastro||{};d.cad={fornecedor:pv.fornecedor||cv(/^fornecedor$/i)||cv(/^(nome do )?fornecedor/i),cnpj:pv.cnpj||cv(/cnpj|cpf/i),forma:pv.forma||cv(/^forma-pagamento$/i),dados:pv.dados||cv(/^dados-bancarios$/i),files:[]}}
+  const C=d.cad;
+  const bolAnx=()=>(t.anexos||[]).filter(a=>/boleto/i.test((a.rotulo||'')+' '+(a.nome||'')));
+  const ehDep=()=>/dep[oó]sito|pix/i.test(C.forma||''),ehBol=()=>/boleto/i.test(C.forma||'');
+  const dadosW=h('label',{class:'field'},h('span',{},'Dados bancários e/ou chave PIX',h('span',{class:'req',text:'*'})),h('textarea',{rows:3,style:'min-height:64px',placeholder:'Banco, agência, conta, titular e CPF/CNPJ, ou a chave PIX',value:C.dados,oninput:e=>{C.dados=e.target.value}}));
+  const bolLista=h('div',{class:'small muted'});
+  const bolInp=h('input',{type:'file',accept:'.pdf,image/*',multiple:true,onchange:e=>{C.files=[...e.target.files];pintaBol()}});
+  const pintaBol=()=>{const ex=bolAnx();bolLista.textContent=ex.length||C.files.length?'Vai junto no e-mail: '+[...ex.map(a=>a.nome),...C.files.map(f=>f.name)].join(', '):'Nenhum boleto anexado ainda. Anexe aqui.'};pintaBol();
+  const bolW=h('div',{class:'field bol'},h('span',{},'Boleto',h('span',{class:'req',text:'*'})),bolLista,bolInp);
+  const vis=()=>{dadosW.hidden=!ehDep();bolW.hidden=!ehBol()};
+  const fForma=h('select',{onchange:e=>{C.forma=e.target.value;vis()}},h('option',{value:''},'Selecione'),PAGTO_OPC.map(o=>h('option',{value:o,selected:C.forma===o},o)),C.forma&&!PAGTO_OPC.includes(C.forma)?h('option',{value:C.forma,selected:true},C.forma):null);
+  const cadBox=h('div',{class:'cadbox'},
+    h('div',{class:'small',style:'font-weight:600',text:'Dados do fornecedor para o cadastro. Vão destacados no e-mail para a Área de Cadastro.'}),
+    h('div',{class:'grid2'},
+      h('label',{class:'field'},h('span',{},'Fornecedor',h('span',{class:'req',text:'*'})),h('input',{type:'text',value:C.fornecedor,oninput:e=>{C.fornecedor=e.target.value}})),
+      h('label',{class:'field'},h('span',{},'CNPJ / CPF',h('span',{class:'req',text:'*'})),h('input',{type:'text',inputmode:'numeric',value:C.cnpj,oninput:e=>{C.cnpj=e.target.value}})),
+      h('label',{class:'field'},h('span',{},'Forma de pagamento',h('span',{class:'req',text:'*'})),fForma)),
+    dadosW,bolW);
+  vis();cadBox.hidden=!cadSt(d.para);
+  const MSG_CAD='Por gentileza, fazer o cadastro deste fornecedor no sistema.';
+  const sel=h('select',{id:'d-enc','aria-label':'Encaminhar para',onchange:e=>{d.para=e.target.value;cadBox.hidden=!cadSt(d.para);if(cadSt(d.para)&&!d.obs.trim()){d.obs=MSG_CAD;txt.value=d.obs}}},opts.map(s=>h('option',{value:s.id,selected:d.para===s.id},s.equipe?`${s.nome} · ${s.equipe}`:s.nome)));
+  if(cadSt(d.para)&&!d.obs.trim())d.obs=MSG_CAD;
   const txt=h('textarea',{id:'d-obs',style:'min-height:64px',placeholder:t.areaId==='notas'?'Ex.: Valor do pedido lançado diferente da nota. Corrigir o lançamento e devolver.':'Ex.: Cliente Renan Pires sem limite de crédito para o pedido 123. Liberar R$ 40 mil.',value:d.obs,oninput:e=>{d.obs=e.target.value}});
   const enviar=async(para,devolver)=>{const o=d.obs.trim()||(devolver&&t.areaId!=='notas'?'Liberado, retornando ao fluxo.':'');if(!o){toast('Escreva a observação antes de encaminhar.');txt.focus();return}
     const trava=travaAvanco(t,para);if(trava){toast(trava);return}
     const alvo=stById(t,para);const patch={...statusPatch(t,para),ultimaObs:{texto:o,em:Date.now(),para:alvo.equipe||alvo.nome,de:eqAtual}};
-    delete encDraft[t.numero];await gravar(t,patch,{tipo:'comentario',obs:o,texto:`${devolver?'Devolvido':'Encaminhado'} para ${alvo.nome}${alvo.equipe?' ('+alvo.equipe+')':''}: ${o}`});toast(`Enviado para ${alvo.equipe||alvo.nome}.`)};
+    let extra='';
+    if(!devolver&&ehCadastroSt(alvo)){
+      const fo=C.fornecedor.trim(),dg=C.cnpj.replace(/\D/g,'');
+      if(!fo){toast('Informe o nome do fornecedor para o cadastro.');return}
+      if(dg.length!==14&&dg.length!==11){toast('Confira o CNPJ (14 dígitos) ou CPF (11 dígitos) do fornecedor.');return}
+      if(!C.forma){toast('Escolha a forma de pagamento do fornecedor.');return}
+      if(ehDep()&&!C.dados.trim()){toast('Informe os dados bancários ou a chave PIX.');return}
+      if(ehBol()&&!bolAnx().length&&!C.files.length){toast('Anexe o boleto para o cadastro.');return}
+      let novos=[];
+      if(ehBol()&&C.files.length){try{for(const f of C.files)novos.push({rotulo:'Boleto',slot:'_cadastro',em:Date.now(),...(await guardarArquivo(f,t.numero))})}catch(e){toast('Não foi possível enviar o boleto. Tente de novo.');return}}
+      if(novos.length)patch.anexos=[...(t.anexos||[]),...novos];
+      patch.cadastro={fornecedor:fo,cnpj:C.cnpj.trim(),forma:C.forma,dados:ehDep()?C.dados.trim():'',em:Date.now()};
+      extra=` · Fornecedor: ${fo} · CNPJ/CPF: ${C.cnpj.trim()} · Pagamento: ${C.forma}${ehDep()?' · Dados: '+C.dados.trim():''}`;
+    }
+    delete encDraft[t.numero];await gravar(t,patch,{tipo:'comentario',obs:o,texto:`${devolver?'Devolvido':'Encaminhado'} para ${alvo.nome}${alvo.equipe?' ('+alvo.equipe+')':''}: ${o}${extra}`});toast(`Enviado para ${alvo.equipe||alvo.nome}.`)};
   return h('div',{class:'enc'},
     h('div',{class:'small',style:'font-weight:600',text:'Escolha para onde vai e escreva a mensagem. A área (ou o solicitante) recebe o aviso por e-mail.'}),
     sug?h('div',{class:'small muted',text:`Segmento ${seg}: área responsável sugerida ${sug.equipe||sug.nome}.`}):null,
-    h('div',{class:'enc-r'},sel),txt,
+    h('div',{class:'enc-r'},sel),cadBox,txt,
     h('div',{class:'enc-b'},
       h('button',{type:'button',class:'btn sm primary',onclick:()=>enviar(sel.value)},'Encaminhar'),
       ant?h('button',{type:'button',class:'btn sm',onclick:()=>enviar(ant.status,true),title:t.areaId==='notas'?'Devolve para a etapa anterior; explique o que precisa ser ajustado':'Devolve para a etapa anterior; a mensagem é opcional'},`Devolver para ${stById(t,ant.status).nome}`):null));
@@ -4574,12 +4652,101 @@ async function exportarCSV(){
 }
 
 /* ===================== INDICADORES ===================== */
-let ind={periodo:30,area:'todas',filial:'todas'};
+let ind={periodo:30,per:'mes',off:0,area:'todas',filial:'todas',eqSel:null};
+/* Período dos indicadores (horário de Mato Grosso): dia, semana (seg–dom), mês, ano ou tudo; off = quantos períodos para trás/frente */
+const MESES_IND=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+function periodoInd(){const p=ind.per||'mes',o=ind.off||0;if(p==='tudo')return {ini:0,fim:Infinity,rot:'Todo o histórico'};
+  const loc=new Date(Date.now()-TZ_MT);const Y=loc.getUTCFullYear(),M=loc.getUTCMonth(),D=loc.getUTCDate();const dm=ms=>{const d=new Date(ms);return `${String(d.getUTCDate()).padStart(2,'0')}/${String(d.getUTCMonth()+1).padStart(2,'0')}`};
+  let a,b,rot;
+  if(p==='dia'){a=Date.UTC(Y,M,D+o);b=a+864e5;const d=new Date(a);rot=`${dm(a)}/${d.getUTCFullYear()}${o===0?' · hoje':o===-1?' · ontem':''}`}
+  else if(p==='semana'){const dw=(loc.getUTCDay()+6)%7;a=Date.UTC(Y,M,D-dw+7*o);b=a+7*864e5;rot=`${dm(a)} a ${dm(b-864e5)}${o===0?' · esta semana':''}`}
+  else if(p==='ano'){a=Date.UTC(Y+o,0,1);b=Date.UTC(Y+o+1,0,1);rot=String(Y+o)}
+  else{a=Date.UTC(Y,M+o,1);b=Date.UTC(Y,M+o+1,1);const d=new Date(a);rot=`${MESES_IND[d.getUTCMonth()]} de ${d.getUTCFullYear()}`}
+  return {ini:a+TZ_MT,fim:b+TZ_MT,rot}}
+/* Áreas com SLA nos indicadores (horas úteis: seg–sex 07:15–11:15 e 13:15–17:15, sáb 07:15–11:15). As demais mostram só o tempo médio. */
+const EQ_SLA_H={'central de notas':3,'logística':48}; /* meta fixa em horas úteis */
+const EQ_MINHAS=['faturamento','customer service','frotas','central de notas','logística']; /* faturamento, customer service e frotas: meta da configuração da área (ex.: 5 min por operação, 2 h, 2 dias) */
+function eqChave(t,x){const st=stById(t,x.status);if(st.tipo==='final')return null;let n=eqNome(x.equipe||st.equipe)||'';
+  if(st.solicitanteAtua||eqNorm(n)==='solicitante')return {id:'solicitante',nome:'Solicitante'};
+  if(!n)n=t.areaNome||areaCfg(t.areaId)?.nome||'Sem equipe';
+  const k=eqNorm(n);if(['compras','suprimentos','compras e suprimentos'].includes(k))return {id:'compras e suprimentos',nome:'Compras e Suprimentos'};
+  if(k==='frotas leves'||k==='frotas')return {id:'frotas',nome:'Frotas Leves'};
+  return {id:k,nome:n}}
+function visaoAreas(P){const agora=Date.now();const m=new Map();
+  const get=k=>{if(!m.has(k.id))m.set(k.id,{...k,minha:EQ_MINHAS.includes(k.id),ch:new Set(),pass:0,durs:[],abertos:0,itens:[],slaN:0,slaOk:0,metas:[]});return m.get(k.id)};
+  get({id:'solicitante',nome:'Solicitante'});
+  for(const a of areasAtivas())for(const s of fluxoArea(a.id)){const k=eqChave({areaId:a.id,areaNome:a.nome},{status:s.id,equipe:s.equipe});if(k)get(k)}
+  const tks=tickets.filter(t=>(ind.filial==='todas'||filialDe(t)===ind.filial)&&(ind.area==='todas'||t.areaId===ind.area));
+  for(const t of tks){const ts=t.tempos||[];
+    ts.forEach(x=>{const k=eqChave(t,x);if(!k)return;const g=get(k);
+      if(!x.fim&&aberto(t))g.abertos++;
+      if(x.inicio<P.ini||x.inicio>=P.fim)return;
+      g.ch.add(t.numero);g.pass++;const d=msUteis(x.inicio,x.fim||agora);if(x.fim)g.durs.push(d);g.itens.push({t,x,d,aberto:!x.fim})});
+    if(stOf(t).tipo!=='final'||t.status==='cancelado')continue;
+    const u=ts[ts.length-1];const fimT=u?u.inicio:t.atualizadoEm;if(fimT<P.ini||fimT>=P.fim)continue;
+    const an=eqNorm(t.areaNome||areaCfg(t.areaId)?.nome||'');const porEtapa=slaPorEtapa(t.areaId);const real=new Map();
+    ts.forEach(x=>{const k=eqChave(t,x);if(!k||!EQ_MINHAS.includes(k.id)||!x.fim)return;if(ehApoio(stById(t,x.status)))return;
+      if(!EQ_SLA_H[k.id]&&!porEtapa&&!(an===k.id||an.startsWith(k.id)))return;
+      const i=segIniSla(x);real.set(k.id,(real.get(k.id)||0)+(i==null?0:(EQ_SLA_H[k.id]?msUteis(i,Math.max(i,x.fim)):uteisT(t,i,Math.max(i,x.fim)))))});
+    for(const [id,r] of real){const g=m.get(id);
+      const meta=EQ_SLA_H[id]?EQ_SLA_H[id]*3600000:porEtapa?slaDe(t).filter(z=>!z.andamento&&eqChave(t,{status:z.st.id,equipe:z.st.equipe})?.id===id).reduce((n,z)=>n+z.meta,0):prazoH(t)*3600000;
+      if(!meta)continue;g.slaN++;g.metas.push(meta);if(r<=meta)g.slaOk++}}
+  const ord=x=>x.id==='solicitante'?0:x.minha?1:2;
+  return [...m.values()].sort((a,b)=>ord(a)-ord(b)||b.pass-a.pass||a.nome.localeCompare(b.nome,'pt-BR'))}
+function filtroPeriodo(){const P=periodoInd();
+  return h('div',{class:'perbar'},
+    h('div',{class:'seg',role:'group','aria-label':'Período'},[['dia','Dia'],['semana','Semana'],['mes','Mês'],['ano','Ano'],['tudo','Tudo']].map(([v,n])=>h('button',{type:'button','aria-pressed':String((ind.per||'mes')===v),onclick:()=>{ind.per=v;ind.off=0;ind.eqSel=null;renderIndicadores()}},n))),
+    ind.per==='tudo'?null:h('div',{class:'pernav'},
+      h('button',{type:'button',class:'iconbtn','aria-label':'Período anterior',onclick:()=>{ind.off--;ind.eqSel=null;renderIndicadores()}},'‹'),
+      h('b',{text:P.rot}),
+      h('button',{type:'button',class:'iconbtn','aria-label':'Próximo período',disabled:(ind.off||0)>=0,onclick:()=>{ind.off++;ind.eqSel=null;renderIndicadores()}},'›')))}
+function secaoAreas(P){
+  const gs=visaoAreas(P);const max=Math.max(1,...gs.map(g=>estat(g.durs).media));
+  const linha=g=>{const e=estat(g.durs);const pc=g.slaN?Math.round(100*g.slaOk/g.slaN):null;const metaM=g.metas.length?g.metas.reduce((a,b)=>a+b,0)/g.metas.length:0;const sel=ind.eqSel===g.id;const zero=!g.pass&&!g.abertos;
+    return h('button',{type:'button',class:'arow'+(zero?' zero':'')+(sel?' sel':''),'aria-expanded':String(sel),onclick:()=>{ind.eqSel=sel?null:g.id;renderIndicadores()}},
+      h('span',{class:'bl'},h('span',{class:'kdot',style:`background:${g.id==='solicitante'?'var(--hl)':g.minha?'var(--accent)':'var(--ink-3)'}`}),h('span',{class:'bn'},h('span',{text:g.nome}),h('span',{class:'small muted',text:g.id==='solicitante'?'tempo com o solicitante':g.minha?'área com SLA':'tempo médio'}))),
+      h('span',{class:'num mono',text:g.ch.size||'—'}),
+      h('span',{class:'num mono',text:g.pass||'—'}),
+      h('span',{class:'num mono'+(g.abertos?'':' muted'),text:g.abertos||'—'}),
+      h('span',{class:'bb'},h('span',{class:'track'},h('span',{class:'fill'+(g.id==='solicitante'?' wait':''),style:`width:${e.n?Math.max(2,100*e.media/max):0}%`})),h('span',{class:'bv',text:e.n?fmtDur(e.media):'—'})),
+      h('span',{class:'num mono small',text:e.n?fmtDur(e.mediana):'—'}),
+      h('span',{class:'num mono small',text:g.minha?(metaM?fmtMin(metaM):'—'):''}),
+      h('span',{},g.minha?(pc==null?h('span',{class:'muted',text:'—'}):h('span',{class:'pctbar',title:`${g.slaOk} de ${g.slaN} solicitações finalizadas dentro do SLA`},h('span',{class:'track'},h('span',{class:'fill'+(pc<80?' hot':''),style:`width:${pc}%`})),h('b',{class:'mono',text:pc+'%'}))):null))};
+  const cab=(t1)=>h('div',{class:'arow bh'},[t1,'Chamados','Passagens','Em aberto agora','Tempo médio','Mediana','SLA meta','No prazo'].map((x,i)=>h('span',{class:i&&i!==4&&i!==7?'num':'',text:x})));
+  const det=gs.find(g=>g.id===ind.eqSel);
+  return [h('section',{class:'card ind'},
+    h('div',{class:'indh'},h('h3',{text:'Tempo por área · todo o time'}),h('span',{class:'small muted',text:`${P.rot} · horário útil · toque numa área para ver os chamados`})),
+    h('div',{class:'btab'},cab('Área'),
+      h('div',{class:'agrp',text:'Solicitante e áreas com SLA'}),gs.filter(g=>g.id==='solicitante'||g.minha).map(linha),
+      h('div',{class:'agrp',text:'Demais áreas · só tempo médio'}),gs.filter(g=>g.id!=='solicitante'&&!g.minha).map(linha)),
+    h('p',{class:'small muted',style:'padding:10px 18px;margin:0',text:'Chamados: solicitações diferentes que passaram pela área no período. Passagens: quantas vezes entraram (idas e voltas contam). Tempo médio e mediana: só passagens já concluídas, em horário útil. SLA: Faturamento, Customer Service e Frotas Leves pela meta configurada na área (ex.: 5 min por operação); Central de Notas 3 h úteis; Logística 48 h úteis. Conta o tempo da área em cada solicitação finalizada no período, a partir de quando alguém assume, sem contar o tempo em áreas de apoio. Horário útil: seg a sex 07:15–11:15 e 13:15–17:15, sábado 07:15–11:15, sem feriados.'})),
+    det?detalheArea(det):null]}
+function detalheArea(g){
+  const itens=[...g.itens].sort((a,b)=>b.d-a.d);
+  let ranking=null;
+  if(g.id==='solicitante'){const m=new Map();for(const it of itens){const n=it.t.solicitante?.nome||'—';const f=filialDe(it.t);const k=n+'|'+f;if(!m.has(k))m.set(k,{n,f,c:new Set(),p:0,d:0});const r=m.get(k);r.c.add(it.t.numero);r.p++;r.d+=it.d}
+    const rs=[...m.values()].sort((a,b)=>b.d-a.d);
+    ranking=h('div',{class:'btab'},h('div',{class:'drow bh'},['Solicitante','Filial','Chamados','Vezes que voltou','Tempo retido'].map(x=>h('span',{text:x}))),
+      rs.map(r=>h('div',{class:'drow'},h('span',{class:'c-resp'},avatar(r.n,26),h('span',{class:'rn',text:r.n})),h('span',{class:'small',text:r.f||'—'}),h('span',{class:'mono',text:r.c.size}),h('span',{class:'mono',text:r.p}),h('span',{class:'mono',text:fmtDur(r.d)}))))}
+  const porResp=(()=>{if(g.id==='solicitante')return null;const m=new Map();for(const it of itens){const q=it.x.resp||(it.aberto?it.t.responsavel:'')||'Sem responsável';if(!m.has(q))m.set(q,{q,n:0,d:0,f:0});const r=m.get(q);r.n++;if(!it.aberto){r.d+=it.d;r.f++}}
+    return [...m.values()].sort((a,b)=>b.n-a.n)})();
+  return h('section',{class:'card ind'},
+    h('div',{class:'indh'},h('h3',{text:g.nome}),h('button',{type:'button',class:'btn sm ghost',onclick:()=>{ind.eqSel=null;renderIndicadores()}},'Fechar')),
+    ranking?h('div',{},h('div',{class:'lbl',style:'padding:10px 18px 0',text:'Quem mais segura chamado'}),ranking):null,
+    porResp&&porResp.length?h('div',{},h('div',{class:'lbl',style:'padding:10px 18px 0',text:'Por responsável'}),
+      h('div',{class:'btab'},h('div',{class:'drow bh'},['Responsável','Passagens','Concluídas','Tempo médio',''].map(x=>h('span',{text:x}))),
+        porResp.map(r=>h('div',{class:'drow'},h('span',{class:'c-resp'},avatar(r.q,26),h('span',{class:'rn',text:r.q})),h('span',{class:'mono',text:r.n}),h('span',{class:'mono',text:r.f}),h('span',{class:'mono',text:r.f?fmtDur(r.d/r.f):'—'}),h('span',{}))))):null,
+    h('div',{class:'lbl',style:'padding:10px 18px 0',text:`Chamados (${itens.length} passagens)`}),
+    itens.length?h('div',{class:'plist'},itens.slice(0,60).map(({t,x,d,aberto:ab})=>h('button',{class:'prow',onclick:()=>{ticketSel=t.numero;modo='lista';go('painel')}},
+      h('span',{class:'kdot',style:`background:${stById(t,x.status).cor||'#737F8E'}`}),
+      h('span',{class:'pm'},h('span',{class:'t',text:t.titulo}),h('span',{class:'small muted',text:`${numFmt(t.numero)} · ${t.areaNome||''} · ${x.nome||stById(t,x.status).nome} · entrou ${fmtData(x.inicio)}${x.resp?' · '+x.resp:''}`})),
+      h('span',{class:'mono small'+(ab?' late':''),text:ab?`${fmtDur(d)} · em aberto`:fmtDur(d)})))):h('p',{class:'empty',text:'Nenhuma passagem por esta área no período.'}))}
+
 function estat(arr){if(!arr.length)return {n:0,media:0,mediana:0,maior:0};const v=[...arr].sort((a,b)=>a-b);const m=v.length>>1;return {n:v.length,media:v.reduce((a,b)=>a+b,0)/v.length,mediana:v.length%2?v[m]:(v[m-1]+v[m])/2,maior:v[v.length-1]}}
 function renderIndicadores(){
   const main=$('#main');const agora=Date.now();
-  const desde=ind.periodo?agora-ind.periodo*864e5:0;
-  const base=tickets.filter(t=>t.criadoEm>=desde&&(ind.area==='todas'||t.areaId===ind.area)&&(ind.filial==='todas'||filialDe(t)===ind.filial));
+  const PER=periodoInd();
+  const base=tickets.filter(t=>t.criadoEm>=PER.ini&&t.criadoEm<PER.fim&&(ind.area==='todas'||t.areaId===ind.area)&&(ind.filial==='todas'||filialDe(t)===ind.filial));
   const segs=[];
   base.forEach(t=>(t.tempos||[]).forEach(x=>{const st=stById(t,x.status);if(st.tipo==='final')return;segs.push({t,status:x.status,nome:x.nome||st.nome,equipe:eqNome(x.equipe||st.equipe)||'Sem equipe',cor:st.cor,tipo:st.tipo,d:(x.fim||agora)-x.inicio,aberto:!x.fim})}));
   const fin=base.filter(t=>stOf(t).tipo==='final'&&t.status!=='cancelado');
@@ -4587,7 +4754,7 @@ function renderIndicadores(){
   const noPrazo=leads.filter(l=>l.util<=l.sla).length;
   const kpis=[['Solicitações no período',base.length,''],['Em aberto agora',base.filter(aberto).length,''],
     ['Tempo médio até finalizar',leads.length?fmtDur(estat(leads.map(l=>l.total)).media):'—',leads.length?`${leads.length} finalizadas`:''],
-    ['Finalizadas dentro do prazo',leads.length?Math.round(100*noPrazo/leads.length)+'%':'—',leads.length?`${noPrazo} de ${leads.length} · desconta tempo em espera`:''],['Dentro do SLA por status','__SLA__','']];
+    ['Finalizadas dentro do prazo',leads.length?Math.round(100*noPrazo/leads.length)+'%':'—',leads.length?`${noPrazo} de ${leads.length} · desconta tempo em espera`:'']];
   const areaSelN=ind.area!=='todas'?cfg.areas.find(a=>a.id===ind.area):null;
   // agrupamentos
   function grupos(chave){const map=new Map();
@@ -4617,23 +4784,15 @@ function renderIndicadores(){
   const barPct=v=>v==null?h('span',{class:'muted',text:'—'}):h('span',{class:'pctbar'},h('span',{class:'track'},h('span',{class:'fill'+(v<80?' hot':''),style:`width:${v}%`})),h('b',{class:'mono',text:v+'%'}));
   const parados=base.filter(t=>aberto(t)&&segAtual(t)).map(t=>({t,d:agora-segAtual(t).inicio})).sort((a,b)=>b.d-a.d).slice(0,8);
   const filtros2=h('div',{class:'filters'},
-    h('div',{class:'seg',role:'group','aria-label':'Período'},[[7,'7 dias'],[30,'30 dias'],[90,'90 dias'],[0,'Tudo']].map(([v,n])=>h('button',{type:'button','aria-pressed':String(ind.periodo===v),onclick:()=>{ind.periodo=v;renderIndicadores()}},n))),
+    filtroPeriodo(),
     h('select',{id:'i-area','aria-label':'Área',onchange:e=>{ind.area=e.target.value;renderIndicadores()}},h('option',{value:'todas'},'Todas as áreas'),areasAtivas().map(a=>h('option',{value:a.id,selected:ind.area===a.id},a.nome))),
     h('select',{id:'i-filial','aria-label':'Filial',onchange:e=>{ind.filial=e.target.value;renderIndicadores()}},h('option',{value:'todas'},'Todas as filiais'),(cfg.filiais||[]).map(filialNome).map(f=>h('option',{value:f,selected:ind.filial===f},f))));
   main.replaceChildren(
-    h('div',{class:'intro'},h('div',{},h('h2',{text:'Tempo de atendimento'}),h('p',{text:'Quanto tempo cada solicitação fica em cada status e com cada equipe. Use para achar onde o processo está demorando.'}))),
+    h('div',{class:'intro'},h('div',{},h('h2',{text:'Indicadores'}),h('p',{text:'Quantas solicitações passaram por cada área, quanto tempo ficaram em cada uma e, nas áreas com SLA, quantas foram atendidas no prazo.'}))),
     filtros2,
     h('div',{class:'statbar'},kpis.map(([nm,v,sub])=>v==='__SLA__'?[nm,slaKpi,slaFech.length?`${slaFech.filter(r=>r.ok).length} de ${slaFech.length} medições`:'Configure o SLA nos status']:[nm,v,sub]).map(([nm,v,sub])=>h('div',{class:'stat',style:'cursor:default'},h('div',{class:'n',text:v}),h('div',{class:'small muted',text:nm}),sub?h('div',{class:'small',style:'color:var(--ink-3)',text:sub}):null))),
     h('div',{class:'indgrid'},
-      slaPorSt.length?h('section',{class:'card ind'},h('div',{class:'indh'},h('h3',{text:'SLA por status'}),h('span',{class:'small muted',text:`Dentro do SLA: ${slaKpi} das medições concluídas`})),
-        h('div',{class:'btab'},h('div',{class:'srow2 bh'},['Status · equipe','Regra','Medições','Dentro','Média realizada','Em andamento'].map(x=>h('span',{text:x}))),
-          slaPorSt.map(g=>{const pct=g.fech.length?Math.round(100*g.ok/g.fech.length):null;const media=g.fech.length?g.fech.reduce((n,r)=>n+r.real,0)/g.fech.length:0;const metaM=g.fech.length?g.fech.reduce((n,r)=>n+r.meta,0)/g.fech.length:0;
-            return h('div',{class:'srow2'},h('span',{class:'bl'},h('span',{class:'kdot',style:`background:${g.st.cor}`}),h('span',{class:'bn'},h('span',{text:g.st.nome}),h('span',{class:'small muted',text:`${g.area}${g.st.equipe?' · '+g.st.equipe:''}`}))),
-              h('span',{class:'small',text:g.st.slaModo==='op'?`${g.st.slaMin} min × operação`:g.st.slaModo==='cada'?`${g.st.slaMin} min por passagem`:`${g.st.slaMin} min (soma)`}),
-              h('span',{class:'mono',text:g.fech.length}),
-              h('span',{},pct==null?'—':h('span',{class:'pctbar'},h('span',{class:'track'},h('span',{class:'fill'+(pct<80?' hot':''),style:`width:${pct}%`})),h('b',{class:'mono',text:pct+'%'}))),
-              h('span',{class:'mono small',text:g.fech.length?`${fmtMin(media)} / meta ${fmtMin(metaM)}`:'—'}),
-              h('span',{class:'mono',text:g.abertos||'—'}))}))):null,
+      secaoAreas(PER),
       slaPorChamado.length?h('section',{class:'card ind'},h('div',{class:'indh'},h('h3',{text:'SLA por solicitação'}),h('span',{class:'small muted',text:'Tempo realizado já sem o tempo em outras áreas (crédito, compras, comercial, espera)'})),
         h('div',{class:'slatot'},
           [['Solicitações',tot.sol,`${tot.ops} operações`],['Meta total',fmtMin(tot.meta),`${tot.fech} concluídas`],['Realizado total',fmtMin(tot.real),tot.fech?`média ${fmtMin(tot.media)} por solicitação`:''],
@@ -5096,6 +5255,7 @@ function migrar(c){
   if(!c.migNomesArea){renomearEquipes(c);c.migNomesArea=true}
   if(!c.migTIFiscal){incluirTIFiscal(c);c.migTIFiscal=true}
   if(!c.migCadastro){incluirCadastro(c);c.migCadastro=true}
+  if(!c.migCadastro2){incluirCadastroTodas(c);c.migCadastro2=true}
   if(!c.migCS){if(c.areas&&!c.areas.some(a=>a.id==='customer')){const m=MODELO.areas.find(x=>x.id==='customer');const ix=c.areas.findIndex(a=>a.id==='logistica');c.areas.splice(ix<0?c.areas.length:ix+1,0,clone(m))}c.migCS=true}
   if(!c.migTrocaTransito){(c.areas||[]).forEach(a=>(a.anexos||[]).forEach(x=>{if(x.id==='nf-receita-ficha'&&x.moverPara==='manifesto'&&!x.moverParaTroca&&(a.fluxo||[]).some(s=>s.id==='transito'))x.moverParaTroca='transito'}));c.migTrocaTransito=true}
   if(!c.migPerfilVeic){const a=(c.areas||[]).find(x=>x.id==='logistica');if(a){const m=MODELO.areas.find(x=>x.id==='logistica').camposEquipe.find(x=>x.id==='perfil-veiculo');a.camposEquipe=a.camposEquipe||[];if(!a.camposEquipe.some(x=>x.id==='perfil-veiculo')){const ix=a.camposEquipe.findIndex(x=>x.id==='motorista');a.camposEquipe.splice(ix<0?a.camposEquipe.length:ix+1,0,clone(m))}}c.migPerfilVeic=true}
@@ -5167,15 +5327,25 @@ async function avisarEquipe(t,stId,obs,novo){
     const dest=paraSolic?(cfg.avisarSolicitante!==false&&t.solicitante&&/@/.test(t.solicitante.email||'')?[t.solicitante.email]:[]):emailsDe(st.equipe);
     if(!dest.length)return;
     const link=location.origin+location.pathname+'#painel';
-    const assunto=paraSolic?`Central de Atendimento · Nº ${t.numero} voltou para você`:`Central de Atendimento · Nº ${t.numero} · ${st.nome} aguarda ${st.equipe||'a sua equipe'}`;
+    let assunto=paraSolic?`Central de Atendimento · Nº ${t.numero} voltou para você`:`Central de Atendimento · Nº ${t.numero} · ${st.nome} aguarda ${st.equipe||'a sua equipe'}`;
     const fil=filialDe(t);
     const linhas=[['Nº',t.numero],['Área',t.areaNome],['Tipo',t.tipo],['Solicitação',t.titulo],['Solicitante',t.solicitante?.nome],['Filial',fil],['Etapa',st.nome+(st.equipe?' · '+st.equipe:'')],['Observação',obs]].filter(x=>String(x[1]??'').trim());
-    const html=`<div style="font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#1A2230"><p style="margin:0 0 12px">${paraSolic?'A solicitação abaixo voltou para você e precisa de uma ação.':novo?'Chegou uma nova solicitação para a sua equipe.':'Uma solicitação chegou à etapa da sua equipe.'}</p><table style="border-collapse:collapse">${linhas.map(([k,v])=>`<tr><td style="padding:4px 12px 4px 0;color:#4F5B6B">${escH(k)}</td><td style="padding:4px 0;font-weight:600">${escH(v)}</td></tr>`).join('')}</table><p style="margin:16px 0"><a href="${escH(link)}" style="background:#0D2B4E;color:#fff;padding:10px 16px;border-radius:6px;text-decoration:none">Abrir a Central de Atendimento</a></p><p style="color:#737F8E;font-size:12px">Aviso automático da ${escH(cfg.nomeCentral||'Central de Atendimento')}. Não responda este e-mail: atenda pelo portal.</p></div>`;
+    const cad=!paraSolic&&ehCadastroSt(st)&&t.cadastro?t.cadastro:null;
+    const bols=cad&&/boleto/i.test(cad.forma||'')?(t.anexos||[]).filter(a=>/boleto/i.test((a.rotulo||'')+' '+(a.nome||''))):[];
+    if(cad)assunto=`Central de Atendimento · Nº ${t.numero} · Cadastro de fornecedor: ${cad.fornecedor}`;
+    const cadL=cad?[['Fornecedor',cad.fornecedor],['CNPJ / CPF',cad.cnpj],['Forma de pagamento',cad.forma],['Dados bancários / PIX',cad.dados]].filter(x=>String(x[1]??'').trim()):[];
+    const cadHtml=cad?`<p style="margin:0 0 12px">Por gentileza, fazer o cadastro do fornecedor abaixo no sistema e devolver a solicitação pela Central.</p><div style="border:1px solid #D8DEE6;border-left:4px solid #0F766E;border-radius:6px;padding:10px 14px;margin:0 0 16px;background:#F3F8F7"><div style="font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#0F766E;font-weight:700;margin-bottom:6px">Cadastro de fornecedor</div><table style="border-collapse:collapse">${cadL.map(([k,v])=>`<tr><td style="padding:3px 12px 3px 0;color:#4F5B6B;vertical-align:top">${escH(k)}</td><td style="padding:3px 0;font-weight:700;white-space:pre-line">${escH(v)}</td></tr>`).join('')}${bols.length?`<tr><td style="padding:3px 12px 3px 0;color:#4F5B6B;vertical-align:top">Boleto</td><td style="padding:3px 0;font-weight:700">${bols.map(a=>a.url?`<a href="${escH(a.url)}">${escH(a.nome)}</a>`:escH(a.nome)).join('<br>')}</td></tr>`:''}</table></div>`:'';
+    const html=`<div style="font-family:Segoe UI,Arial,sans-serif;font-size:14px;color:#1A2230">${cad?cadHtml:`<p style="margin:0 0 12px">${paraSolic?'A solicitação abaixo voltou para você e precisa de uma ação.':novo?'Chegou uma nova solicitação para a sua equipe.':'Uma solicitação chegou à etapa da sua equipe.'}</p>`}<table style="border-collapse:collapse">${linhas.map(([k,v])=>`<tr><td style="padding:4px 12px 4px 0;color:#4F5B6B">${escH(k)}</td><td style="padding:4px 0;font-weight:600">${escH(v)}</td></tr>`).join('')}</table><p style="margin:16px 0"><a href="${escH(link)}" style="background:#0D2B4E;color:#fff;padding:10px 16px;border-radius:6px;text-decoration:none">Abrir a Central de Atendimento</a></p><p style="color:#737F8E;font-size:12px">Aviso automático da ${escH(cfg.nomeCentral||'Central de Atendimento')}. Não responda este e-mail: atenda pelo portal.</p></div>`;
     if(!MODO_MS){console.info('[aviso por e-mail]',dest.join(', '),assunto);toast(`Aviso de ${remetente()||'quem fez a ação'} para ${dest.join(', ')} (o e-mail sai no portal da empresa)`);return}
     const tk=await msTokenMail();if(!tk){console.warn('Sem permissão Mail.Send: aviso não enviado');return}
     const rem=remetente();
     const msg={subject:assunto,body:{contentType:'HTML',content:html},toRecipients:dest.map(a=>({emailAddress:{address:a}}))};
     if(rem)msg.replyTo=[{emailAddress:{address:rem}}];
+    if(bols.length){const att=[];let tot=0;
+      for(const a of bols){if(!a.spId)continue;try{const it=await gx('GET',`/sites/${MS.siteId}/drive/items/${a.spId}`);if(!it||tot+(it.size||0)>2.8*1048576)continue;
+        const buf=new Uint8Array(await (await fetch(it['@microsoft.graph.downloadUrl'])).arrayBuffer());let bin='';for(let i=0;i<buf.length;i+=32768)bin+=String.fromCharCode.apply(null,buf.subarray(i,i+32768));
+        tot+=buf.length;att.push({'@odata.type':'#microsoft.graph.fileAttachment',name:a.nome||'boleto.pdf',contentType:a.tipoMime||'application/pdf',contentBytes:btoa(bin)})}catch(e){console.warn('boleto no e-mail',e)}}
+      if(att.length)msg.attachments=att}
     const env=(url,m)=>fetch(url,{method:'POST',headers:{Authorization:'Bearer '+tk,'Content-Type':'application/json'},body:JSON.stringify({message:m,saveToSentItems:false})});
     if(rem){const r=await env('https://graph.microsoft.com/v1.0/users/'+encodeURIComponent(rem)+'/sendMail',msg);
       if(r.ok)return;console.warn('Envio pela caixa '+rem+' falhou ('+r.status+'). Confira a permissão "Enviar como" do usuário nessa caixa.',await r.text().catch(()=>''));
@@ -7382,6 +7552,110 @@ function csmCargas(rows){
   return [...m.values()];
 }
 const csmDias=ms=>{if(!ms)return null;const a=new Date();a.setHours(12,0,0,0);return Math.round((a.getTime()-ms)/864e5)};
+/* ===================== DASHBOARD · RELATÓRIO DE CARGAS (lê os chamados de Logística) ===================== */
+let rcg={mes:'',filial:'',transp:'',perfil:'',status:'',busca:''};
+function rcgNum(v){let x=String(v??'').replace(/R\$|km|\s/gi,'');if(!x)return null;const ci=x.lastIndexOf(','),pi=x.lastIndexOf('.');
+  if(ci>=0)x=x.replace(/\./g,'').replace(',','.');else if(pi>=0&&(x.split('.').length>2||x.length-pi-1===3))x=x.replace(/\./g,'');
+  const n=Number(x);return isFinite(n)&&n>0?n:null}
+const rcgBRL=n=>n==null?'':n.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
+const rcgBRL2=n=>n==null?'':n.toLocaleString('pt-BR',{style:'currency',currency:'BRL',minimumFractionDigits:2,maximumFractionDigits:2});
+const rcgInt=n=>n==null?'':n.toLocaleString('pt-BR',{maximumFractionDigits:0});
+const rcgDia=ms=>ms?new Date(ms).toLocaleDateString('pt-BR'):'';
+const rcgMes=ms=>{const d=new Date(ms);return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')};
+const RCG_MESES=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+function rcgLinhas(){
+  return tickets.filter(t=>t.areaId==='logistica').map(t=>{
+    const ec=t.equipeCampos||{};const f=freteDe(t);const st=stOf(t);
+    const segEnt=(t.tempos||[]).find(x=>x.status==='entregue');
+    const entregue=st.id==='entregue'||(st.tipo==='final'&&st.id!=='cancelado');
+    const cancel=st.id==='cancelado';
+    const km=rcgNum(ec['km-viagem']),vt=rcgNum(ec['valor-transportadora']),vm=rcgNum(ec['valor-motorista']);
+    return {t,num:t.numero,status:st.id,stNome:st.nome,cor:st.cor,entregue,cancel,pend:!entregue&&!cancel,late:!entregue&&!cancel&&atrasado(t),
+      abertura:t.criadoEm,ent:segEnt?segEnt.inicio:null,mes:rcgMes(t.criadoEm),filial:dFilial(filialDe(t)),tipo:t.tipo||'',
+      transp:f.transp,placa:f.placa,mot:f.mot,perfil:String(ec['perfil-veiculo']||'').trim(),
+      km,vt,vm,dif:vt!=null&&vm!=null?vt-vm:null,rkm:vt!=null&&km?vt/km:null,
+      idade:Math.floor((((segEnt&&segEnt.inicio)||Date.now())-t.criadoEm)/864e5)}});
+}
+function rcgFiltra(L,semStatus){const q=nrm(rcg.busca||'');
+  return L.filter(r=>(!rcg.mes||r.mes===rcg.mes)&&(!rcg.filial||r.filial===rcg.filial)&&(!rcg.perfil||(rcg.perfil===SEM_INFO?!r.perfil:r.perfil===rcg.perfil))&&
+    (!rcg.transp||(rcg.transp===SEM_INFO?!r.transp:r.transp===rcg.transp))&&
+    (semStatus||!rcg.status||(rcg.status==='__pend'?r.pend:rcg.status==='__late'?r.late:rcg.status==='__ent'?r.entregue:r.status===rcg.status))&&
+    (!q||[r.placa,r.mot,r.transp,String(r.num)].some(x=>x&&nrm(x).includes(q))))}
+function renderCargasLog(main){
+  const L=rcgLinhas();const base=rcgFiltra(L,true);const V=rcgFiltra(L,false);
+  V.sort((a,b)=>a.pend!==b.pend?(a.pend?-1:1):a.pend?(b.idade-a.idade):((b.ent||b.abertura)-(a.ent||a.abertura)));
+  const fl=fluxoArea('logistica');
+  const sel=(id,rot,val,opts,set)=>h('label',{class:'pf'+(val?' on':'')},h('span',{class:'pf-l',text:rot}),
+    h('select',{id,onchange:e=>{set(e.target.value);renderDash()}},opts.map(([v,n])=>h('option',{value:v,selected:v===val},n))));
+  const uniq=k=>[...new Set(L.map(r=>r[k]).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'pt-BR'));
+  const meses=[...new Set(L.map(r=>r.mes))].sort().reverse();
+  const nSt=id=>base.filter(r=>r.status===id).length;
+  const filtros=h('section',{class:'pfil rcg-f aberto'},
+    h('div',{class:'pfil-2'},
+      sel('rcg-status','Status da carga',rcg.status,[['','Todos os status'],['__pend',`Pendentes (${base.filter(r=>r.pend).length})`],['__late',`Fora do prazo (${base.filter(r=>r.late).length})`],['__ent',`Entregues (${base.filter(r=>r.entregue).length})`]]
+        .concat(fl.map(s=>[s.id,`${s.nome} (${nSt(s.id)})`])),v=>rcg.status=v),
+      sel('rcg-mes','Mês de abertura',rcg.mes,[['','Todos os meses']].concat(meses.map(m=>[m,RCG_MESES[+m.slice(5)-1]+'/'+m.slice(0,4)])),v=>rcg.mes=v),
+      sel('rcg-filial','Filial',rcg.filial,[['','Todas as filiais']].concat(uniq('filial').map(x=>[x,x])),v=>rcg.filial=v),
+      sel('rcg-transp','Transportadora',rcg.transp,[['','Todas'],[SEM_INFO,'Vazio (sem transportadora)']].concat(uniq('transp').map(x=>[x,x])),v=>rcg.transp=v),
+      sel('rcg-perfil','Perfil do veículo',rcg.perfil,[['','Todos os perfis'],[SEM_INFO,'Vazio (sem perfil)']].concat(uniq('perfil').map(x=>[x,x])),v=>rcg.perfil=v)),
+    h('div',{class:'pfil-1'},h('input',{type:'search',id:'rcg-busca',class:'search',placeholder:'Buscar placa, motorista, transportadora ou nº',value:rcg.busca,
+      oninput:e=>{rcg.busca=e.target.value;clearTimeout(rcg._tm);rcg._tm=setTimeout(()=>{renderDash();const i=$('#rcg-busca');if(i){i.focus();i.setSelectionRange(i.value.length,i.value.length)}},250)}}),
+      (rcg.status||rcg.mes||rcg.filial||rcg.transp||rcg.perfil||rcg.busca)?h('button',{class:'btn ghost sm',type:'button',onclick:()=>{rcg={mes:'',filial:'',transp:'',perfil:'',status:'',busca:''};renderDash()}},'Limpar filtros'):null));
+  const pend=base.filter(r=>r.pend),late=pend.filter(r=>r.late),ent=V.filter(r=>r.entregue);
+  const km=ent.reduce((a,r)=>a+(r.km||0),0),vt=ent.reduce((a,r)=>a+(r.vt||0),0),vm=ent.reduce((a,r)=>a+(r.vm||0),0),kmV=ent.filter(r=>r.vt!=null&&r.km).reduce((a,r)=>a+r.km,0);
+  const kc=(cls,rot,v,s,st)=>h(st!=null?'button':'div',{class:'dk '+cls+(st!=null?' rcg-kb':''),type:st!=null?'button':null,'aria-pressed':st!=null?String(rcg.status===st):null,onclick:st!=null?()=>{rcg.status=rcg.status===st?'':st;renderDash()}:null},
+    h('span',{class:'lbl',text:rot}),h('span',{class:'dk-v',text:v}),s?h('span',{class:'dk-s',text:s}):null);
+  const kpis=h('div',{class:'dks'},
+    kc(pend.length?'dk-warn':'','Pendentes',String(pend.length),'ainda não entregues · toque para filtrar','__pend'),
+    kc(late.length?'dk-crit':'','Fora do prazo',String(late.length),'pendentes com SLA estourado','__late'),
+    kc('','Entregues',String(base.filter(r=>r.entregue).length),'toque para filtrar','__ent'),
+    kc('','KM rodado',rcgInt(km),'cargas entregues listadas'),
+    kc('','Frete transportadora',rcgBRL(vt),kmV?'R$/km médio '+rcgBRL2(vt/kmV):''),
+    kc('','Frete motorista',rcgBRL(vm),ent.filter(r=>r.vm==null).length+' sem valor informado'));
+  const perfis=[...new Set(ent.map(r=>r.perfil).filter(Boolean))].map(p=>{const g=ent.filter(r=>r.perfil===p&&r.vt!=null&&r.km);const k=g.reduce((a,r)=>a+r.km,0),v=g.reduce((a,r)=>a+r.vt,0);return {p,n:g.length,r:k?v/k:0}}).filter(x=>x.n).sort((a,b)=>b.r-a.r);
+  const mx=Math.max(1,...perfis.map(x=>x.r));
+  const porPerfil=h('section',{class:'card dp'},h('div',{class:'dp-h'},h('h3',{text:'R$/km por perfil do veículo'}),h('span',{class:'small muted',text:'cargas entregues'})),
+    perfis.length?h('div',{class:'hbars'},perfis.map(x=>h('div',{class:'hb'},h('span',{class:'hb-n',text:`${x.p} (${x.n})`}),h('span',{class:'hb-t'},h('span',{class:'hb-f',style:`width:${(x.r/mx*100).toFixed(1)}%`})),h('span',{class:'hb-v mono',text:rcgBRL2(x.r)})))):h('p',{class:'small muted',text:'Ainda não há cargas entregues com KM e valor informados nesses filtros.'}));
+  const vaz=h('span',{class:'muted',text:'—'});
+  const noEnt=r=>r.entregue?vaz:h('span',{class:'muted small',text:'no Entregue'});
+  const pill=r=>h('span',{class:'pill',style:`background:color-mix(in srgb,${r.cor} 14%,var(--surface));color:${r.cor}`,text:r.stNome});
+  const tempo=r=>r.entregue?h('span',{class:'small muted',text:r.ent?'entregue '+rcgDia(r.ent):'entregue'}):r.cancel?h('span',{class:'small muted',text:'cancelada'}):h('span',{class:'small'+(r.late?' late':' muted'),text:`aberta há ${r.idade} ${r.idade===1?'dia':'dias'}`});
+  const abrir=r=>{ticketSel=r.num;go('painel')};
+  const tab=h('div',{class:'tscroll rcg-tab'},h('table',{class:'dtab'},
+    h('thead',{},h('tr',{},['Nº','Status','Tempo','Abertura','Filial','Tipo','Transportadora','Placa','Motorista','Perfil','KM','Transportadora','Motorista','Diferença','R$/km'].map((x,i)=>h('th',{class:i>=10?'num':'',text:x})))),
+    h('tbody',{},V.length?V.map(r=>h('tr',{class:'rcg-r'+(r.late?' rcg-late':''),onclick:()=>abrir(r),title:'Abrir o chamado'},
+      h('td',{class:'mono'},h('button',{class:'dash-lnk',type:'button',text:String(r.num)})),h('td',{},pill(r)),h('td',{},tempo(r)),h('td',{class:'mono',text:rcgDia(r.abertura)}),
+      h('td',{text:r.filial}),h('td',{text:r.tipo}),h('td',{},r.transp||h('span',{class:'muted',text:'a definir'})),h('td',{class:'mono'},r.placa||vaz),
+      h('td',{},r.mot||vaz),h('td',{},r.perfil||vaz),
+      h('td',{class:'num mono'},r.km!=null?rcgInt(r.km):noEnt(r)),h('td',{class:'num mono'},r.vt!=null?rcgBRL(r.vt):noEnt(r)),
+      h('td',{class:'num mono'},r.vm!=null?rcgBRL(r.vm):r.entregue?h('span',{class:'muted small',text:'não informado'}):noEnt(r)),
+      h('td',{class:'num mono'},r.dif!=null?rcgBRL(r.dif):vaz),h('td',{class:'num mono'},r.rkm!=null?rcgBRL2(r.rkm):vaz))):h('tr',{},h('td',{colspan:'15',class:'muted',text:'Nenhuma carga com esses filtros.'}))),
+    ent.length?h('tfoot',{},h('tr',{},h('td',{colspan:'10',text:`Total das entregues listadas (${ent.length})`}),h('td',{class:'num mono',text:rcgInt(km)}),h('td',{class:'num mono',text:rcgBRL(vt)}),h('td',{class:'num mono',text:rcgBRL(vm)}),
+      h('td',{class:'num mono',text:rcgBRL(ent.reduce((a,r)=>a+(r.dif||0),0))}),h('td',{class:'num mono',text:kmV?rcgBRL2(vt/kmV):''}))):null));
+  const kv=(k,v)=>h('div',{},h('dt',{text:k}),h('dd',{},v));
+  const cards=h('div',{class:'rcg-cards'},V.length?V.map(r=>h('button',{type:'button',class:'rcg-c'+(r.late?' rcg-late':''),onclick:()=>abrir(r)},
+    h('div',{class:'rcg-ct'},h('b',{class:'mono',text:numFmt(r.num)}),pill(r)),
+    h('div',{},tempo(r),h('div',{class:'small muted',text:`${r.filial}${r.tipo?' · '+r.tipo:''} · aberta ${rcgDia(r.abertura)}`})),
+    h('dl',{},h('div',{class:'full'},h('dt',{text:'Transportadora'}),h('dd',{class:'tx'},r.transp||h('span',{class:'muted',text:'a definir'}))),
+      h('div',{class:'full'},h('dt',{text:'Motorista'}),h('dd',{class:'tx'},r.mot||vaz)),
+      kv('Placa',r.placa||vaz),kv('Perfil',r.perfil||vaz),
+      kv('KM rodado',r.km!=null?rcgInt(r.km):noEnt(r)),kv('R$/km',r.rkm!=null?rcgBRL2(r.rkm):vaz),
+      kv('Valor transportadora',r.vt!=null?rcgBRL(r.vt):noEnt(r)),kv('Valor motorista',r.vm!=null?rcgBRL(r.vm):r.entregue?h('span',{class:'muted small',text:'não informado'}):noEnt(r)),
+      h('div',{class:'full'},h('dt',{text:'Diferença (transp. − motorista)'}),h('dd',{},r.dif!=null?rcgBRL(r.dif):vaz))))):h('p',{class:'muted',text:'Nenhuma carga com esses filtros.'}));
+  const exportar=async()=>{
+    const rows=[['Nº','Status','Situação','Abertura','Entregue em','Filial','Tipo','Transportadora','Placa','Motorista','Perfil do veículo','KM rodado','Valor transportadora','Valor motorista','Diferença','R$/km']]
+      .concat(V.map(r=>[r.num,r.stNome,r.entregue?'Entregue':r.cancel?'Cancelada':(r.late?'Pendente · fora do prazo':'Pendente'),rcgDia(r.abertura),rcgDia(r.ent),r.filial,r.tipo,r.transp,r.placa,r.mot,r.perfil,r.km??'',r.vt??'',r.vm??'',r.dif??'',r.rkm!=null?Math.round(r.rkm*100)/100:'']));
+    if(typeof XLSX==='undefined'){toast('A planilha ainda está carregando. Tente de novo em instantes.');return}
+    const ws=XLSX.utils.aoa_to_sheet(rows);ws['!cols']=[8,22,20,11,11,18,14,26,10,24,12,10,14,14,12,9].map(w=>({wch:w}));
+    const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,'Cargas');
+    await salvarXlsx(XLSX.write(wb,{bookType:'xlsx',type:'array'}),`relatorio-de-cargas-${new Date().toISOString().slice(0,10)}.xlsx`)};
+  const cab=h('div',{class:'dash-top'},dashSwitch(),h('div',{class:'dash-acts'},h('button',{class:'btn',type:'button',onclick:exportar},icone('nota','ico'),'Exportar Excel')));
+  const lstH=h('div',{class:'dp-h'},h('h3',{text:`${rcg.status==='__pend'?'Cargas pendentes':rcg.status==='__late'?'Cargas fora do prazo':rcg.status==='__ent'?'Cargas entregues':rcg.status?(fl.find(s=>s.id===rcg.status)||{nome:rcg.status}).nome:'Todas as cargas'} (${V.length})`}),
+    h('span',{class:'small muted',text:'Pendentes primeiro, das mais antigas. Toque numa carga para abrir o chamado.'}));
+  main.replaceChildren(h('div',{class:'intro'},h('div',{},h('h2',{text:'Relatório de cargas'}),h('p',{text:'Todas as cargas da Logística com status, transportadora, placa, motorista, perfil do veículo, KM e valores informados no Entregue.'}))),
+    cab,filtros,kpis,h('div',{class:'dgrid'},porPerfil,h('section',{class:'card dp'},lstH,tab,cards),
+      h('p',{class:'small muted',text:'KM e valores são informados pela equipe no Entregue, por isso os totais somam só as cargas entregues. Diferença = valor da transportadora − valor do motorista. Fora do prazo segue o SLA da Logística em horas úteis.'})));
+}
 function renderCargasSem(main){
   if(!csm.dados){main.replaceChildren(h('div',{class:'intro'},h('div',{},h('h2',{text:'Dashboards'}),h('p',{text:'Lendo a planilha de cargas de sementes…'}))));setTimeout(()=>csmCarregar(),0);return}
   const D=csm.dados;const pode=ehEquipe||podeAdmin;
