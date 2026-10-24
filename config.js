@@ -5,5 +5,5 @@ window.CENTRAL_CFG = {
   clientId: "e7796abd-4812-49eb-adb3-760ff4a72ad8",
   site: "agrologicamerc.sharepoint.com/sites/centraldeatendimento",
   pasta: "Central de Atendimento",
-  admins: ["jack.locatelli@agrologica.com.br","renan.pires@agrologica.com.br"]
+  admins: ["jack.locatelli@agrologica.com.br"]
 };
